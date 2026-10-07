@@ -33,6 +33,15 @@ const NAV = {
   ],
 }[VERSION];
 
+/* ---------- Light / black theme ----------
+   The <head> of every page applies a saved choice (or ?theme=dark) before paint.
+   This switches it and remembers it for the visitor's next page. */
+function setTheme(theme) {
+  if (theme === 'dark') document.documentElement.dataset.theme = 'dark';
+  else delete document.documentElement.dataset.theme;
+  try { localStorage.setItem('aamal-theme', theme); } catch (e) { /* storage blocked: theme lasts for this page only */ }
+}
+
 /* ---------- Shared header ---------- */
 class SiteHeader extends HTMLElement {
   connectedCallback() {
@@ -46,11 +55,16 @@ class SiteHeader extends HTMLElement {
       <header class="site-header">
         <div class="container site-header__inner">
           <a class="site-header__logo" href="index.html">
-            <img src="${IMG}logo.png" alt="A'amal Group — Arab Economic &amp; Business Group, home" width="661" height="276">
+            <img class="logo-light" src="${IMG}logo.png" alt="A'amal Group — Arab Economic &amp; Business Group, home" width="661" height="276">
+            <img class="logo-dark" src="${IMG}logo-white.png" alt="A'amal Group — Arab Economic &amp; Business Group, home" width="661" height="276">
           </a>
           <nav class="site-nav" id="site-nav" aria-label="Main navigation">${links}</nav>
           <div class="site-header__actions">
             <a class="lang-link" href="#" lang="ar">العربية</a>
+            <button class="theme-toggle" type="button" aria-label="Switch to black theme">
+              <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+              <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+            </button>
             <a class="btn btn--primary" href="contact.html"${active === 'contact' ? ' aria-current="page"' : ''}>Contact Us</a>
             <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -58,6 +72,18 @@ class SiteHeader extends HTMLElement {
           </div>
         </div>
       </header>`;
+
+    const themeBtn = this.querySelector('.theme-toggle');
+    const syncThemeLabel = () => {
+      const dark = document.documentElement.dataset.theme === 'dark';
+      themeBtn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to black theme');
+      themeBtn.setAttribute('aria-pressed', String(dark));
+    };
+    syncThemeLabel();
+    themeBtn.addEventListener('click', () => {
+      setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+      syncThemeLabel();
+    });
 
     const toggle = this.querySelector('.nav-toggle');
     const nav = this.querySelector('.site-nav');

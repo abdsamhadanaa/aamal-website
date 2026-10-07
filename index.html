@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>try{var t=new URLSearchParams(location.search).get("theme");if(t)localStorage.setItem("aamal-theme",t);else t=localStorage.getItem("aamal-theme");if(t==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
   <title>A'amal Group — Website versions</title>
   <meta name="robots" content="noindex">
   <link rel="icon" href="assets/img/logo.png">
@@ -16,24 +17,35 @@
        When one version is chosen, move its files to the site root and delete this page. -->
   <main class="section">
     <div class="container stack">
-      <img src="assets/img/logo.png" alt="A'amal Group" style="height: 72px; width: auto">
+      <img class="logo-light" src="assets/img/logo.png" alt="A'amal Group" style="height: 72px; width: auto">
+      <img class="logo-dark" src="assets/img/logo-white.png" alt="A'amal Group" style="height: 72px; width: auto">
       <div>
         <span class="eyebrow">Website redesign</span>
         <h1 class="h1" style="margin-top: 8px">Choose a version to review</h1>
       </div>
       <div class="grid grid--2">
-        <a class="tile tile--white" href="v1/index.html" style="text-decoration: none; border: 1px solid var(--line); border-top: 4px solid var(--green)">
+        <a class="tile tile--white" href="v1/index.html?theme=light" style="text-decoration: none; border: 1px solid var(--line); border-top: 4px solid var(--green)">
           <span class="eyebrow">Version 1</span>
           <h2 class="h3" style="font-size: 26px">Original redesign</h2>
           <p>11 pages. Clean, sector-led layout with the hero slider, services, responsibility, media, careers and contact.</p>
           <span class="text-link">Open Version 1 →</span>
         </a>
-        <a class="tile tile--white" href="v2/index.html" style="text-decoration: none; border: 1px solid var(--line); border-top: 4px solid var(--green)">
+        <a class="tile tile--white" href="v2/index.html?theme=light" style="text-decoration: none; border: 1px solid var(--line); border-top: 4px solid var(--green)">
           <span class="eyebrow">Version 2</span>
           <h2 class="h3" style="font-size: 26px">Competitor-informed</h2>
           <p>12 pages. Adds the founder story, Vision 2030, a Projects section, group companies, reports &amp; policies and speak-up routes.</p>
           <span class="text-link">Open Version 2 →</span>
         </a>
+      </div>
+      <div class="panel" style="background: #0A0C0D; color: #FFFFFF; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px">
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <strong style="font-family: var(--font-display); font-size: 22px">Black theme</strong>
+          <span style="color: #D3D7D5">See either version in black. Switch any time with the moon button in the menu.</span>
+        </div>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="v1/index.html?theme=dark">Version 1 in black</a>
+          <a class="btn btn--outline-light" href="v2/index.html?theme=dark">Version 2 in black</a>
+        </div>
       </div>
     </div>
   </main>
