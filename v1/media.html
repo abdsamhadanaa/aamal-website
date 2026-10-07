@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Media Centre — A'amal Group</title>
+  <meta name="description" content="News, press releases and events from A'amal Group.">
+  <link rel="icon" href="../assets/img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/main.js" defer></script>
+</head>
+<body data-version="1">
+  <site-header active="media"></site-header>
+
+  <main id="main">
+    <section class="page-hero page-hero--light">
+      <div class="container page-hero__inner">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> / Media</nav>
+        <h1 class="h1">Media Centre</h1>
+        <p class="lead">News, announcements and stories from across A'amal Group.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-bottom: 0; padding-top: 72px">
+      <div class="container">
+        <a class="featured-story" href="#">
+          <span class="img-placeholder">[Featured story photo]</span>
+          <span class="featured-story__text">
+            <span class="eyebrow">Featured · [Date]</span>
+            <span class="featured-story__title">[Featured story headline]</span>
+            <span class="muted" style="font-size: 17px">[Two-line summary of the story]</span>
+            <span class="text-link">Read story →</span>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 72px">
+      <div class="container stack" style="gap: 32px">
+        <div class="filters" role="group" aria-label="Filter by type" data-filters>
+          <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-btn" type="button" data-filter="news" aria-pressed="false">News</button>
+          <button class="filter-btn" type="button" data-filter="press" aria-pressed="false">Press releases</button>
+          <button class="filter-btn" type="button" data-filter="events" aria-pressed="false">Events</button>
+        </div>
+        <div class="grid grid--3" style="row-gap: 32px">
+          <a class="news-card" href="#" data-type="news"><span class="img-placeholder">[Photo]</span><span class="news-card__meta">News · [Date]</span><span class="news-card__title">[News headline one]</span></a>
+          <a class="news-card" href="#" data-type="press"><span class="img-placeholder">[Photo]</span><span class="news-card__meta">Press release · [Date]</span><span class="news-card__title">[Press release headline]</span></a>
+          <a class="news-card" href="#" data-type="events"><span class="img-placeholder">[Photo]</span><span class="news-card__meta">Event · [Date]</span><span class="news-card__title">[Event headline]</span></a>
+          <a class="news-card" href="#" data-type="news"><span class="img-placeholder">[Photo]</span><span class="news-card__meta">News · [Date]</span><span class="news-card__title">[News headline two]</span></a>
+          <a class="news-card" href="#" data-type="events"><span class="img-placeholder">[Photo]</span><span class="news-card__meta">Event · [Date]</span><span class="news-card__title">[Event headline two]</span></a>
+          <a class="news-card" href="#" data-type="news"><span class="img-placeholder">[Photo]</span><span class="news-card__meta">News · [Date]</span><span class="news-card__title">[News headline three]</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section--dark">
+      <div class="container cta-band">
+        <div>
+          <h2>Media enquiries</h2>
+          <p style="color: var(--on-dark)">For press information, interviews and brand assets.</p>
+        </div>
+        <a class="btn btn--primary" href="mailto:info@aamal-group.com">info@aamal-group.com</a>
+      </div>
+    </section>
+  </main>
+
+  <site-footer></site-footer>
+</body>
+</html>

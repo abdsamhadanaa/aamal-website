@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Careers — A'amal Group</title>
+  <meta name="description" content="Careers at A'amal Group: open positions and how to apply.">
+  <link rel="icon" href="../assets/img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/main.js" defer></script>
+</head>
+<body data-version="1">
+  <site-header active="careers"></site-header>
+
+  <main id="main">
+    <section class="page-hero">
+      <img class="page-hero__img" src="../assets/img/team-meeting.jpg" alt="">
+      <div class="page-hero__overlay" style="background: rgba(24, 27, 28, .64)"></div>
+      <div class="container page-hero__inner">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> / Careers</nav>
+        <h1 class="h1">Grow with us</h1>
+        <p class="lead">Join a team that builds, operates and invests across industries — and grows together.</p>
+        <a class="btn btn--primary" href="#openings" style="margin-top: 8px">View open positions</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container stack">
+        <h2 class="h2">Why A'amal</h2>
+        <div class="grid grid--4">
+          <div class="tile"><h3 style="font-size: 20px">Varied work</h3><p>Projects across energy, construction, sports and business.</p></div>
+          <div class="tile"><h3 style="font-size: 20px">Room to grow</h3><p>Training and development to build your career.</p></div>
+          <div class="tile"><h3 style="font-size: 20px">Safety first</h3><p>A culture that puts people's wellbeing before everything.</p></div>
+          <div class="tile"><h3 style="font-size: 20px">International reach</h3><p>Teams in Saudi Arabia, Malaysia and Romania.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tint" id="openings">
+      <div class="container stack" style="gap: 32px">
+        <h2 class="h2">Open positions</h2>
+        <ul class="jobs">
+          <li class="job"><div><span class="job__title">[Job title]</span><span class="job__meta">Contracting &amp; Technical · Al Khobar · Full time</span></div><a class="btn btn--small" href="#apply">Apply</a></li>
+          <li class="job"><div><span class="job__title">[Job title]</span><span class="job__meta">Hospitality &amp; Sports · [City] · Full time</span></div><a class="btn btn--small" href="#apply">Apply</a></li>
+          <li class="job"><div><span class="job__title">[Job title]</span><span class="job__meta">Project &amp; Business Management · Al Khobar · Full time</span></div><a class="btn btn--small" href="#apply">Apply</a></li>
+          <li class="job"><div><span class="job__title">[Job title]</span><span class="job__meta">Corporate · [City] · Contract</span></div><a class="btn btn--small" href="#apply">Apply</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="apply">
+      <div class="container split">
+        <div class="split__head" style="display: flex; flex-direction: column; gap: 14px">
+          <h2 class="h2">Send us your CV</h2>
+          <p class="muted" style="font-size: 17px">Don't see the right role? Share your details and we'll be in touch when something fits.</p>
+        </div>
+        <div class="split__body">
+          <form class="form" id="cv-form" data-form data-success="cv-success" novalidate>
+            <label class="field">Full name<input type="text" name="name" autocomplete="name" required></label>
+            <label class="field">Email<input type="email" name="email" autocomplete="email" required></label>
+            <label class="field">Phone<input type="tel" name="phone" autocomplete="tel"></label>
+            <label class="field">Area of interest
+              <select name="area">
+                <option>Hospitality &amp; Sports</option>
+                <option>Contracting &amp; Technical</option>
+                <option>Project &amp; Business Management</option>
+                <option>Corporate</option>
+              </select>
+            </label>
+            <label class="field full">CV (PDF or Word)<input type="file" name="cv" accept=".pdf,.doc,.docx" required></label>
+            <label class="field full">Message<textarea name="message" rows="4"></textarea></label>
+            <button class="btn btn--primary full" type="submit" style="justify-self: start">Submit application</button>
+          </form>
+          <div class="form-success" id="cv-success" tabindex="-1" role="status" hidden>
+            <h2 class="h3">Thank you</h2>
+            <p>We've received your application and will be in touch if a suitable role opens up.</p>
+            <button class="btn btn--small" type="button" data-form-reset="cv-form">Send another</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <site-footer></site-footer>
+</body>
+</html>
