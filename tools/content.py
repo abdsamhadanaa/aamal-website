@@ -458,8 +458,8 @@ SERVICES = {
         "title": "Workforce Solutions, Recruitment & Employer of Record in Saudi Arabia | A'amal Group & Airswift",
         "description": "A'amal Group and Airswift provide talent acquisition, global employment and mobility, payroll, immigration and managed workforce solutions for energy, process and infrastructure projects.",
         "lead": "The right people for energy, process and infrastructure projects — found, hired, moved and managed.",
-        "hero": "services/hr-hero",
-        "hero_alt": "Team working together at a whiteboard",
+        "hero": "services/as-engineers-plant",
+        "hero_alt": "Two engineers in hi-vis reviewing a tablet at a plant at dusk",
         "overview": [
             "A'amal Group and Airswift come together to provide workforce solutions across talent acquisition, global employment and managed services.",
             "Airswift is an international workforce solutions provider and strategic partner to the energy, process and infrastructure industries. Its turnkey workforce solutions capture and deliver the talent clients need to achieve their goals.",
@@ -507,7 +507,13 @@ SERVICES = {
             ("Saudi roots", "Airswift has worked in the Kingdom since 2016."),
             ("End-to-end", "From hiring to payroll, immigration and relocation."),
         ],
-        "gallery": [],
+        "gallery_credit": "Images: Airswift.",
+        "gallery": [
+            ("services/as-site-team", "Engineers in orange coveralls reviewing plans on site"),
+            ("services/as-wind-engineer", "Engineer with a tablet at a wind farm"),
+            ("services/as-technician", "Technician with a laptop inspecting industrial equipment"),
+            ("services/as-hr-meeting", "Recruitment team meeting around a table"),
+        ],
     },
     "project-solutions": {
         "name": "Project Solutions",
