@@ -13,8 +13,8 @@ SECTORS = [
         "name": "Hospitality & Sports",
         "lead": "Destinations people want to visit: crystal-clear lagoons, sports venues and the experiences around them.",
         "intro": "Together with world-leading partners, A'amal Group brings landmark leisure and sports destinations to the Kingdom — from artificial lagoons with white-sand beaches to sports complexes, leagues and events.",
-        "hero": "services/lagoons-hero",
-        "card_img": "services/lagoons-beach",
+        "hero": "services/cl-hotel-aerial",
+        "card_img": "services/cl-hotel-aerial",
         "services": ["artificial-lagoons", "sports-facilities"],
     },
     {
@@ -24,7 +24,7 @@ SECTORS = [
         "lead": "Building, commissioning, maintaining and protecting the plants that power the Kingdom's industry.",
         "intro": "A'amal's industrial companies support oil, gas, petrochemical, power and water operators across the full asset lifecycle — from construction and commissioning to maintenance, protective coating and emissions monitoring.",
         "hero": "hero-refinery",
-        "card_img": "service-contracting",
+        "card_img": "services/ei-hero",
         "services": ["operations-maintenance", "electrical-instrumentation", "waterproofing-industrial-coating", "industry-transformation"],
     },
     {
@@ -34,7 +34,7 @@ SECTORS = [
         "lead": "The people and the project controls that keep complex work on time and on budget.",
         "intro": "From sourcing specialist talent to running enterprise project, portfolio and risk management, A'amal helps organisations deliver with confidence.",
         "hero": "services/hr-hero",
-        "card_img": "service-management",
+        "card_img": "services/as-hr-meeting",
         "services": ["human-resource-management", "project-solutions"],
     },
 ]
@@ -47,8 +47,8 @@ SERVICES = {
         "title": "Artificial Lagoons in Saudi Arabia | A'amal Group & Crystal Lagoons",
         "description": "A'amal Group and Crystal Lagoons build crystal-clear artificial lagoons in Saudi Arabia for public access destinations, real estate, hospitality and mixed-use projects.",
         "lead": "Turn any site into a beach destination — crystalline lagoons of unlimited size, with white sand and year-round swimming.",
-        "hero": "services/lagoons-hero",
-        "hero_alt": "Crystal-clear artificial lagoon with sandy beach, palm trees and a city skyline",
+        "hero": "services/cl-cabo",
+        "hero_alt": "Crystal lagoon with palm trees beside a landscaped resort lawn",
         "overview": [
             "A'amal Group and Crystal Lagoons have joined forces to bring the world's leading artificial lagoon technology to the Kingdom of Saudi Arabia.",
             "Crystal Lagoons' patented technology makes it possible to build crystalline lagoons of unlimited size, surrounded by palm trees and white sandy beaches. Together, we create water destinations for tourism, public events, residential communities and commercial developments.",
@@ -106,18 +106,14 @@ SERVICES = {
         ],
         "gallery_credit": "Photos: Crystal Lagoons projects worldwide and A'amal Group.",
         "gallery": [
-            ("services/cl-dubai", "Crystal lagoon with a white-sand walkway and the Dubai skyline"),
-            ("services/cl-family", "Families swimming and kayaking in a large crystal lagoon"),
-            ("services/cl-kayaks", "Paddleboarders seen from above on turquoise water"),
-            ("services/cl-paddle", "Paddleboarder on a crystal lagoon beside waterfront homes"),
             ("services/cl-hotel-aerial", "Aerial view of a resort hotel built around a crystal lagoon"),
-            ("services/cl-night-event", "Night-time concert on the beach of a public access lagoon"),
-            ("services/cl-beach-party", "Children dancing at a lagoon beach event"),
-            ("services/cl-cabo", "Crystal lagoon with palm trees beside a resort lawn"),
+            ("services/lagoons-city", "Aerial view of a lagoon running through a residential community"),
             ("services/cl-community", "Lagoon at the heart of a masterplanned desert community"),
+            ("services/lagoons-community", "Masterplanned community built around a large lagoon"),
             ("services/lagoons-floating-park", "Floating water park on a turquoise lagoon"),
+            ("services/lagoons-pier", "Floating pier and jet skis on a crystalline lagoon"),
             ("services/lagoons-waves", "Artificial surf wave pool"),
-            ("services/lagoons-beach-club", "Shaded beach club restaurant overlooking a lagoon"),
+            ("services/lagoons-park-render", "Render of a floating park and beach kiosk"),
         ],
     },
     "sports-facilities": {
@@ -168,7 +164,6 @@ SERVICES = {
         "gallery": [
             ("services/sports-complex", "Aerial render of a sports complex with padel courts and pitches"),
             ("services/sports-clubhouse", "Covered sports clubhouse entrance with bicycle parking"),
-            ("services/sports-runners", "Silhouettes of runners at sunrise"),
         ],
     },
     # ------------------------------------------------------------------ INDUSTRIAL SERVICES

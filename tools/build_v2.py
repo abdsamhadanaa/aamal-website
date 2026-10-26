@@ -76,7 +76,7 @@ def picture(name, alt, sizes="(max-width: 800px) 100vw, 50vw", cls="", eager=Fal
     return f'<img{c} src="../assets/img/{name}.webp"{srcset} width="{w}" height="{h}" alt="{e(alt)}"{load}>'
 
 
-def head(title, desc, page, image="services/lagoons-hero", extra_ld=None, preload=None):
+def head(title, desc, page, image="services/cl-cabo", extra_ld=None, preload=None):
     url = SITE_URL + ("" if page == "index.html" else page)
     img_url = SITE_URL + "../assets/img/" + image + ".webp"
     graph = [ORG, {"@type": "WebPage", "@id": url, "url": url, "name": title, "description": desc,
@@ -401,9 +401,9 @@ def build_overview():
 
 
 # ---------------------------------------------------------------- existing hand-written pages
-PAGE_IMAGE = {"index.html": "services/lagoons-hero", "about.html": "service-management", "contact.html": "hero-construction",
-              "careers.html": "service-management", "responsibility.html": "hero-oil-gas", "awards.html": "services/lagoons-hero",
-              "media.html": "services/lagoons-hero"}
+PAGE_IMAGE = {"index.html": "services/cl-cabo", "about.html": "hero-oil-gas", "contact.html": "hero-construction",
+              "careers.html": "team-meeting", "responsibility.html": "hero-oil-gas", "awards.html": "services/cl-cabo",
+              "media.html": "services/cl-cabo"}
 
 
 def refresh_head(fname):
@@ -415,7 +415,7 @@ def refresh_head(fname):
         re.search(r'<img class="hero__slide is-active"[^>]*src="\.\./assets/img/([\w/-]+)\.webp"', src)
     preload = m.group(1) if m else None
     extra = [] if fname == "index.html" else [breadcrumb_ld([("Home", "index.html"), (title.split(" — ")[0].split(" | ")[0], fname)])]
-    new_head = head(title, desc, fname, PAGE_IMAGE.get(fname, "services/lagoons-hero"), extra, preload=preload)
+    new_head = head(title, desc, fname, PAGE_IMAGE.get(fname, "services/cl-cabo"), extra, preload=preload)
     src = re.sub(r"<head>.*?</head>", lambda _: new_head, src, count=1, flags=re.S)
     open(path, "w", encoding="utf-8").write(src)
 
