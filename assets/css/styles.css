@@ -510,3 +510,11 @@ p { margin: 0; }
 a.company { text-decoration: none; color: inherit; }
 a.company:hover strong { color: var(--link); }
 .partners__grid--logos span.partner-card__wordmark { background: none; height: auto; color: #2E3133; font-size: 26px; }
+.press-card { border: 1px solid var(--line); border-top: 4px solid var(--green); padding: 28px; display: flex; flex-direction: column; gap: 12px; text-decoration: none; color: var(--charcoal); background: var(--bg); }
+.press-card__meta { font-size: 13px; color: var(--link); font-weight: 600; }
+.press-card__title { font-family: var(--font-display); font-weight: 600; font-size: 20px; line-height: 1.35; }
+.press-card .muted { font-size: 15px; flex-grow: 1; }
+.press-card .text-link { display: inline-flex; gap: 6px; align-items: center; font-size: 15px; padding-bottom: 0; }
+.press-card:hover .press-card__title { color: var(--link); }
+.dot-list--light li { color: #E6EAE8; }
+.press-grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); }
