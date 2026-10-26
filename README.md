@@ -9,7 +9,7 @@ or serve the folder with any web server.
 | Folder | Version | Pages |
 |---|---|---|
 | `v1/` | Original redesign | 11 |
-| `v2/` | Competitor-informed (founder story, Vision 2030, Projects, group companies, reports & policies) | 12 |
+| `v2/` | Competitor-informed, with a page per service (founder story, Vision 2030, partners, group companies, reports & policies) | 21 |
 
 `index.html` at the root is a review page linking to both. Once a version is chosen, move its
 files to the site root, fix the `../assets/` paths to `assets/`, and delete the other folder and the review page.
@@ -46,3 +46,17 @@ They are defined once in `assets/js/main.js`. The `active` value underlines the 
 - **Arabic version** — the `العربية` link is a placeholder; an RTL Arabic copy of the chosen version is the next step.
 - **Photos** — the energy, construction and service photos are from Unsplash (free to use). Swap in
   A'amal's own project photography when available.
+
+## Version 2 service pages
+
+Service text lives in `tools/content.py`. After editing it, run:
+
+```
+python3 tools/build_v2.py
+```
+
+This rebuilds the 8 service pages, the 3 sector pages, `services.html`, the SEO `<head>` of every V2 page and `v2/sitemap.xml`.
+
+At launch on the real domain, set `SITE_URL` to the domain and `PREVIEW = False` in `tools/build_v2.py` (removes `noindex`), rebuild, then submit `sitemap.xml` in Google Search Console.
+
+Still waiting for content: new "together" wording, About Us text and founder message from Mr. Yassin, cities A'amal has worked in, Apex's website and logo, company logos, awards.
