@@ -33,8 +33,8 @@ SECTORS = [
         "name": "Project & Business Management",
         "lead": "The people and the project controls that keep complex work on time and on budget.",
         "intro": "From sourcing specialist talent to running enterprise project, portfolio and risk management, A'amal helps organisations deliver with confidence.",
-        "hero": "services/hr-hero",
-        "card_img": "services/as-hr-meeting",
+        "hero": "services/pbm-saudi-coffee",
+        "card_img": "services/pbm-saudi-desk",
         "services": ["human-resource-management", "project-solutions"],
     },
 ]
@@ -516,8 +516,8 @@ SERVICES = {
         "title": "Project Management Solutions & Primavera Services | A'amal Integra",
         "description": "A'amal Integra delivers enterprise project, portfolio and risk management solutions built on Primavera, plus implementation, integration, consultancy, outsourcing and 24/7 support.",
         "lead": "Enterprise project, portfolio and risk management — built on Primavera and tailored to how you work.",
-        "hero": "services/ps-hero",
-        "hero_alt": "Project manager signing off on a tablet",
+        "hero": "services/pbm-saudi-desk",
+        "hero_alt": "Saudi professional in a shemagh reviewing project documents at his desk",
         "overview": [
             "A'amal Integra delivers enterprise project, portfolio and risk management solutions built around Primavera suite applications and custom software developed in-house or with partners.",
             "We provide construction management, project planning and cost control services in line with our ISO certifications.",
