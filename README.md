@@ -59,4 +59,4 @@ This rebuilds the 8 service pages, the 3 sector pages, `services.html`, the SEO 
 
 At launch on the real domain, set `SITE_URL` to the domain and `PREVIEW = False` in `tools/build_v2.py` (removes `noindex`), rebuild, then submit `sitemap.xml` in Google Search Console.
 
-Still waiting for content: new "together" wording, About Us text and founder message from Mr. Yassin, cities A'amal has worked in, Apex's website and logo, company logos, awards.
+Still waiting for content: new "together" wording, Apex's website and logo, company logos, awards.
