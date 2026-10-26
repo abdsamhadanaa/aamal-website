@@ -236,11 +236,12 @@ def build_service(slug, s):
     gallery = ""
     if len(s["gallery"]) >= 2:
         pics = "".join(picture(n, a, sizes="(max-width: 600px) 100vw, 33vw") for n, a in s["gallery"])
+        credit = f'\n        <p class="muted" style="font-size: 14px; margin: 0">{e(s["gallery_credit"])}</p>' if s.get("gallery_credit") else ""
         gallery = f"""
     <section class="section">
       <div class="container stack" style="gap: 32px">
         <h2 class="h2">Gallery</h2>
-        <div class="gallery">{pics}</div>
+        <div class="gallery">{pics}</div>{credit}
       </div>
     </section>"""
 
