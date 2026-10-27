@@ -489,3 +489,12 @@ body[data-version="2"] .hero h1 em { color: var(--accent-word); }
 /* Founder portrait: full photo (royal portrait and flag visible) */
 body[data-version="2"] .leader__photo { aspect-ratio: auto; flex: 0 1 480px; background: none; }
 body[data-version="2"] .heritage__photo { flex: 0 1 480px; }
+
+/* Home: sustainability band (photo + text in one design) */
+.impact { display: grid; grid-template-columns: 1.5fr 1fr; background: var(--green-dark); color: #FFFFFF; overflow: hidden; }
+.impact__img { width: 100%; height: 100%; min-height: 360px; object-fit: cover; display: block; }
+.impact__text { padding: 56px 48px; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+.impact__text .eyebrow { color: #CFEBD8; }
+.impact__text h2 { color: #FFFFFF; }
+.impact__text p { color: #E9F4EC; font-size: 17px; margin: 0; }
+@media (max-width: 900px) { .impact { grid-template-columns: 1fr; } .impact__img { min-height: 0; aspect-ratio: 16 / 10; } .impact__text { padding: 36px 24px; } }
