@@ -48,7 +48,6 @@ ORG = {
     "sameAs": ["https://twitter.com/AAMAL_GROUP_SA"],
 }
 
-THEME_SCRIPT = '<script>try{var t=new URLSearchParams(location.search).get("theme");if(t)localStorage.setItem("aamal-theme",t);else t=localStorage.getItem("aamal-theme");if(t==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>'
 
 SECTOR = {s["slug"]: s for s in C.SECTORS}
 
@@ -101,7 +100,6 @@ def head(title, desc, page, image="services/cl-cabo", extra_ld=None, preload=Non
     return f"""<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {THEME_SCRIPT}
   <title>{e(title)}</title>
   <meta name="description" content="{e(desc)}">{robots}
   <link rel="canonical" href="{url}">

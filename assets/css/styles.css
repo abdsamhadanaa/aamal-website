@@ -409,52 +409,6 @@ p { margin: 0; }
 
 
 /* =========================================================
-   Black (dark) theme — html[data-theme="dark"]
-   Switched by the header toggle or a ?theme=dark link; remembered per browser.
-   ========================================================= */
-:root[data-theme="dark"] {
-  --bg: #121517;
-  --deep: #0A0C0D;
-  --tint: #181D1F;
-  --placeholder: #22282A;
-  --charcoal: #EEF1EF;
-  --ink: #E4E8E6;
-  --text: #C3CAC7;
-  --muted: #98A19D;
-  --line: #262C2F;
-  --link: #5FD184;
-  --field-border: #3A4245;
-  color-scheme: dark;
-}
-:root[data-theme="dark"] .site-header { background: rgba(18, 21, 23, .96); }
-:root[data-theme="dark"] .section--dark { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-:root[data-theme="dark"] .btn--outline { border-color: var(--field-border); }
-:root[data-theme="dark"] .btn--primary:hover { background: #1B9443; }
-:root[data-theme="dark"] .panel--green { background: #12562A; }
-:root[data-theme="dark"] .partners { border-top-color: var(--line); }
-:root[data-theme="dark"] .award, :root[data-theme="dark"] .company { border-color: var(--line); background: var(--bg); }
-:root[data-theme="dark"] .timeline li { border-top-color: var(--line); }
-:root[data-theme="dark"] .timeline li:first-child, :root[data-theme="dark"] .timeline li:last-child { border-top-color: var(--green); }
-:root[data-theme="dark"] .office-card { border-top-color: var(--line); }
-:root[data-theme="dark"] .office-card--hq { border-top-color: var(--green); }
-:root[data-theme="dark"] .offices > div { border-top-color: #3A4245; }
-:root[data-theme="dark"] .offices > div:first-child { border-top-color: var(--green); }
-:root[data-theme="dark"] svg[stroke="#157F36"] { stroke: #5FD184; }
-
-/* Logo swap: colour logo on light, white logo on dark */
-.logo-dark { display: none; }
-:root[data-theme="dark"] .logo-light { display: none; }
-:root[data-theme="dark"] .logo-dark { display: block; }
-
-/* Theme switch in the header */
-.theme-toggle { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--line); background: var(--bg); color: var(--charcoal); cursor: pointer; padding: 0; }
-.theme-toggle:hover { border-color: var(--charcoal); }
-.theme-toggle svg { width: 20px; height: 20px; }
-.theme-toggle .icon-sun { display: none; }
-:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
-:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
-
-/* =========================================================
    Service pages (Version 2)
    ========================================================= */
 .partner-card { display: flex; flex-wrap: wrap; gap: 20px 28px; align-items: center; border: 1px solid var(--line); padding: 24px; background: var(--bg); margin-top: 8px; }
