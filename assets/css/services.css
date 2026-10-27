@@ -94,3 +94,14 @@
   .svc-card { grid-template-columns: 1fr 110px; }
   .s-steps { padding: 24px; }
 }
+
+/* About page (new layout) */
+.s-split--rev { grid-template-columns: 1.1fr 1fr; }
+.vm-item { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-top: 1px solid var(--line); width: 100%; }
+.vm-item h3 { font-size: 19px; font-weight: 600; margin-bottom: 4px; }
+.vm-item p { margin: 0; font-size: 16px; color: var(--text); }
+.vm-ico { flex: none; width: 44px; height: 44px; border-radius: 50%; background: var(--bg); border: 1px solid var(--line); color: var(--green-dark); display: flex; align-items: center; justify-content: center; }
+.social-band--card { border-radius: var(--r-lg); }
+.leader__photo img { border-radius: var(--r-lg); }
+#founder .container { align-items: center; }
+@media (max-width: 900px) { .s-split--rev { grid-template-columns: 1fr; } }
