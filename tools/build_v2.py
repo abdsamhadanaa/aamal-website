@@ -249,7 +249,8 @@ def build_service(slug, s):
 
     gallery = ""
     if len(s["gallery"]) >= 2:
-        pics = "".join(picture(n, a, sizes="(max-width: 600px) 100vw, 33vw") for n, a in s["gallery"])
+        gal = s["gallery"][1:] if len(s["gallery"]) >= 3 else s["gallery"]
+        pics = "".join(picture(n, a, sizes="(max-width: 600px) 100vw, 33vw") for n, a in gal)
         credit = f'\n        <p class="muted" style="font-size: 14px; margin: 0">{e(s["gallery_credit"])}</p>' if s.get("gallery_credit") else ""
         gallery = f"""
     <section class="section" style="padding-top: 0">
@@ -464,7 +465,7 @@ def build_overview():
     steps = [("Plan", "Feasibility, design and project set-up."), ("Build", "Construction, engineering and commissioning."),
              ("Operate", "Running facilities and staffing them well."), ("Maintain", "Keeping assets safe, efficient and compliant.")]
     steps_html = "".join(f'<article class="offer-card"><span class="offer-card__num">{k + 1:02d}</span><h3>{t}</h3><p>{d}</p></article>' for k, (t, d) in enumerate(steps))
-    body = f"""{s_hero(crumbs, "8 specialist services", "Our services", "Three sectors, one partner — from destinations people love to the plants that power industry and the people and systems that deliver projects.", "hero-refinery", btns, stats)}
+    body = f"""{s_hero(crumbs, "8 specialist services", "Our services", "Three sectors, one partner — from destinations people love to the plants that power industry and the people and systems that deliver projects.", "hero-oil-gas", btns, stats)}
 
     <section class="section">
       <div class="container stack" style="gap: 88px">
@@ -497,7 +498,7 @@ def build_overview():
 {s_cta("hero-construction", "Planning a project?", "Tell us what you need and our team will get back to you.", '<a class="btn btn--white" href="contact.html">Talk to our team</a>')}"""
     title = "Services — Artificial Lagoons, Industrial Services & Project Management | A'amal Group"
     desc = "A'amal Group services in Saudi Arabia: artificial lagoons, sports facilities, industrial O&M, electrical & instrumentation, waterproofing & coating, industry transformation, HR and project solutions."
-    return page(head(title, desc, "services.html", "hero-refinery", ld, preload="hero-refinery"), "services", body)
+    return page(head(title, desc, "services.html", "hero-oil-gas", ld, preload="hero-oil-gas"), "services", body)
 
 
 # ---------------------------------------------------------------- existing hand-written pages

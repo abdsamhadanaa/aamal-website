@@ -14,7 +14,7 @@ SECTORS = [
         "lead": "Destinations people want to visit: crystal-clear lagoons, sports venues and the experiences around them.",
         "intro": "Together with world-leading partners, A'amal Group brings landmark leisure and sports destinations to the Kingdom — from artificial lagoons with white-sand beaches to sports complexes, leagues and events.",
         "hero": "services/cl-hotel-aerial",
-        "card_img": "services/cl-hotel-aerial",
+        "card_img": "services/lagoons-city",
         "services": ["artificial-lagoons", "sports-facilities"],
     },
     {
@@ -23,8 +23,8 @@ SECTORS = [
         "name": "Industrial Services",
         "lead": "Building, commissioning, maintaining and protecting the plants that power the Kingdom's industry.",
         "intro": "A'amal's industrial companies support oil, gas, petrochemical, power and water operators across the full asset lifecycle — from construction and commissioning to maintenance, protective coating and emissions monitoring.",
-        "hero": "hero-refinery",
-        "card_img": "services/ei-hero",
+        "hero": "hero-construction",
+        "card_img": "services/om-startup",
         "services": ["operations-maintenance", "electrical-instrumentation", "waterproofing-industrial-coating", "industry-transformation"],
     },
     {
@@ -34,7 +34,7 @@ SECTORS = [
         "lead": "The people and the project controls that keep complex work on time and on budget.",
         "intro": "From sourcing specialist talent to running enterprise project, portfolio and risk management, A'amal helps organisations deliver with confidence.",
         "hero": "services/pbm-saudi-coffee",
-        "card_img": "services/pbm-saudi-desk",
+        "card_img": "services/as-site-team",
         "services": ["human-resource-management", "project-solutions"],
     },
 ]
@@ -242,7 +242,7 @@ SERVICES = {
             ("Safety first", "Experienced HSE teams on every job."),
             ("Local workforce", "Training and developing teams in the Kingdom."),
         ],
-        "gallery": [],
+        "gallery": [("services/om-site-team", "Site team in hard hats and hi-vis vests reviewing work on an industrial project")],
     },
     "electrical-instrumentation": {
         "name": "Electrical & Instrumentation",
@@ -326,7 +326,7 @@ SERVICES = {
             ("High standards", "Work to recognised industrial standards."),
             ("Full HSE compliance", "Health and safety built into every task."),
         ],
-        "gallery": [],
+        "gallery": [("services/ei-workshop", "Technician measuring a metal panel frame in a fabrication workshop")],
     },
     "waterproofing-industrial-coating": {
         "name": "Waterproofing & Industrial Coating",
