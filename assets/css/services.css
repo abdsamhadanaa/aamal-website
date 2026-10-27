@@ -1,7 +1,7 @@
 /* =========================================================
    Design preview — softer, rounded, photo-led layout
    (inspired by the Ecoriz reference). A'amal colours unchanged.
-   Loaded only by pages in /preview.
+   Loaded by the service, sector and services pages.
    ========================================================= */
 :root { --r-lg: 24px; --r-md: 16px; --r-sm: 10px; }
 

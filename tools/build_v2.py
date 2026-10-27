@@ -19,6 +19,7 @@ from datetime import date
 
 from PIL import Image
 
+import sys; sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)))) if False else None
 import content as C
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -54,7 +55,7 @@ SECTOR = {s["slug"]: s for s in C.SECTORS}
 # Version tags so browsers fetch the new CSS/JS after every change (cache busting)
 import hashlib
 ASSET_V = {k: hashlib.md5(open(os.path.join(ROOT, "assets", f), "rb").read()).hexdigest()[:8]
-           for k, f in (("css", "css/styles.css"), ("js", "js/main.js"))}
+           for k, f in (("css", "css/styles.css"), ("js", "js/main.js"), ("scss", "css/services.css"))}
 
 
 def e(s):
@@ -192,15 +193,21 @@ def downloads_block(d):
 
 
 def service_card(slug, sizes="(max-width: 800px) 100vw, 33vw"):
+    """Explore-style card: text on the left, rounded photo on the right."""
     s = C.SERVICES[slug]
-    return f"""          <article class="service-card">
-            {picture(s["hero"], s["hero_alt"], sizes=sizes)}
-            <div class="service-card__body">
+    sec = SECTOR[s["sector"]]
+    return f"""          <article class="svc-card">
+            <div class="svc-card__text">
+              <span class="svc-card__tag">{e(sec["name"])}</span>
               <h3><a class="card-link" href="{slug}.html">{e(s["name"])}</a></h3>
-              <p class="muted">{e(s["lead"])}</p>
-              <span class="text-link" aria-hidden="true">Learn more →</span>
+              <p>{e(s["lead"])}</p>
+              <span class="svc-card__more" aria-hidden="true">View details <span>→</span></span>
             </div>
+            {picture(s["hero"], s["hero_alt"], sizes="(max-width: 800px) 40vw, 200px", cls="svc-card__img")}
           </article>"""
+
+
+CHECK = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.7 2.7L16.5 9"/></svg>'
 
 
 def build_service(slug, s):
@@ -213,121 +220,137 @@ def build_service(slug, s):
         "hasOfferCatalog": {"@type": "OfferCatalog", "name": s["name"], "itemListElement": [
             {"@type": "Offer", "itemOffered": {"@type": "Service", "name": o[0]}} for o in s["offer"]]},
     }]
+    crumb_html = " / ".join(f'<a href="{p}">{e(n)}</a>' for n, p in crumbs[:-1]) + " / " + e(crumbs[-1][0])
     overview = "\n".join(f"          <p>{e(p)}</p>" for p in s["overview"])
+    side_img = s["gallery"][0] if s["gallery"] else (sec["card_img"], "")
+    p = s.get("partner")
+
+    # Stats row
+    n_items = sum(max(1, len(items)) for _, _, items in s["offer"])
+    stats = [(str(len(s["offer"])), "Service areas"), (f"{n_items}+", "Specialist capabilities"),
+             (str(len(s["industries"])), "Industries served"), ("1994", "Delivering in the Kingdom since")]
+    stats_html = "".join(f'<div class="s-stat"><strong>{a}</strong><span>{b}</span></div>' for a, b in stats)
+
+    included = "".join(f"<li>{CHECK}<span>{e(t)}</span></li>" for t, _, _ in s["offer"])
 
     offers = []
-    for title, intro, items in s["offer"]:
+    for n, (title, intro, items) in enumerate(s["offer"], 1):
         ul = ('<ul class="dot-list">' + "".join(f"<li>{e(i)}</li>" for i in items) + "</ul>") if items else ""
-        offers.append(f'          <article class="offer-card"><h3>{e(title)}</h3><p>{e(intro)}</p>{ul}</article>')
+        offers.append(f'          <article class="offer-card"><span class="offer-card__num">{n:02d}</span><h3>{e(title)}</h3><p>{e(intro)}</p>{ul}</article>')
 
     steps = "".join(f'<li><span class="steps__num">{i + 1}</span><span class="steps__title">{e(t)}</span><span class="muted">{e(d)}</span></li>' for i, (t, d) in enumerate(s["steps"]))
-    why = "".join(f"<div><strong>{e(t)}</strong><span>{e(d)}</span></div>" for t, d in s["why"])
+    why = "".join(f'<li>{CHECK}<div><strong>{e(t)}</strong><span>{e(d)}</span></div></li>' for t, d in s["why"])
     chips = "".join(f"<li>{e(i)}</li>" for i in s["industries"])
 
     cert = ""
     if s.get("certifications"):
         cert = f"""
-    <section class="section" style="padding-bottom: 0">
-      <div class="container">
-        <div class="panel panel--tint" style="flex-direction: row; flex-wrap: wrap; gap: 16px 32px; align-items: center">
-          <strong class="h3" style="font-size: 22px">Certifications</strong>
-          <p style="flex: 1 1 320px">{e(s["certifications"])}</p>
-        </div>
-      </div>
-    </section>"""
+          <div class="s-note"><strong>Certifications</strong><p>{e(s["certifications"])}</p></div>"""
 
     gallery = ""
     if len(s["gallery"]) >= 2:
         pics = "".join(picture(n, a, sizes="(max-width: 600px) 100vw, 33vw") for n, a in s["gallery"])
         credit = f'\n        <p class="muted" style="font-size: 14px; margin: 0">{e(s["gallery_credit"])}</p>' if s.get("gallery_credit") else ""
         gallery = f"""
-    <section class="section">
-      <div class="container stack" style="gap: 32px">
-        <h2 class="h2">Gallery</h2>
+    <section class="section" style="padding-top: 0">
+      <div class="container stack" style="gap: 28px">
+        <div class="s-head s-head--center"><span class="s-pill">Gallery</span><h2 class="h2">See it in action</h2></div>
         <div class="gallery">{pics}</div>{credit}
       </div>
     </section>"""
 
     related = [x for x in sec["services"] if x != slug]
-    if len(related) < 2:  # top up with services from other sectors
-        related += [x for x in C.SERVICES if x not in related and x != slug][: 2 - len(related) + 1]
-    related_html = "\n".join(service_card(r) for r in related[:3])
+    related += [x for x in C.SERVICES if x not in related and x != slug]
+    related_html = "\n".join(service_card(r) for r in related[:4])
 
-    p = s.get("partner")
     partner_btn = (f'<a class="btn btn--outline-light" href="{p["url"]}" target="_blank" rel="noopener">Visit {e(p["name"])}</a>'
                    if p and p.get("url") else "")
+    cta_word = "lagoon" if s["name"] == "Artificial Lagoons" else short(s).lower()
 
-    body = f"""{hero(s["hero"], s["hero_alt"], crumbs, sec["name"], s["name"], s["lead"])}
+    body = f"""    <section class="s-hero">
+      <div class="container s-hero__inner">
+        <nav class="breadcrumb" aria-label="Breadcrumb">{crumb_html}</nav>
+        <span class="s-pill">{e(sec["name"])}</span>
+        <h1 class="s-hero__title">{e(s["name"])}</h1>
+        <p class="s-hero__lead">{e(s["lead"])}</p>
+        <div class="btn-row" style="justify-content: center">
+          <a class="btn btn--primary" href="contact.html">Talk to our team</a>
+          <a class="btn btn--outline" href="#offer">What we offer</a>
+        </div>
+      </div>
+      <div class="container">
+        {picture(s["hero"], s["hero_alt"], sizes="(max-width: 1240px) 100vw, 1200px", cls="s-hero__img", eager=True)}
+      </div>
+      <div class="container s-stats">{stats_html}</div>
+    </section>
 
     <section class="section">
-      <div class="container split">
-        <div class="split__head">
-          <span class="eyebrow">Overview</span>
+      <div class="container s-split">
+        {picture(side_img[0], side_img[1], sizes="(max-width: 900px) 100vw, 45vw", cls="s-split__img")}
+        <div class="s-split__text">
+          <span class="s-pill">Overview</span>
           <h2 class="h2">{e(s["name"])} with A'amal Group</h2>
-        </div>
-        <div class="split__body">
 {overview}{partner_block(p)}{downloads_block(s["downloads"])}
         </div>
       </div>
     </section>
 
-    <section class="section section--tint">
+    <section class="section section--tint" id="offer">
       <div class="container stack" style="gap: 40px">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Services</span>
-            <h2 class="h2" style="margin-top: 8px">What we offer</h2>
-          </div>
+        <div class="s-head s-head--center">
+          <span class="s-pill">Our services</span>
+          <h2 class="h2">What we offer</h2>
+          <p>Everything included in our {e(s["name"]).lower()} service.</p>
         </div>
+        <ul class="s-included">{included}</ul>
         <div class="offer-grid">
 {chr(10).join(offers)}
         </div>
       </div>
     </section>
 
-    <section class="section" style="padding-bottom: 0">
-      <div class="container industries">
-        <h2 class="h3">Industries we serve</h2>
-        <ul class="chips">{chips}</ul>
-      </div>
-    </section>
-
     <section class="section">
-      <div class="container stack" style="gap: 32px">
-        <h2 class="h2">How we work</h2>
-        <ol class="steps steps--tint">{steps}</ol>
+      <div class="container s-why">
+        <div class="s-why__text">
+          <span class="s-pill">Why A'amal</span>
+          <h2 class="h2">Why choose A'amal Group</h2>
+          <ul class="s-why__list">{why}</ul>{cert}
+          <div class="s-industries"><strong>Industries we serve</strong><ul class="chips">{chips}</ul></div>
+        </div>
+        <div class="s-steps">
+          <h3>How we work</h3>
+          <ol class="s-steps__list">{steps}</ol>
+        </div>
+      </div>
+    </section>
+{gallery}
+    <section class="section" style="padding-top: 0">
+      <div class="container">
+        <div class="s-cta">
+          {picture(sec["hero"], "", sizes="100vw", cls="s-cta__img")}
+          <div class="s-cta__overlay"></div>
+          <div class="s-cta__inner">
+            <h2>Planning your {e(cta_word)} project?</h2>
+            <p>Tell us what you need and our team will get back to you.</p>
+            <div class="btn-row" style="justify-content: center">
+              <a class="btn btn--white" href="contact.html">Talk to our team</a>
+              {partner_btn}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section section--dark">
-      <div class="container stack" style="gap: 40px">
-        <h2 class="h2">Why A'amal Group</h2>
-        <div class="grid grid--4 pillars">{why}</div>
-      </div>
-    </section>
-{cert}{gallery}
-    <section class="section--dark cta-section">
-      <div class="container cta-band">
-        <div>
-          <h2>Planning a {e(short(s).lower() if s["name"] != "Artificial Lagoons" else "lagoon")} project?</h2>
-          <p style="color: var(--on-dark)">Tell us what you need and our team will get back to you.</p>
+    <section class="section section--tint">
+      <div class="container stack" style="gap: 36px">
+        <div class="s-head s-head--center">
+          <span class="s-pill">More from A'amal</span>
+          <h2 class="h2">Explore other services</h2>
         </div>
-        <div class="btn-row">
-          <a class="btn btn--primary" href="contact.html">Talk to our team</a>
-          {partner_btn}
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container stack" style="gap: 32px">
-        <div class="section-head">
-          <h2 class="h2">Related services</h2>
-          <a class="text-link" href="{sec["slug"]}.html">All {e(sec["name"])} →</a>
-        </div>
-        <div class="grid grid--3">
+        <div class="svc-grid">
 {related_html}
         </div>
+        <div style="text-align: center"><a class="btn btn--outline" href="services.html">View all services</a></div>
       </div>
     </section>"""
     return page(head(s["title"], s["description"], slug + ".html", s["hero"], ld, preload=s["hero"]), "services", body)
@@ -347,7 +370,7 @@ def build_sector(i, sec):
     <section class="section">
       <div class="container stack" style="gap: 40px">
         <p class="lead" style="max-width: 820px; color: var(--text)">{e(sec["intro"])}</p>
-        <div class="grid grid--{ {2: 2, 4: 4}.get(len(sec["services"]), 3) }">
+        <div class="svc-grid">
 {cards}
         </div>
       </div>
@@ -425,13 +448,15 @@ def refresh_head(fname):
 
 def main():
     generated = []
+    svc_css = f'<link rel="stylesheet" href="../assets/css/services.css?v={ASSET_V["scss"]}">\n  <script src'
+    add_css = lambda h: h.replace('<script src', svc_css, 1)
     for slug, s in C.SERVICES.items():
-        open(os.path.join(V2, slug + ".html"), "w", encoding="utf-8").write(build_service(slug, s))
+        open(os.path.join(V2, slug + ".html"), "w", encoding="utf-8").write(add_css(build_service(slug, s)))
         generated.append(slug + ".html")
     for i, sec in enumerate(C.SECTORS):
-        open(os.path.join(V2, sec["slug"] + ".html"), "w", encoding="utf-8").write(build_sector(i, sec))
+        open(os.path.join(V2, sec["slug"] + ".html"), "w", encoding="utf-8").write(add_css(build_sector(i, sec)))
         generated.append(sec["slug"] + ".html")
-    open(os.path.join(V2, "services.html"), "w", encoding="utf-8").write(build_overview())
+    open(os.path.join(V2, "services.html"), "w", encoding="utf-8").write(add_css(build_overview()))
     generated.append("services.html")
 
     others = sorted(f for f in os.listdir(V2) if f.endswith(".html") and f not in generated)
