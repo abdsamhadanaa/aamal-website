@@ -509,3 +509,13 @@ body[data-version="2"] .heritage__photo { flex: 0 1 480px; }
 .clients__more[open] summary::after { content: "−"; }
 .clients__more[open] summary { margin-bottom: 12px; }
 @media (max-width: 640px) { .clients__grid { grid-template-columns: repeat(2, 1fr); } .clients__grid li { height: 80px; padding: 10px; } .clients__grid img { max-height: 52px; } }
+
+/* About: light banner with the logo and slogan */
+.about-hero { background: linear-gradient(120deg, #FFFFFF 0%, var(--tint) 100%); border-bottom: 1px solid var(--line); }
+.about-hero__inner { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center; padding-top: 72px; padding-bottom: 72px; }
+.about-hero__text { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+.about-hero .breadcrumb { color: var(--muted); }
+.about-hero__slogan { margin: 0; font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: clamp(1.6rem, 3vw, 2.4rem); color: #048643; }
+.about-hero__logo { display: flex; justify-content: center; }
+.about-hero__logo img { width: 100%; max-width: 440px; height: auto; }
+@media (max-width: 900px) { .about-hero__inner { grid-template-columns: 1fr; gap: 28px; padding-top: 48px; padding-bottom: 48px; } .about-hero__logo { order: -1; justify-content: flex-start; } .about-hero__logo img { max-width: 260px; } }
