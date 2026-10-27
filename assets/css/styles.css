@@ -93,7 +93,7 @@ p { margin: 0; }
 .site-header { background: var(--bg); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 50; }
 .site-header__inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 14px; padding-bottom: 14px; }
 .site-header__logo img { height: 60px; width: auto; }
-.site-nav { display: flex; align-items: center; gap: 28px; font-size: 15px; font-weight: 500; }
+.site-nav { display: flex; align-items: center; gap: 22px; font-size: 15px; font-weight: 500; }
 .site-nav a { color: var(--charcoal); text-decoration: none; padding: 10px 0 7px; border-bottom: 3px solid transparent; }
 .site-nav a:hover { color: var(--link); }
 .site-nav a[aria-current="page"] { border-bottom-color: var(--green); }

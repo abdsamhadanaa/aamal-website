@@ -38,6 +38,12 @@ const NAV = {
       { label: "A'amal Global Recognition", href: 'awards.html' },
       { label: 'Where we work', href: 'about.html#where-we-work' },
     ] },
+    { id: 'recognition', label: 'Global Recognition', href: 'awards.html', sub: [
+      { label: 'Global leadership roles', href: 'awards.html#roles' },
+      { label: 'Awards and honours', href: 'awards.html#awards' },
+      { label: 'Company commitments', href: 'awards.html#company' },
+      { label: 'Milestones', href: 'awards.html#milestones' },
+    ] },
     { id: 'services', label: 'Services', href: 'services.html', mega: [
       { label: 'Hospitality & Sports', href: 'hospitality.html', items: [
         { label: 'Artificial Lagoons', href: 'artificial-lagoons.html' },
