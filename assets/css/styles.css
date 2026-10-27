@@ -529,3 +529,4 @@ body[data-version="2"] .heritage__photo { flex: 0 1 480px; }
 .media-photo { text-decoration: none; color: inherit; display: block; }
 .media-photo:hover figcaption { color: var(--link); }
 .media-photo figure { height: 100%; }
+.social-gallery img { aspect-ratio: 3 / 4; object-position: center 30%; }
