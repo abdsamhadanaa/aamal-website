@@ -30,13 +30,9 @@ const NAV = {
   2: [
     { id: 'home', label: 'Home', href: 'index.html' },
     { id: 'about', label: 'About Us', href: 'about.html', sub: [
-      { label: 'Founder & CEO', href: 'about.html#founder' },
-      { label: 'Journey and achievements', href: 'about.html#journey' },
-      { label: 'Who we are', href: 'about.html#who-we-are' },
-      { label: 'Vision, mission and values', href: 'about.html#vision' },
-      { label: 'Our social work', href: 'about.html#social-work' },
+      { label: 'Founder & CEO message', href: 'about.html#founder' },
+      { label: 'Social work & responsibility', href: 'responsibility.html' },
       { label: "A'amal Global Recognition", href: 'awards.html' },
-      { label: 'Where we work', href: 'about.html#where-we-work' },
     ] },
     { id: 'recognition', label: 'Global Recognition', href: 'awards.html', sub: [
       { label: 'Global leadership roles', href: 'awards.html#roles' },
@@ -60,18 +56,8 @@ const NAV = {
         { label: 'Project Solutions', href: 'project-solutions.html' },
       ] },
     ] },
-    { id: 'responsibility', label: 'Sustainability', href: 'responsibility.html', sub: [
-      { label: 'How we give back', href: 'responsibility.html#commitments' },
-      { label: 'Corporate Social Responsibility', href: 'responsibility.html#csr' },
-      { label: 'Reports & policies', href: 'responsibility.html#policies' },
-      { label: 'Report a concern', href: 'responsibility.html#speak-up' },
-    ] },
-    { id: 'media', label: 'Media', href: 'media.html', sub: [
-      { label: 'Founder & CEO gallery', href: 'media.html#gallery' },
-      { label: 'Global engagement', href: 'media.html#global-engagement' },
-      { label: 'In the news', href: 'media.html#in-the-news' },
-      { label: 'Roles and awards', href: 'media.html#roles-awards' },
-    ] },
+    { id: 'responsibility', label: 'Sustainability', href: 'responsibility.html' },
+    { id: 'media', label: 'Media', href: 'media.html' },
     { id: 'careers', label: 'Careers', href: 'careers.html' },
   ],
 }[VERSION];
