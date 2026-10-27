@@ -13,6 +13,11 @@ const IMG = new URL('../img/', document.currentScript.src).href;
 /* Which design version this page belongs to: <body data-version="2"> */
 const VERSION = document.body.dataset.version === '2' ? 2 : 1;
 
+/* Logo files: Version 2 uses the updated logo with the "We grow together" tagline */
+const LOGO = VERSION === 2
+  ? { light: 'logo-v2.png', dark: 'logo-v2-white.png', w: 409, h: 300 }
+  : { light: 'logo.png', dark: 'logo-white.png', w: 661, h: 276 };
+
 const NAV = {
   1: [
     { id: 'home', label: 'Home', href: 'index.html' },
@@ -54,8 +59,8 @@ class SiteHeader extends HTMLElement {
       <header class="site-header">
         <div class="container site-header__inner">
           <a class="site-header__logo" href="index.html">
-            <img class="logo-light" src="${IMG}logo.png" alt="A'amal Group — Arab Economic &amp; Business Group, home" width="661" height="276">
-            <img class="logo-dark" src="${IMG}logo-white.png" alt="A'amal Group — Arab Economic &amp; Business Group, home" width="661" height="276">
+            <img class="logo-light" src="${IMG}${LOGO.light}" alt="A'amal Group — Arab Economic &amp; Business Group, home" width="${LOGO.w}" height="${LOGO.h}">
+            <img class="logo-dark" src="${IMG}${LOGO.dark}" alt="A'amal Group — Arab Economic &amp; Business Group, home" width="${LOGO.w}" height="${LOGO.h}">
           </a>
           <nav class="site-nav" id="site-nav" aria-label="Main navigation">${links}</nav>
           <div class="site-header__actions">
@@ -104,7 +109,7 @@ class SiteFooter extends HTMLElement {
         <div class="container site-footer__inner">
           <div class="site-footer__cols">
             <div class="site-footer__brand">
-              <img src="${IMG}logo-white.png" alt="A'amal Group" width="661" height="276" loading="lazy" decoding="async">
+              <img src="${IMG}${LOGO.dark}" alt="A'amal Group" width="${LOGO.w}" height="${LOGO.h}" loading="lazy" decoding="async">
               <h2>Let's build the future together</h2>
               <a class="btn btn--primary" href="contact.html">Get in Touch</a>
             </div>
