@@ -29,10 +29,43 @@ const NAV = {
   ],
   2: [
     { id: 'home', label: 'Home', href: 'index.html' },
-    { id: 'about', label: 'About Us', href: 'about.html' },
-    { id: 'services', label: 'Services', href: 'services.html' },
-    { id: 'responsibility', label: 'Sustainability', href: 'responsibility.html' },
-    { id: 'media', label: 'Media', href: 'media.html' },
+    { id: 'about', label: 'About Us', href: 'about.html', sub: [
+      { label: 'Founder & CEO', href: 'about.html#founder' },
+      { label: 'Journey and achievements', href: 'about.html#journey' },
+      { label: 'Who we are', href: 'about.html#who-we-are' },
+      { label: 'Vision, mission and values', href: 'about.html#vision' },
+      { label: 'Our social work', href: 'about.html#social-work' },
+      { label: "A'amal Global Recognition", href: 'awards.html' },
+      { label: 'Where we work', href: 'about.html#where-we-work' },
+    ] },
+    { id: 'services', label: 'Services', href: 'services.html', mega: [
+      { label: 'Hospitality & Sports', href: 'hospitality.html', items: [
+        { label: 'Artificial Lagoons', href: 'artificial-lagoons.html' },
+        { label: 'Sports Facilities', href: 'sports-facilities.html' },
+      ] },
+      { label: 'Industrial Services', href: 'industrial-services.html', items: [
+        { label: 'Operations & Maintenance', href: 'operations-maintenance.html' },
+        { label: 'Electrical & Instrumentation', href: 'electrical-instrumentation.html' },
+        { label: 'Waterproofing & Industrial Coating', href: 'waterproofing-industrial-coating.html' },
+        { label: 'Industry Transformation', href: 'industry-transformation.html' },
+      ] },
+      { label: 'Project & Business Management', href: 'management.html', items: [
+        { label: 'Human Resource Management', href: 'human-resource-management.html' },
+        { label: 'Project Solutions', href: 'project-solutions.html' },
+      ] },
+    ] },
+    { id: 'responsibility', label: 'Sustainability', href: 'responsibility.html', sub: [
+      { label: 'How we give back', href: 'responsibility.html#commitments' },
+      { label: 'Corporate Social Responsibility', href: 'responsibility.html#csr' },
+      { label: 'Reports & policies', href: 'responsibility.html#policies' },
+      { label: 'Report a concern', href: 'responsibility.html#speak-up' },
+    ] },
+    { id: 'media', label: 'Media', href: 'media.html', sub: [
+      { label: 'Founder & CEO gallery', href: 'media.html#gallery' },
+      { label: 'Global engagement', href: 'media.html#global-engagement' },
+      { label: 'In the news', href: 'media.html#in-the-news' },
+      { label: 'Roles and awards', href: 'media.html#roles-awards' },
+    ] },
     { id: 'careers', label: 'Careers', href: 'careers.html' },
   ],
 }[VERSION];
@@ -41,9 +74,18 @@ const NAV = {
 class SiteHeader extends HTMLElement {
   connectedCallback() {
     const active = this.getAttribute('active') || '';
-    const links = NAV.map(
-      (l) => `<a href="${l.href}"${l.id === active ? ' aria-current="page"' : ''}>${l.label}</a>`
-    ).join('');
+    const esc = (t) => t.replace(/&/g, '&amp;');
+    const caret = '<svg class="nav-caret" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+    const links = NAV.map((l, i) => {
+      const cur = l.id === active ? ' aria-current="page"' : '';
+      if (!l.sub && !l.mega) return `<a href="${l.href}"${cur}>${esc(l.label)}</a>`;
+      const panel = l.mega
+        ? `<div class="nav-drop__panel nav-drop__panel--mega" id="drop-${i}">${l.mega.map((g) =>
+            `<div class="nav-mega__col"><a class="nav-mega__title" href="${g.href}">${esc(g.label)}</a>${g.items.map((x) => `<a href="${x.href}">${esc(x.label)}</a>`).join('')}</div>`).join('')}
+            <a class="nav-mega__all" href="${l.href}">All services →</a></div>`
+        : `<div class="nav-drop__panel" id="drop-${i}">${l.sub.map((x) => `<a href="${x.href}">${esc(x.label)}</a>`).join('')}</div>`;
+      return `<div class="nav-drop"><div class="nav-drop__head"><a href="${l.href}"${cur}>${esc(l.label)}</a><button class="nav-drop__btn" type="button" aria-expanded="false" aria-controls="drop-${i}" aria-label="Show ${esc(l.label)} links">${caret}</button></div>${panel}</div>`;
+    }).join('');
 
     this.innerHTML = `
       <a class="skip-link" href="#main">Skip to content</a>
@@ -62,6 +104,19 @@ class SiteHeader extends HTMLElement {
           </div>
         </div>
       </header>`;
+
+    // Dropdowns: open on hover (desktop, via CSS) or by the caret button (touch, keyboard, mobile)
+    this.querySelectorAll('.nav-drop').forEach((d) => {
+      const btn = d.querySelector('.nav-drop__btn');
+      btn.addEventListener('click', () => {
+        const open = !d.classList.contains('is-open');
+        this.querySelectorAll('.nav-drop.is-open').forEach((o) => { o.classList.remove('is-open'); o.querySelector('.nav-drop__btn').setAttribute('aria-expanded', 'false'); });
+        d.classList.toggle('is-open', open);
+        btn.setAttribute('aria-expanded', String(open));
+      });
+    });
+    document.addEventListener('click', (e) => { if (!e.target.closest('.nav-drop')) this.querySelectorAll('.nav-drop.is-open').forEach((o) => { o.classList.remove('is-open'); o.querySelector('.nav-drop__btn').setAttribute('aria-expanded', 'false'); }); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') this.querySelectorAll('.nav-drop.is-open').forEach((o) => { o.classList.remove('is-open'); o.querySelector('.nav-drop__btn').setAttribute('aria-expanded', 'false'); }); });
 
     const toggle = this.querySelector('.nav-toggle');
     const nav = this.querySelector('.site-nav');
