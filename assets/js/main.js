@@ -301,7 +301,70 @@ function initForms() {
   });
 }
 
+
+/* ---------- Motion: scroll reveal, count-up numbers (respects reduced motion) ---------- */
+const REVEAL_SELECTORS = [
+  '.s-head', '.section-head', '.s-split__text', '.s-split__img', '.s-split > img',
+  '.svc-card', '.offer-card', '.recog-card', '.award-item', '.c-card', '.c-office', '.c-routes a',
+  '.tile', '.press-card', '.founder-gallery > *', '.media-photo', '.gallery img', '.timeline li',
+  '.v2030', '.who-mosaic', '.brand-showcase', '.hero-logos', '.panel-card', '.focus-grid > div',
+  '.s-included li', '.vm-item', '.feature-row', '.s-cta', '.office-card', '.pillars > div',
+  '.clients__grid li', '.recog__logos li', '.impact', '.social-band', '.leader', '.heritage'
+].join(',');
+
+function initMotion() {
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('motion-ok');
+
+  // Scroll reveal with a small stagger between siblings
+  const els = Array.from(document.querySelectorAll(REVEAL_SELECTORS))
+    .filter((el) => !el.closest('.site-header, .site-footer, .hero, .nav-drop__panel'));
+  const seen = new Map();
+  els.forEach((el) => {
+    const parent = el.parentElement;
+    const i = seen.get(parent) || 0;
+    seen.set(parent, i + 1);
+    el.classList.add('rv');
+    el.style.setProperty('--rv-delay', `${Math.min(i, 6) * 70}ms`);
+  });
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  els.forEach((el) => io.observe(el));
+
+  // Count-up for stats (skips years such as 1994 / 2021 and ranges)
+  const nums = document.querySelectorAll('.s-stat strong, .stat__value, .brand-showcase__facts strong');
+  const cio = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      cio.unobserve(e.target);
+      const el = e.target;
+      const m = el.textContent.trim().match(/^(\d+)(\+?)$/);
+      if (!m) return;
+      const end = parseInt(m[1], 10);
+      if (end >= 1900 || end < 2) return;
+      const suffix = m[2];
+      const t0 = performance.now();
+      const dur = 1200;
+      el.style.fontVariantNumeric = 'tabular-nums';
+      const tick = (t) => {
+        const p = Math.min(1, (t - t0) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(end * eased) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      el.textContent = '0' + suffix;
+      requestAnimationFrame(tick);
+    });
+  }, { threshold: 0.6 });
+  nums.forEach((n) => cio.observe(n));
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  initMotion();
   initHeroSlider();
   initFilters();
   initForms();

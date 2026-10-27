@@ -594,3 +594,28 @@ html { scroll-padding-top: 110px; }
 .site-nav .nav-drop__overview { font-weight: 600; color: var(--link); border-bottom: 1px solid var(--line) !important; margin-bottom: 6px; }
 .nav-drop.is-open > .nav-drop__head > a { color: var(--link); }
 .site-nav .nav-mega__overview { grid-column: 1 / -1; padding-bottom: 12px; margin-bottom: 8px; font-size: 15px; }
+
+/* ---------- Motion (only when the visitor allows motion; JS adds .motion-ok) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .motion-ok .rv { opacity: 0; transform: translateY(22px); transition: opacity .7s cubic-bezier(.2,.7,.2,1) var(--rv-delay, 0ms), transform .7s cubic-bezier(.2,.7,.2,1) var(--rv-delay, 0ms); will-change: opacity, transform; }
+  .motion-ok .rv.is-in { opacity: 1; transform: none; will-change: auto; }
+  .s-hero__inner > * { animation: hero-up .8s cubic-bezier(.2,.7,.2,1) both; }
+  .s-hero__inner > *:nth-child(2) { animation-delay: .06s; }
+  .s-hero__inner > *:nth-child(3) { animation-delay: .12s; }
+  .s-hero__inner > *:nth-child(4) { animation-delay: .18s; }
+  .s-hero__inner > *:nth-child(5) { animation-delay: .24s; }
+  .s-hero__img { animation: hero-zoom 1.6s cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes hero-up { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  @keyframes hero-zoom { from { opacity: 0; transform: scale(1.04); } to { opacity: 1; transform: none; } }
+  /* Hover lift on cards */
+  .svc-card, .offer-card, .recog-card, .c-card, .c-office, .tile, .press-card, .panel-card, .award-item, .office-card { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+  .svc-card:hover, .offer-card:hover, .recog-card:hover, .c-card:hover, .c-office:hover, .tile:hover, .press-card:hover, .award-item:hover, .office-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -24px rgba(46, 49, 51, .35); }
+  .btn { transition: transform .2s ease, background-color .2s ease, box-shadow .2s ease, color .2s ease; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:active { transform: translateY(0) scale(.98); }
+  .founder-gallery img, .gallery img, .media-photo img { transition: transform .5s ease; }
+  .founder-gallery figure:hover img, .gallery img:hover, .media-photo:hover img { transform: scale(1.04); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
