@@ -532,3 +532,6 @@ body[data-version="2"] .site-footer__brand img { height: 110px; width: auto; }
 /* Highlight word in the home headline — brand accent colour (set in --accent-word) */
 :root { --accent-word: #C9CCCE; }
 body[data-version="2"] .hero h1 em { color: var(--accent-word); }
+/* Founder portrait: full photo (royal portrait and flag visible) */
+body[data-version="2"] .leader__photo { aspect-ratio: auto; flex: 0 1 480px; background: none; }
+body[data-version="2"] .heritage__photo { flex: 0 1 480px; }
