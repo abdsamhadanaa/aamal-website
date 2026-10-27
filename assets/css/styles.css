@@ -541,3 +541,21 @@ body[data-version="2"] .heritage__photo { flex: 0 1 480px; }
 .social-band h2 { color: #FFFFFF; }
 .social-band p { color: #E9F4EC; font-size: 18px; margin: 0; }
 @media (max-width: 640px) { .social-band__inner { padding-top: 72px; padding-bottom: 72px; } .social-band__overlay { background: rgba(14, 40, 24, .8); } }
+
+/* Global Recognition page */
+.recog-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 20px; }
+.recog-card { border: 1px solid var(--line); border-top: 4px solid var(--green); background: var(--bg); padding: 24px; display: flex; flex-direction: column; gap: 8px; position: relative; }
+.recog-card__logo { height: 80px; display: flex; align-items: center; margin-bottom: 8px; }
+.recog-card__logo img { width: auto; height: auto; max-width: 100%; }
+.recog-card__mono { font-family: var(--font-display); font-weight: 700; font-size: 26px; color: var(--green-dark); border: 2px solid var(--green); padding: 6px 14px; }
+.recog-card__year { position: absolute; top: 20px; right: 20px; font-family: var(--font-display); font-weight: 700; color: var(--link); }
+.recog-card h3 { font-size: 18px; font-weight: 600; line-height: 1.35; }
+.recog-card strong { color: var(--link); font-size: 15px; }
+.recog-card p { margin: 0; font-size: 15px; color: var(--text); }
+.award-list { display: flex; flex-direction: column; gap: 14px; }
+.award-item { display: flex; gap: 16px; align-items: flex-start; background: var(--bg); border: 1px solid var(--line); padding: 16px 18px; }
+.award-item svg { flex: none; }
+.award-item h3 { font-size: 18px; font-weight: 600; }
+.award-item span { font-size: 14px; color: var(--muted); }
+.timeline--dark li { color: #E6EAE8; border-top-color: #4A5054; }
+.timeline--dark .timeline__year { color: var(--green-light); }
