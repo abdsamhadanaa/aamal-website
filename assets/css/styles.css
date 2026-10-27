@@ -593,3 +593,4 @@ html { scroll-padding-top: 110px; }
 
 .site-nav .nav-drop__overview { font-weight: 600; color: var(--link); border-bottom: 1px solid var(--line) !important; margin-bottom: 6px; }
 .nav-drop.is-open > .nav-drop__head > a { color: var(--link); }
+.site-nav .nav-mega__overview { grid-column: 1 / -1; padding-bottom: 12px; margin-bottom: 8px; font-size: 15px; }
