@@ -619,3 +619,40 @@ html { scroll-padding-top: 110px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
+
+/* ---------- Home hero animation ---------- */
+.hero__dot span { position: relative; overflow: hidden; }
+@media (prefers-reduced-motion: no-preference) {
+  .hero__slide.is-active { animation: hero-kenburns calc(var(--hero-interval, 5500ms) + 1200ms) ease-out both; }
+  @keyframes hero-kenburns { from { transform: scale(1.1); } to { transform: scale(1); } }
+  .hero__dot[aria-current="true"] span { background: rgba(255,255,255,.45); }
+  .hero__dot[aria-current="true"] span::after { content: ""; position: absolute; inset: 0; background: var(--green); transform-origin: left; animation: hero-progress var(--hero-interval, 5500ms) linear both; }
+  .hero:hover .hero__dot[aria-current="true"] span::after, .hero:focus-within .hero__dot[aria-current="true"] span::after { animation-play-state: paused; }
+  @keyframes hero-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  .hero__text > * { animation: hero-rise .9s cubic-bezier(.2,.7,.2,1) both; }
+  .hero__text > :nth-child(1) { animation-delay: .1s; }
+  .hero__text > :nth-child(2) { animation-delay: .22s; }
+  .hero__text > :nth-child(3) { animation-delay: .36s; }
+  .hero__text > :nth-child(4) { animation-delay: .5s; }
+  .hero__kicker::before { animation: hero-line .8s .25s cubic-bezier(.2,.7,.2,1) both; transform-origin: left; }
+  .hero h1 em { display: inline-block; animation: hero-word 1s .7s cubic-bezier(.2,.7,.2,1) both; }
+  .hero__bar { animation: hero-fade 1s .8s ease both; }
+  .hero__label.is-swap { animation: hero-swap .5s ease both; }
+  @keyframes hero-rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+  @keyframes hero-line { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes hero-word { from { opacity: 0; transform: translateY(12px); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+  @keyframes hero-fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes hero-swap { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+}
+
+/* ---------- Text & number animation ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .motion-ok .tw-wrap .tw { display: inline-block; opacity: 0; transform: translateY(.45em); filter: blur(4px); transition: opacity .6s ease var(--tw), transform .6s cubic-bezier(.2,.7,.2,1) var(--tw), filter .6s ease var(--tw); }
+  .motion-ok .tw-wrap.tw-in .tw { opacity: 1; transform: none; filter: none; }
+  .motion-ok .stat__value, .motion-ok .s-stat strong { position: relative; display: inline-block; }
+  .motion-ok .stat__value::after, .motion-ok .s-stat strong::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 3px; border-radius: 3px; background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform .9s cubic-bezier(.2,.7,.2,1) .2s; }
+  .motion-ok .s-stat strong::after { left: 25%; right: 25%; transform-origin: center; }
+  .motion-ok .num-in::after { transform: scaleX(1); }
+  .motion-ok .num-in { animation: num-pop .6s cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes num-pop { from { opacity: 0; transform: translateY(14px) scale(.96); } to { opacity: 1; transform: none; } }
+}

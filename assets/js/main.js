@@ -201,6 +201,7 @@ function initHeroSlider() {
   const count = hero.querySelector('[data-hero-count]');
   const dotsWrap = hero.querySelector('[data-hero-dots]');
   const interval = Number(hero.dataset.interval || 4000);
+  hero.style.setProperty('--hero-interval', `${interval}ms`);
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let index = 0;
   let timer;
@@ -222,6 +223,7 @@ function initHeroSlider() {
     dots.forEach((d, k) => d.setAttribute('aria-current', String(k === index)));
     label.textContent = slides[index].dataset.label;
     count.textContent = `${index + 1} / ${slides.length}`;
+    label.classList.remove('is-swap'); void label.offsetWidth; label.classList.add('is-swap');
   }
 
   function restart() {
@@ -335,6 +337,36 @@ function initMotion() {
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
   els.forEach((el) => io.observe(el));
 
+  // Headings: words rise in one after another when they scroll into view
+  const heads = Array.from(document.querySelectorAll('main h2, .s-hero__title'))
+    .filter((h) => !h.closest('.hero, .s-cta, .nav-drop__panel'));
+  heads.forEach((h) => {
+    let n = 0;
+    const walk = (node) => {
+      Array.from(node.childNodes).forEach((c) => {
+        if (c.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          c.textContent.split(/(\s+)/).forEach((part) => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+            const w = document.createElement('span');
+            w.className = 'tw';
+            w.style.setProperty('--tw', `${Math.min(n++, 14) * 55}ms`);
+            w.textContent = part;
+            frag.appendChild(w);
+          });
+          c.replaceWith(frag);
+        } else if (c.nodeType === 1 && c.tagName !== 'BR') walk(c);
+      });
+    };
+    walk(h);
+    h.classList.add('tw-wrap');
+  });
+  const hio = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('tw-in'); hio.unobserve(e.target); } });
+  }, { threshold: 0.3 });
+  heads.forEach((h) => hio.observe(h));
+
   // Count-up for stats (skips years such as 1994 / 2021 and ranges)
   const nums = document.querySelectorAll('.s-stat strong, .stat__value, .brand-showcase__facts strong');
   const cio = new IntersectionObserver((entries) => {
@@ -342,6 +374,7 @@ function initMotion() {
       if (!e.isIntersecting) return;
       cio.unobserve(e.target);
       const el = e.target;
+      el.classList.add('num-in');
       const m = el.textContent.trim().match(/^(\d+)(\+?)$/);
       if (!m) return;
       const end = parseInt(m[1], 10);

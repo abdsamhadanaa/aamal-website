@@ -501,7 +501,7 @@ def build_overview():
 
 
 # ---------------------------------------------------------------- existing hand-written pages
-PAGE_IMAGE = {"index.html": "services/cl-cabo", "about.html": "hero-oil-gas", "contact.html": "hero-construction",
+PAGE_IMAGE = {"index.html": "services/lagoons-community", "about.html": "hero-oil-gas", "contact.html": "hero-construction",
               "careers.html": "team-meeting", "responsibility.html": "hero-oil-gas", "awards.html": "services/cl-cabo",
               "media.html": "services/cl-cabo"}
 
