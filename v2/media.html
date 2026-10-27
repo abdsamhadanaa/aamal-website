@@ -21,6 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/styles.css?v=cc55a9a5">
+  <link rel="stylesheet" href="../assets/css/services.css?v=778ccac2">
   <script src="../assets/js/main.js?v=7bd9d715" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://abdsamhadanaa.github.io/aamal-website/v2/#org","name":"A'amal Group","alternateName":"Arab Economic & Business Group","url":"https://abdsamhadanaa.github.io/aamal-website/v2/","logo":"https://abdsamhadanaa.github.io/aamal-website/v2/../assets/img/logo.png","foundingDate":"1994","email":"info@aamal-group.com","telephone":"+966 13 897 3938","address":{"@type":"PostalAddress","streetAddress":"King Abdullah Road, Middle East Commercial Center, P.O. Box 4977","addressLocality":"Al Khobar","postalCode":"31952","addressCountry":"SA"},"sameAs":["https://twitter.com/AAMAL_GROUP_SA"]},{"@type":"WebPage","@id":"https://abdsamhadanaa.github.io/aamal-website/v2/media.html","url":"https://abdsamhadanaa.github.io/aamal-website/v2/media.html","name":"Media Centre — A'amal Group","description":"A'amal Group media centre: news and coverage of Founder & CEO Yassin Al Suroor, ICC Vice-Chair, B20 and G20 business leader.","isPartOf":{"@type":"WebSite","url":"https://abdsamhadanaa.github.io/aamal-website/v2/","name":"A'amal Group"},"publisher":{"@id":"https://abdsamhadanaa.github.io/aamal-website/v2/#org"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://abdsamhadanaa.github.io/aamal-website/v2/"},{"@type":"ListItem","position":2,"name":"Media Centre","item":"https://abdsamhadanaa.github.io/aamal-website/v2/media.html"}]}]}</script>
 </head>
@@ -28,20 +29,28 @@
   <site-header active="media"></site-header>
 
   <main id="main">
-    <section class="page-hero page-hero--light">
-      <div class="container page-hero__inner">
+    <section class="s-hero">
+      <div class="container s-hero__inner">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> / Media</nav>
-        <h1 class="h1">Media Centre</h1>
-        <p class="lead">News, announcements and coverage of A'amal Group and our Founder &amp; CEO, Yassin Al Suroor.</p>
+        <span class="s-pill">Media Centre</span>
+        <h1 class="s-hero__title">News and coverage</h1>
+        <p class="s-hero__lead">News, announcements and coverage of A'amal Group and our Founder &amp; CEO, Yassin Al Suroor.</p>
+        <div class="btn-row" style="justify-content: center">
+          <a class="btn btn--primary" href="#gallery">Gallery</a>
+          <a class="btn btn--outline" href="#in-the-news">In the news</a>
+        </div>
+      </div>
+      <div class="container">
+        <div class="hero-strip"><img src="../assets/img/founder/cnbc-king-moscow.webp" alt="CNBC Arabia coverage from Moscow" fetchpriority="high"><img src="../assets/img/founder/world-chambers-congress.webp" alt="Speaking at the World Chambers Congress" fetchpriority="high"><img src="../assets/img/founder/sridf-agreement.webp" alt="Signing an agreement" fetchpriority="high"></div>
       </div>
     </section>
 
-    <section class="section" style="padding-top: 72px" id="gallery">
+    <section class="section" id="gallery">
       <div class="container stack" style="gap: 32px">
         <div class="section-head">
           <div>
-            <span class="eyebrow">Gallery</span>
-            <h2 class="h2" style="margin-top: 8px">Our Founder &amp; CEO on the world stage</h2>
+            <span class="s-pill">Gallery</span>
+            <h2 class="h2" style="margin-top: 12px">Our Founder &amp; CEO on the world stage</h2>
           </div>
           <p>Forums, agreements, awards and official visits around the world.</p>
         </div>
@@ -54,8 +63,8 @@
       <div class="container stack" style="gap: 24px">
         <div class="section-head">
           <div>
-            <span class="eyebrow">Media archive</span>
-            <h2 class="h2" style="margin-top: 8px">Global engagement</h2>
+            <span class="s-pill">Media archive</span>
+            <h2 class="h2" style="margin-top: 12px">Global engagement</h2>
           </div>
           <p>Television interviews, conferences and agreements featuring A'amal Group and our Founder &amp; CEO.</p>
         </div>
@@ -68,12 +77,12 @@
       </div>
     </section>
 
-    <section class="section" style="padding-top: 72px" id="in-the-news">
+    <section class="section" id="in-the-news">
       <div class="container stack" style="gap: 32px">
         <div class="section-head">
           <div>
-            <span class="eyebrow">In the media</span>
-            <h2 class="h2" style="margin-top: 8px">Our Founder &amp; CEO in the news</h2>
+            <span class="s-pill">In the media</span>
+            <h2 class="h2" style="margin-top: 12px">Our Founder &amp; CEO in the news</h2>
           </div>
           <p>Coverage of Yassin Al Suroor's work with the International Chamber of Commerce, the B20 and the G20.</p>
         </div>
@@ -118,29 +127,35 @@
       </div>
     </section>
 
-    <section class="section section--dark" id="roles-awards">
-      <div class="container leader" style="align-items: flex-start">
-        <div class="leader__text">
-          <span class="eyebrow">Global roles</span>
+    <section class="section section--tint" id="roles-awards">
+      <div class="container panel-pair">
+        <div class="panel-card">
+          <span class="s-pill">Global roles</span>
           <h2 class="h2">Representing Saudi business on the world stage</h2>
-          <ul class="dot-list dot-list--light"><li>Vice-Chair, International Chamber of Commerce (ICC), Paris</li><li>Executive Committee Member and G20 Representative, ICC World Chambers Federation</li><li>Executive Committee Member, B20 Saudi Arabia</li><li>Member, B20 International Business Advocacy Caucus</li><li>Board of Trustees, ICC Merchants of Peace Fund</li><li>Board Member, Arab-Belgian-Luxembourg Chamber of Commerce</li><li>A'amal Group: participant in the UN Global Compact</li></ul>
+          <ul class="dot-list"><li>Vice-Chair, International Chamber of Commerce (ICC), Paris</li><li>Executive Committee Member and G20 Representative, ICC World Chambers Federation</li><li>Executive Committee Member, B20 Saudi Arabia</li><li>Member, B20 International Business Advocacy Caucus</li><li>Board of Trustees, ICC Merchants of Peace Fund</li><li>Board Member, Arab-Belgian-Luxembourg Chamber of Commerce</li><li>A'amal Group: participant in the UN Global Compact</li></ul>
         </div>
-        <div class="leader__text">
-          <span class="eyebrow">Recognition</span>
+        <div class="panel-card">
+          <span class="s-pill">Recognition</span>
           <h2 class="h2">Awards</h2>
-          <ul class="dot-list dot-list--light"><li>Best Entrepreneur in Investment</li><li>Family Office Lifetime Achievement Award</li><li>Global Inspirational Leaders Award</li><li>Recognised as a successful entrepreneur by The Gulf Entrepreneur magazine</li></ul>
-          <a class="btn btn--outline-light" href="about.html" style="align-self: flex-start">Read the Founder &amp; CEO message</a>
+          <ul class="dot-list"><li>Best Entrepreneur in Investment</li><li>Family Office Lifetime Achievement Award</li><li>Global Inspirational Leaders Award</li><li>Recognised as a successful entrepreneur by The Gulf Entrepreneur magazine</li></ul>
+          <a class="btn btn--outline" href="about.html" style="align-self: flex-start">Read the Founder &amp; CEO message</a>
         </div>
       </div>
     </section>
 
-    <section class="section--dark">
-      <div class="container cta-band">
-        <div>
-          <h2>Media enquiries</h2>
-          <p style="color: var(--on-dark)">For press information, interviews and brand assets.</p>
+    <section class="section">
+      <div class="container">
+        <div class="s-cta">
+          <img class="s-cta__img" src="../assets/img/founder/world-chambers-congress.webp" alt="" loading="lazy" decoding="async">
+          <div class="s-cta__overlay"></div>
+          <div class="s-cta__inner">
+            <h2>Media enquiries</h2>
+            <p>For press information, interviews and brand assets.</p>
+            <div class="btn-row" style="justify-content: center">
+              <a class="btn btn--white" href="mailto:info@aamal-group.com">info@aamal-group.com</a>
+            </div>
+          </div>
         </div>
-        <a class="btn btn--primary" href="mailto:info@aamal-group.com">info@aamal-group.com</a>
       </div>
     </section>
   </main>

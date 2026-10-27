@@ -536,7 +536,7 @@ def main():
     others = sorted(f for f in os.listdir(V2) if f.endswith(".html") and f not in generated)
     for f in others:
         refresh_head(f)
-        if f in ("about.html",):  # pages using the rounded layout styles
+        if f in ("about.html", "awards.html", "media.html", "responsibility.html"):  # pages using the rounded layout styles
             fp = os.path.join(V2, f)
             html_ = open(fp, encoding="utf-8").read()
             if "services.css" not in html_:
