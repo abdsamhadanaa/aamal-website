@@ -130,3 +130,11 @@
 @keyframes brand-marquee { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .brand-marquee__track { animation: none; flex-wrap: wrap; width: auto; } .brand-marquee__track li[aria-hidden] , .brand-marquee__track img[aria-hidden="true"] { display: none; } }
 @media (max-width: 900px) { .brand-showcase { grid-template-columns: 1fr; padding: 24px; } .brand-showcase__brand img { max-width: 220px; } .brand-showcase__logos { grid-template-columns: repeat(3, 1fr); gap: 8px; } .brand-showcase__logos li { height: 54px; padding: 6px; } .brand-showcase__label { flex-wrap: wrap; gap: 4px; } }
+
+/* Services overview / sector pages */
+.s-split__text .s-included { justify-content: flex-start; margin: 0; }
+.s-included--links a { color: var(--charcoal); text-decoration: none; }
+.s-included--links li:hover { border-color: var(--green); }
+.offer-grid--4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 900px) { .offer-grid--4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .offer-grid--4 { grid-template-columns: 1fr; } }

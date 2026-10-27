@@ -22,7 +22,7 @@
   <link rel="preload" as="image" href="../assets/img/hero-refinery.webp" imagesrcset="../assets/img/hero-refinery-800.webp 800w, ../assets/img/hero-refinery.webp 1200w" imagesizes="100vw" fetchpriority="high">
   <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/styles.css?v=2176f207">
-  <link rel="stylesheet" href="../assets/css/services.css?v=fc9f0926">
+  <link rel="stylesheet" href="../assets/css/services.css?v=eff41047">
   <script src="../assets/js/main.js?v=a811f148" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://abdsamhadanaa.github.io/aamal-website/v2/#org","name":"A'amal Group","alternateName":"Arab Economic & Business Group","url":"https://abdsamhadanaa.github.io/aamal-website/v2/","logo":"https://abdsamhadanaa.github.io/aamal-website/v2/../assets/img/logo.png","foundingDate":"1994","email":"info@aamal-group.com","telephone":"+966 13 897 3938","address":{"@type":"PostalAddress","streetAddress":"King Abdullah Road, Middle East Commercial Center, P.O. Box 4977","addressLocality":"Al Khobar","postalCode":"31952","addressCountry":"SA"},"sameAs":["https://twitter.com/AAMAL_GROUP_SA"]},{"@type":"WebPage","@id":"https://abdsamhadanaa.github.io/aamal-website/v2/industrial-services.html","url":"https://abdsamhadanaa.github.io/aamal-website/v2/industrial-services.html","name":"Industrial Services — Industrial Operations & Maintenance, Electrical & Instrumentation, Waterproofing & Industrial Coating, Industry Transformation | A'amal Group","description":"A'amal Group Industrial Services: Industrial Operations & Maintenance, Electrical & Instrumentation, Waterproofing & Industrial Coating, Industry Transformation. Building, commissioning, maintaining and protecting the plants that power the Kingdom's industry.","isPartOf":{"@type":"WebSite","url":"https://abdsamhadanaa.github.io/aamal-website/v2/","name":"A'amal Group"},"publisher":{"@id":"https://abdsamhadanaa.github.io/aamal-website/v2/#org"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://abdsamhadanaa.github.io/aamal-website/v2/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://abdsamhadanaa.github.io/aamal-website/v2/services.html"},{"@type":"ListItem","position":3,"name":"Industrial Services","item":"https://abdsamhadanaa.github.io/aamal-website/v2/industrial-services.html"}]},{"@type":"ItemList","name":"Industrial Services","itemListElement":[{"@type":"ListItem","position":1,"url":"https://abdsamhadanaa.github.io/aamal-website/v2/operations-maintenance.html","name":"Industrial Operations & Maintenance"},{"@type":"ListItem","position":2,"url":"https://abdsamhadanaa.github.io/aamal-website/v2/electrical-instrumentation.html","name":"Electrical & Instrumentation"},{"@type":"ListItem","position":3,"url":"https://abdsamhadanaa.github.io/aamal-website/v2/waterproofing-industrial-coating.html","name":"Waterproofing & Industrial Coating"},{"@type":"ListItem","position":4,"url":"https://abdsamhadanaa.github.io/aamal-website/v2/industry-transformation.html","name":"Industry Transformation"}]}]}</script>
 </head>
@@ -30,20 +30,41 @@
   <site-header active="services"></site-header>
 
   <main id="main">
-    <section class="page-hero">
-      <img class="page-hero__img" src="../assets/img/hero-refinery.webp" srcset="../assets/img/hero-refinery-800.webp 800w, ../assets/img/hero-refinery.webp 1200w" sizes="100vw" width="1200" height="900" alt="" fetchpriority="high">
-      <div class="page-hero__overlay"></div>
-      <div class="container page-hero__inner">
+    <section class="s-hero">
+      <div class="container s-hero__inner">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> / <a href="services.html">Services</a> / Industrial Services</nav>
-        <span class="page-hero__tag">Sector 02</span>
-        <h1 class="h1">Industrial Services</h1>
-        <p class="lead">Building, commissioning, maintaining and protecting the plants that power the Kingdom&#x27;s industry.</p>
+        <span class="s-pill">Sector 02</span>
+        <h1 class="s-hero__title">Industrial Services</h1>
+        <p class="s-hero__lead">Building, commissioning, maintaining and protecting the plants that power the Kingdom&#x27;s industry.</p>
+        <div class="btn-row" style="justify-content: center">
+          <a class="btn btn--primary" href="contact.html">Discuss a project</a>
+          <a class="btn btn--outline" href="#services">Our services</a>
+        </div>
       </div>
+      <div class="container">
+        <img class="s-hero__img" src="../assets/img/hero-refinery.webp" srcset="../assets/img/hero-refinery-800.webp 800w, ../assets/img/hero-refinery.webp 1200w" sizes="(max-width: 1240px) 100vw, 1200px" width="1200" height="900" alt="" fetchpriority="high">
+      </div>
+      <div class="container s-stats"><div class="s-stat"><strong>4</strong><span>Specialist services</span></div><div class="s-stat"><strong>22</strong><span>Service areas</span></div><div class="s-stat"><strong>18</strong><span>Industries served</span></div><div class="s-stat"><strong>1994</strong><span>Delivering in the Kingdom since</span></div></div>
     </section>
 
     <section class="section">
-      <div class="container stack" style="gap: 40px">
-        <p class="lead" style="max-width: 820px; color: var(--text)">A&#x27;amal&#x27;s industrial companies support oil, gas, petrochemical, power and water operators across the full asset lifecycle — from construction and commissioning to maintenance, protective coating and emissions monitoring.</p>
+      <div class="container s-split">
+        <img class="s-split__img" src="../assets/img/services/ei-hero.webp" srcset="../assets/img/services/ei-hero-800.webp 800w, ../assets/img/services/ei-hero.webp 1600w" sizes="(max-width: 900px) 100vw, 45vw" width="1600" height="1067" alt="" loading="lazy" decoding="async">
+        <div class="s-split__text">
+          <span class="s-pill">Overview</span>
+          <h2 class="h2">Industrial Services with A'amal Group</h2>
+          <p>A&#x27;amal&#x27;s industrial companies support oil, gas, petrochemical, power and water operators across the full asset lifecycle — from construction and commissioning to maintenance, protective coating and emissions monitoring.</p>
+          <ul class="s-included" style="justify-content: flex-start"><li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.7 2.7L16.5 9"/></svg><span>Industrial Operations &amp; Maintenance</span></li><li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.7 2.7L16.5 9"/></svg><span>Electrical &amp; Instrumentation</span></li><li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.7 2.7L16.5 9"/></svg><span>Waterproofing &amp; Industrial Coating</span></li><li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.7 2.7L16.5 9"/></svg><span>Industry Transformation</span></li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tint" id="services">
+      <div class="container stack" style="gap: 36px">
+        <div class="s-head s-head--center">
+          <span class="s-pill">Our services</span>
+          <h2 class="h2">What we deliver</h2>
+        </div>
         <div class="svc-grid">
           <article class="svc-card">
             <div class="svc-card__text">
@@ -85,10 +106,20 @@
       </div>
     </section>
 
-    <section class="section--tint">
-      <div class="container next-band">
-        <div><span class="muted">Next sector</span><br><a class="next-band__link" href="management.html">Project &amp; Business Management →</a></div>
-        <a class="btn btn--primary" href="contact.html">Discuss a project</a>
+    <section class="section" style="padding-top: 0">
+      <div class="container">
+        <div class="s-cta">
+          <img class="s-cta__img" src="../assets/img/services/pbm-saudi-coffee.webp" srcset="../assets/img/services/pbm-saudi-coffee-800.webp 800w, ../assets/img/services/pbm-saudi-coffee.webp 1200w" sizes="100vw" width="1200" height="800" alt="" loading="lazy" decoding="async">
+          <div class="s-cta__overlay"></div>
+          <div class="s-cta__inner">
+            <h2>Next: Project &amp; Business Management</h2>
+            <p>The people and the project controls that keep complex work on time and on budget.</p>
+            <div class="btn-row" style="justify-content: center">
+              <a class="btn btn--white" href="management.html">Explore Project &amp; Business Management</a>
+              <a class="btn btn--outline-light" href="contact.html">Discuss a project</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>

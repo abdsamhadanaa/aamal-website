@@ -356,6 +356,44 @@ def build_service(slug, s):
     return page(head(s["title"], s["description"], slug + ".html", s["hero"], ld, preload=s["hero"]), "services", body)
 
 
+def s_hero(crumbs, pill, h1, lead, img, btns, stats):
+    crumb_html = " / ".join(f'<a href="{p}">{e(n)}</a>' for n, p in crumbs[:-1]) + " / " + e(crumbs[-1][0])
+    stats_html = "".join(f'<div class="s-stat"><strong>{a}</strong><span>{b}</span></div>' for a, b in stats)
+    return f"""    <section class="s-hero">
+      <div class="container s-hero__inner">
+        <nav class="breadcrumb" aria-label="Breadcrumb">{crumb_html}</nav>
+        <span class="s-pill">{e(pill)}</span>
+        <h1 class="s-hero__title">{e(h1)}</h1>
+        <p class="s-hero__lead">{e(lead)}</p>
+        <div class="btn-row" style="justify-content: center">
+          {btns}
+        </div>
+      </div>
+      <div class="container">
+        {picture(img, "", sizes="(max-width: 1240px) 100vw, 1200px", cls="s-hero__img", eager=True)}
+      </div>
+      <div class="container s-stats">{stats_html}</div>
+    </section>"""
+
+
+def s_cta(img, title, text, btns):
+    return f"""    <section class="section" style="padding-top: 0">
+      <div class="container">
+        <div class="s-cta">
+          {picture(img, "", sizes="100vw", cls="s-cta__img")}
+          <div class="s-cta__overlay"></div>
+          <div class="s-cta__inner">
+            <h2>{e(title)}</h2>
+            <p>{e(text)}</p>
+            <div class="btn-row" style="justify-content: center">
+              {btns}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>"""
+
+
 def build_sector(i, sec):
     crumbs = [("Home", "index.html"), ("Services", "services.html"), (sec["name"], sec["slug"] + ".html")]
     nxt = C.SECTORS[(i + 1) % len(C.SECTORS)]
@@ -365,23 +403,39 @@ def build_sector(i, sec):
     desc = f"A'amal Group {sec['name']}: {names}. {sec['lead']}"
     ld = [breadcrumb_ld(crumbs), {"@type": "ItemList", "name": sec["name"], "itemListElement": [
         {"@type": "ListItem", "position": k + 1, "url": SITE_URL + x + ".html", "name": C.SERVICES[x]["name"]} for k, x in enumerate(sec["services"])]}]
-    body = f"""{hero(sec["hero"], "", crumbs, "Sector " + sec["num"], sec["name"], sec["lead"])}
+    n_areas = sum(len(C.SERVICES[x]["offer"]) for x in sec["services"])
+    inds = set(i_ for x in sec["services"] for i_ in C.SERVICES[x]["industries"])
+    stats = [(str(len(sec["services"])), "Specialist services"), (str(n_areas), "Service areas"),
+             (str(len(inds)), "Industries served"), ("1994", "Delivering in the Kingdom since")]
+    btns = '<a class="btn btn--primary" href="contact.html">Discuss a project</a>\n          <a class="btn btn--outline" href="#services">Our services</a>'
+    links = "".join(f"<li>{CHECK}<span>{e(C.SERVICES[x]['name'])}</span></li>" for x in sec["services"])
+    body = f"""{s_hero(crumbs, "Sector " + sec["num"], sec["name"], sec["lead"], sec["hero"], btns, stats)}
 
     <section class="section">
-      <div class="container stack" style="gap: 40px">
-        <p class="lead" style="max-width: 820px; color: var(--text)">{e(sec["intro"])}</p>
+      <div class="container s-split">
+        {picture(sec["card_img"], "", sizes="(max-width: 900px) 100vw, 45vw", cls="s-split__img")}
+        <div class="s-split__text">
+          <span class="s-pill">Overview</span>
+          <h2 class="h2">{e(sec["name"])} with A'amal Group</h2>
+          <p>{e(sec["intro"])}</p>
+          <ul class="s-included" style="justify-content: flex-start">{links}</ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tint" id="services">
+      <div class="container stack" style="gap: 36px">
+        <div class="s-head s-head--center">
+          <span class="s-pill">Our services</span>
+          <h2 class="h2">What we deliver</h2>
+        </div>
         <div class="svc-grid">
 {cards}
         </div>
       </div>
     </section>
 
-    <section class="section--tint">
-      <div class="container next-band">
-        <div><span class="muted">Next sector</span><br><a class="next-band__link" href="{nxt["slug"]}.html">{e(nxt["name"])} →</a></div>
-        <a class="btn btn--primary" href="contact.html">Discuss a project</a>
-      </div>
-    </section>"""
+{s_cta(nxt["hero"], "Next: " + nxt["name"], nxt["lead"], f'<a class="btn btn--white" href="{nxt["slug"]}.html">Explore {e(nxt["name"])}</a>' + chr(10) + '              <a class="btn btn--outline-light" href="contact.html">Discuss a project</a>')}"""
     return page(head(title, desc[:300], sec["slug"] + ".html", sec["hero"], ld, preload=sec["hero"]), "services", body)
 
 
@@ -389,20 +443,28 @@ def build_overview():
     crumbs = [("Home", "index.html"), ("Services", "services.html")]
     rows = []
     for i, sec in enumerate(C.SECTORS):
-        links = "".join(f'<li><a href="{x}.html">{e(C.SERVICES[x]["name"])}</a></li>' for x in sec["services"])
-        img = picture(sec["card_img"], "", sizes="(max-width: 800px) 100vw, 50vw")
-        rev = " feature-row--reverse" if i % 2 else ""
-        text = f"""<div class="feature-row__text">
-            <span class="eyebrow">{sec["num"]}</span>
+        links = "".join(f'<li>{CHECK}<a href="{x}.html">{e(C.SERVICES[x]["name"])}</a></li>' for x in sec["services"])
+        rev = " s-split--rev" if i % 2 else ""
+        rows.append(f"""        <div class="s-split{rev}">
+          {picture(sec["card_img"], "", sizes="(max-width: 900px) 100vw, 45vw", cls="s-split__img")}
+          <div class="s-split__text">
+            <span class="s-pill">Sector {sec["num"]}</span>
             <h2 class="h2">{e(sec["name"])}</h2>
             <p>{e(sec["intro"])}</p>
-            <ul class="service-links">{links}</ul>
-            <a class="btn btn--primary" href="{sec["slug"]}.html">Explore {e(sec["name"])}</a>
-          </div>"""
-        rows.append(f'        <div class="feature-row{rev}">\n          {text + img if i % 2 else img + text}\n        </div>')
+            <ul class="s-included s-included--links">{links}</ul>
+            <div class="btn-row"><a class="btn btn--primary" href="{sec["slug"]}.html">Explore {e(sec["name"])}</a></div>
+          </div>
+        </div>""")
     ld = [breadcrumb_ld(crumbs), {"@type": "ItemList", "name": "A'amal Group services", "itemListElement": [
         {"@type": "ListItem", "position": k + 1, "url": SITE_URL + x + ".html", "name": C.SERVICES[x]["name"]} for k, x in enumerate(C.SERVICES)]}]
-    body = f"""{hero("hero-refinery", "", crumbs, "8 specialist services", "Our services", "Three sectors, one partner — from destinations people love to the plants that power industry and the people and systems that deliver projects.")}
+    all_cards = "\n".join(service_card(x) for x in C.SERVICES)
+    stats = [(str(len(C.SERVICES)), "Specialist services"), (str(len(C.SECTORS)), "Sectors"),
+             ("30+", "Years of experience"), ("1994", "Delivering in the Kingdom since")]
+    btns = '<a class="btn btn--primary" href="contact.html">Talk to our team</a>\n          <a class="btn btn--outline" href="#all-services">All services</a>'
+    steps = [("Plan", "Feasibility, design and project set-up."), ("Build", "Construction, engineering and commissioning."),
+             ("Operate", "Running facilities and staffing them well."), ("Maintain", "Keeping assets safe, efficient and compliant.")]
+    steps_html = "".join(f'<article class="offer-card"><span class="offer-card__num">{k + 1:02d}</span><h3>{t}</h3><p>{d}</p></article>' for k, (t, d) in enumerate(steps))
+    body = f"""{s_hero(crumbs, "8 specialist services", "Our services", "Three sectors, one partner — from destinations people love to the plants that power industry and the people and systems that deliver projects.", "hero-refinery", btns, stats)}
 
     <section class="section">
       <div class="container stack" style="gap: 88px">
@@ -411,16 +473,28 @@ def build_overview():
     </section>
 
     <section class="section section--tint">
-      <div class="container stack">
-        <h2 class="h2">One partner for the whole lifecycle</h2>
-        <ol class="steps">
-          <li><span class="steps__num">1</span><span class="steps__title">Plan</span><span class="muted">Feasibility, design and project set-up.</span></li>
-          <li><span class="steps__num">2</span><span class="steps__title">Build</span><span class="muted">Construction, engineering and commissioning.</span></li>
-          <li><span class="steps__num">3</span><span class="steps__title">Operate</span><span class="muted">Running facilities and staffing them well.</span></li>
-          <li><span class="steps__num">4</span><span class="steps__title">Maintain</span><span class="muted">Keeping assets safe, efficient and compliant.</span></li>
-        </ol>
+      <div class="container stack" style="gap: 40px">
+        <div class="s-head s-head--center">
+          <span class="s-pill">How we work</span>
+          <h2 class="h2">One partner for the whole lifecycle</h2>
+        </div>
+        <div class="offer-grid offer-grid--4">{steps_html}</div>
       </div>
-    </section>"""
+    </section>
+
+    <section class="section" id="all-services">
+      <div class="container stack" style="gap: 36px">
+        <div class="s-head s-head--center">
+          <span class="s-pill">All services</span>
+          <h2 class="h2">Find the right service</h2>
+        </div>
+        <div class="svc-grid">
+{all_cards}
+        </div>
+      </div>
+    </section>
+
+{s_cta("hero-construction", "Planning a project?", "Tell us what you need and our team will get back to you.", '<a class="btn btn--white" href="contact.html">Talk to our team</a>')}"""
     title = "Services — Artificial Lagoons, Industrial Services & Project Management | A'amal Group"
     desc = "A'amal Group services in Saudi Arabia: artificial lagoons, sports facilities, industrial O&M, electrical & instrumentation, waterproofing & coating, industry transformation, HR and project solutions."
     return page(head(title, desc, "services.html", "hero-refinery", ld, preload="hero-refinery"), "services", body)
