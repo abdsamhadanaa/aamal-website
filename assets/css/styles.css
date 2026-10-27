@@ -498,3 +498,14 @@ body[data-version="2"] .heritage__photo { flex: 0 1 480px; }
 .impact__text h2 { color: #FFFFFF; }
 .impact__text p { color: #E9F4EC; font-size: 17px; margin: 0; }
 @media (max-width: 900px) { .impact { grid-template-columns: 1fr; } .impact__img { min-height: 0; aspect-ratio: 16 / 10; } .impact__text { padding: 36px 24px; } }
+
+/* Home: Our Clients logo grid */
+.clients__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 160px), 1fr)); gap: 12px; }
+.clients__grid li { background: #FFFFFF; border: 1px solid var(--line); height: 96px; display: flex; align-items: center; justify-content: center; padding: 14px 18px; }
+.clients__grid img { max-width: 100%; max-height: 64px; width: auto; height: auto; object-fit: contain; }
+.clients__more summary { cursor: pointer; display: inline-flex; align-items: center; gap: 8px; color: var(--link); font-weight: 600; padding: 10px 0; list-style: none; }
+.clients__more summary::-webkit-details-marker { display: none; }
+.clients__more summary::after { content: "+"; font-size: 20px; line-height: 1; }
+.clients__more[open] summary::after { content: "−"; }
+.clients__more[open] summary { margin-bottom: 12px; }
+@media (max-width: 640px) { .clients__grid { grid-template-columns: repeat(2, 1fr); } .clients__grid li { height: 80px; padding: 10px; } .clients__grid img { max-height: 52px; } }
