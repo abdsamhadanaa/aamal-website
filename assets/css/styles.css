@@ -568,7 +568,7 @@ html { scroll-padding-top: 110px; }
 .nav-drop__btn:hover { color: var(--link); }
 .nav-caret { transition: transform .2s; }
 .nav-drop.is-open .nav-caret { transform: rotate(180deg); }
-.nav-drop__panel { position: absolute; top: 100%; left: -18px; min-width: 260px; background: var(--bg); border: 1px solid var(--line); border-top: 3px solid var(--green); box-shadow: 0 18px 40px rgba(24, 27, 28, .14); padding: 10px 0; display: none; z-index: 60; }
+.nav-drop__panel { position: absolute; top: calc(100% + 12px); left: -18px; min-width: 260px; background: var(--bg); border: 1px solid var(--line); border-top: 3px solid var(--green); box-shadow: 0 18px 40px rgba(24, 27, 28, .14); padding: 10px 0; display: none; z-index: 60; }
 .nav-drop__panel a { display: block; padding: 9px 20px; border: 0; font-weight: 400; font-size: 15px; color: var(--charcoal); white-space: nowrap; }
 .nav-drop__panel a:hover { background: var(--tint); color: var(--link); }
 .nav-drop__panel--mega { display: none; grid-template-columns: repeat(3, minmax(210px, 1fr)); gap: 8px 12px; padding: 20px 12px 12px; min-width: 760px; left: -220px; }
@@ -579,7 +579,7 @@ html { scroll-padding-top: 110px; }
 @media (min-width: 1081px) {
   .nav-drop:hover .nav-drop__panel, .nav-drop:focus-within .nav-drop__panel, .nav-drop.is-open .nav-drop__panel { display: block; }
   .nav-drop:hover .nav-drop__panel--mega, .nav-drop:focus-within .nav-drop__panel--mega, .nav-drop.is-open .nav-drop__panel--mega { display: grid; }
-  .nav-drop::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 14px; }
+  .nav-drop::after { content: ""; position: absolute; left: -20px; right: -20px; top: 100%; height: 30px; }
 }
 @media (max-width: 1080px) {
   .nav-drop__head { justify-content: space-between; border-bottom: 1px solid var(--line); }
@@ -590,3 +590,6 @@ html { scroll-padding-top: 110px; }
   .nav-drop.is-open .nav-drop__panel--mega { display: grid; }
   .nav-drop__panel a { white-space: normal; padding: 10px 12px; border-bottom: 0; }
 }
+
+.site-nav .nav-drop__overview { font-weight: 600; color: var(--link); border-bottom: 1px solid var(--line) !important; margin-bottom: 6px; }
+.nav-drop.is-open > .nav-drop__head > a { color: var(--link); }

@@ -83,7 +83,7 @@ class SiteHeader extends HTMLElement {
         ? `<div class="nav-drop__panel nav-drop__panel--mega" id="drop-${i}">${l.mega.map((g) =>
             `<div class="nav-mega__col"><a class="nav-mega__title" href="${g.href}">${esc(g.label)}</a>${g.items.map((x) => `<a href="${x.href}">${esc(x.label)}</a>`).join('')}</div>`).join('')}
             <a class="nav-mega__all" href="${l.href}">All services →</a></div>`
-        : `<div class="nav-drop__panel" id="drop-${i}">${l.sub.map((x) => `<a href="${x.href}">${esc(x.label)}</a>`).join('')}</div>`;
+        : `<div class="nav-drop__panel" id="drop-${i}"><a class="nav-drop__overview" href="${l.href}">${esc(l.label)} overview</a>${l.sub.map((x) => `<a href="${x.href}">${esc(x.label)}</a>`).join('')}</div>`;
       return `<div class="nav-drop"><div class="nav-drop__head"><a href="${l.href}"${cur}>${esc(l.label)}</a><button class="nav-drop__btn" type="button" aria-expanded="false" aria-controls="drop-${i}" aria-label="Show ${esc(l.label)} links">${caret}</button></div>${panel}</div>`;
     }).join('');
 
@@ -106,14 +106,23 @@ class SiteHeader extends HTMLElement {
       </header>`;
 
     // Dropdowns: open on hover (desktop, via CSS) or by the caret button (touch, keyboard, mobile)
+    const closeAll = (except) => this.querySelectorAll('.nav-drop.is-open').forEach((o) => {
+      if (o === except) return;
+      o.classList.remove('is-open'); o.querySelector('.nav-drop__btn').setAttribute('aria-expanded', 'false');
+    });
     this.querySelectorAll('.nav-drop').forEach((d) => {
       const btn = d.querySelector('.nav-drop__btn');
-      btn.addEventListener('click', () => {
+      const label = d.querySelector('.nav-drop__head > a');
+      const toggleDrop = (e) => {
+        e.preventDefault();
         const open = !d.classList.contains('is-open');
-        this.querySelectorAll('.nav-drop.is-open').forEach((o) => { o.classList.remove('is-open'); o.querySelector('.nav-drop__btn').setAttribute('aria-expanded', 'false'); });
+        closeAll(d);
         d.classList.toggle('is-open', open);
         btn.setAttribute('aria-expanded', String(open));
-      });
+      };
+      // Clicking the category name or the arrow pins the menu open; it stays until you click elsewhere
+      btn.addEventListener('click', toggleDrop);
+      label.addEventListener('click', toggleDrop);
     });
     document.addEventListener('click', (e) => { if (!e.target.closest('.nav-drop')) this.querySelectorAll('.nav-drop.is-open').forEach((o) => { o.classList.remove('is-open'); o.querySelector('.nav-drop__btn').setAttribute('aria-expanded', 'false'); }); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') this.querySelectorAll('.nav-drop.is-open').forEach((o) => { o.classList.remove('is-open'); o.querySelector('.nav-drop__btn').setAttribute('aria-expanded', 'false'); }); });
