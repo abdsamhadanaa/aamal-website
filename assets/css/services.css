@@ -108,8 +108,8 @@
 
 /* About: brand showcase (logo, recognition, clients) */
 .brand-showcase { display: grid; grid-template-columns: 0.9fr 1.3fr; gap: 28px; border-radius: var(--r-lg); padding: 40px; color: #FFFFFF; position: relative; overflow: hidden;
-  background: radial-gradient(circle at 12% 20%, rgba(31, 176, 75, .35), transparent 45%), linear-gradient(135deg, #2E3133 0%, #23272A 55%, #0F4F27 100%); }
-.brand-showcase::after { content: ""; position: absolute; right: -120px; bottom: -160px; width: 420px; height: 420px; border-radius: 50%; border: 60px solid rgba(31, 176, 75, .12); pointer-events: none; }
+  background: radial-gradient(circle at 12% 20%, rgba(31, 176, 75, .10), transparent 40%), linear-gradient(135deg, #2E3133 0%, #26292B 60%, #1E2224 100%); }
+.brand-showcase::after { content: ""; position: absolute; right: -120px; bottom: -160px; width: 420px; height: 420px; border-radius: 50%; border: 60px solid rgba(255, 255, 255, .04); pointer-events: none; }
 .brand-showcase__brand { display: flex; flex-direction: column; justify-content: center; gap: 18px; position: relative; z-index: 1; }
 .brand-showcase__brand img { width: 100%; max-width: 300px; height: auto; }
 .brand-showcase__brand p { margin: 0; color: #D9E7DE; font-size: 17px; max-width: 360px; }
