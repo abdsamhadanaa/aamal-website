@@ -130,7 +130,8 @@ SERVICES = {
         ],
         "partner": {
             "name": "Apex",
-            "logo": None,
+            "logo": "partners/logo-apex.png",
+            "logo_w": 240, "logo_h": 225,
             "about": "A sports facilities and programming specialist with more than 15 years of experience across the GCC.",
             "url": None,  # TODO: add Apex's official website once confirmed by A'amal
         },
