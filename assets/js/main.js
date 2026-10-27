@@ -311,7 +311,7 @@ const REVEAL_SELECTORS = [
   '.tile', '.press-card', '.founder-gallery > *', '.media-photo', '.gallery img', '.timeline li',
   '.v2030', '.who-mosaic', '.brand-showcase', '.hero-logos', '.panel-card', '.focus-grid > div',
   '.s-included li', '.vm-item', '.feature-row', '.s-cta', '.office-card', '.pillars > div',
-  '.clients__grid li', '.recog__logos li', '.impact', '.social-band', '.leader', '.heritage'
+  '.recog__logos li', '.impact', '.social-band', '.leader', '.heritage'
 ].join(',');
 
 function initMotion() {
@@ -330,12 +330,19 @@ function initMotion() {
     el.classList.add('rv');
     el.style.setProperty('--rv-delay', `${Math.min(i, 6) * 70}ms`);
   });
+  // Big photos get a curtain-wipe reveal; clipped elements can't be observed, so watch their parent
+  const WIPE = '.s-split__img, .s-split > img, .feature-row > img, .rounded-img';
+  els.forEach((el) => { if (el.matches(WIPE)) el.classList.add('wipe'); });
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
-      if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      if (!e.isIntersecting) return;
+      const t = e.target;
+      if (t.classList.contains('rv')) t.classList.add('is-in');
+      t.querySelectorAll(':scope > .wipe').forEach((w) => w.classList.add('is-in'));
+      io.unobserve(t);
     });
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-  els.forEach((el) => io.observe(el));
+  els.forEach((el) => io.observe(el.classList.contains('wipe') ? el.parentElement : el));
 
   // Headings: words rise in one after another when they scroll into view
   const heads = Array.from(document.querySelectorAll('main h2, .s-hero__title'))
@@ -366,6 +373,31 @@ function initMotion() {
     entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('tw-in'); hio.unobserve(e.target); } });
   }, { threshold: 0.3 });
   heads.forEach((h) => hio.observe(h));
+
+  // Scroll progress bar + header shadow + gentle parallax on large images
+  const bar = document.createElement('div');
+  bar.className = 'scroll-progress';
+  bar.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(bar);
+  const header = document.querySelector('.site-header');
+  const para = Array.from(document.querySelectorAll('.s-cta__img, .social-band img, .impact img'));
+  let ticking = false;
+  const onScroll = () => {
+    ticking = false;
+    const y = window.scrollY;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = `scaleX(${max > 0 ? Math.min(1, y / max) : 0})`;
+    if (header) header.classList.toggle('is-scrolled', y > 12);
+    para.forEach((img) => {
+      const r = img.parentElement.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > innerHeight) return;
+      const k = (r.top + r.height / 2 - innerHeight / 2) / innerHeight;
+      img.style.transform = `translateY(${(k * -40).toFixed(1)}px) scale(1.12)`;
+    });
+  };
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
+
 
   // Count-up for stats (skips years such as 1994 / 2021 and ranges)
   const nums = document.querySelectorAll('.s-stat strong, .stat__value, .brand-showcase__facts strong');
