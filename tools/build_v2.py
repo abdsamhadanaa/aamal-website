@@ -52,6 +52,11 @@ THEME_SCRIPT = '<script>try{var t=new URLSearchParams(location.search).get("them
 
 SECTOR = {s["slug"]: s for s in C.SECTORS}
 
+# Version tags so browsers fetch the new CSS/JS after every change (cache busting)
+import hashlib
+ASSET_V = {k: hashlib.md5(open(os.path.join(ROOT, "assets", f), "rb").read()).hexdigest()[:8]
+           for k, f in (("css", "css/styles.css"), ("js", "js/main.js"))}
+
 
 def e(s):
     return html.escape(s, quote=True)
@@ -113,8 +118,8 @@ def head(title, desc, page, image="services/cl-cabo", extra_ld=None, preload=Non
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>{pre}
   <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/styles.css">
-  <script src="../assets/js/main.js" defer></script>
+  <link rel="stylesheet" href="../assets/css/styles.css?v={ASSET_V["css"]}">
+  <script src="../assets/js/main.js?v={ASSET_V["js"]}" defer></script>
   <script type="application/ld+json">{ld}</script>
 </head>"""
 
