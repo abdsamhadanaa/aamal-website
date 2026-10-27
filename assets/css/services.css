@@ -226,3 +226,4 @@
 @media (max-width: 460px) { .c-cards { grid-template-columns: 1fr; } .c-layout .contact-form-wrap { padding: 22px; } }
 .c-layout .field input, .c-layout .field select, .c-layout .field textarea { border-radius: var(--r-sm); }
 .c-layout .btn { border-radius: 999px; }
+.hero-strip--svc img:nth-child(3) { object-position: 12% 50%; }

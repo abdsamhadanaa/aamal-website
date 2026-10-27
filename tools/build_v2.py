@@ -357,7 +357,7 @@ def build_service(slug, s):
     return page(head(s["title"], s["description"], slug + ".html", s["hero"], ld, preload=s["hero"]), "services", body)
 
 
-def s_hero(crumbs, pill, h1, lead, img, btns, stats):
+def s_hero(crumbs, pill, h1, lead, img, btns, stats, visual=None):
     crumb_html = " / ".join(f'<a href="{p}">{e(n)}</a>' for n, p in crumbs[:-1]) + " / " + e(crumbs[-1][0])
     stats_html = "".join(f'<div class="s-stat"><strong>{a}</strong><span>{b}</span></div>' for a, b in stats)
     return f"""    <section class="s-hero">
@@ -371,7 +371,7 @@ def s_hero(crumbs, pill, h1, lead, img, btns, stats):
         </div>
       </div>
       <div class="container">
-        {picture(img, "", sizes="(max-width: 1240px) 100vw, 1200px", cls="s-hero__img", eager=True)}
+        {visual or picture(img, "", sizes="(max-width: 1240px) 100vw, 1200px", cls="s-hero__img", eager=True)}
       </div>
       <div class="container s-stats">{stats_html}</div>
     </section>"""
@@ -465,7 +465,7 @@ def build_overview():
     steps = [("Plan", "Feasibility, design and project set-up."), ("Build", "Construction, engineering and commissioning."),
              ("Operate", "Running facilities and staffing them well."), ("Maintain", "Keeping assets safe, efficient and compliant.")]
     steps_html = "".join(f'<article class="offer-card"><span class="offer-card__num">{k + 1:02d}</span><h3>{t}</h3><p>{d}</p></article>' for k, (t, d) in enumerate(steps))
-    body = f"""{s_hero(crumbs, "8 specialist services", "Our services", "Three sectors, one partner — from destinations people love to the plants that power industry and the people and systems that deliver projects.", "hero-oil-gas", btns, stats)}
+    body = f"""{s_hero(crumbs, "8 specialist services", "Our services", "Three sectors, one partner — from destinations people love to the plants that power industry and the people and systems that deliver projects.", "hero-oil-gas", btns, stats, visual='<div class="hero-strip hero-strip--svc">' + picture("services/cl-hotel-aerial", "Resort built around a crystal lagoon", sizes="(max-width: 760px) 50vw, 33vw", eager=True) + picture("hero-construction", "Industrial construction site with cranes", sizes="(max-width: 760px) 100vw, 40vw", eager=True) + picture("services/pbm-saudi-coffee", "Saudi business professionals in conversation", sizes="(max-width: 760px) 50vw, 33vw", eager=True) + '</div>')}
 
     <section class="section">
       <div class="container stack" style="gap: 88px">
@@ -495,15 +495,15 @@ def build_overview():
       </div>
     </section>
 
-{s_cta("hero-construction", "Planning a project?", "Tell us what you need and our team will get back to you.", '<a class="btn btn--white" href="contact.html">Talk to our team</a>')}"""
+{s_cta("services/lagoons-pier", "Planning a project?", "Tell us what you need and our team will get back to you.", '<a class="btn btn--white" href="contact.html">Talk to our team</a>')}"""
     title = "Services — Artificial Lagoons, Industrial Services & Project Management | A'amal Group"
     desc = "A'amal Group services in Saudi Arabia: artificial lagoons, sports facilities, industrial O&M, electrical & instrumentation, waterproofing & coating, industry transformation, HR and project solutions."
-    return page(head(title, desc, "services.html", "hero-oil-gas", ld, preload="hero-oil-gas"), "services", body)
+    return page(head(title, desc, "services.html", "services/cl-hotel-aerial", ld), "services", body)
 
 
 # ---------------------------------------------------------------- existing hand-written pages
-PAGE_IMAGE = {"index.html": "services/lagoons-community", "about.html": "hero-oil-gas", "contact.html": "hero-construction",
-              "careers.html": "team-meeting", "responsibility.html": "hero-oil-gas", "awards.html": "services/cl-cabo",
+PAGE_IMAGE = {"index.html": "services/lagoons-community", "about.html": "services/lagoons-community", "contact.html": "hero-construction",
+              "careers.html": "team-meeting", "responsibility.html": "sustainability-community", "awards.html": "services/cl-cabo",
               "media.html": "services/cl-cabo"}
 
 
