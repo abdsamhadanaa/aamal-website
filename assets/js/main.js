@@ -62,23 +62,6 @@ const NAV = {
   ],
 }[VERSION];
 
-/* Version 3 (design option): business-led navigation, "Get in Touch" call to action */
-const IS_V3 = document.body.classList.contains('v3');
-if (IS_V3) {
-  const about = NAV.find((l) => l.id === 'about');
-  if (about) about.sub = [
-    { label: 'Founder & CEO message', href: 'about.html#founder' },
-    { label: "A'amal Global Recognition", href: 'awards.html' },
-    { label: 'Social work & responsibility', href: 'responsibility.html' },
-  ];
-  const svc = NAV.find((l) => l.id === 'services');
-  if (svc) svc.label = 'Our Businesses';
-  const keep = ['home', 'about', 'services', 'responsibility', 'media', 'careers'];
-  const order = keep.map((id) => NAV.find((l) => l.id === id)).filter(Boolean);
-  order.push({ id: 'contact', label: 'Contact', href: 'contact.html' });
-  NAV.splice(0, NAV.length, ...order);
-}
-
 /* ---------- Shared header ---------- */
 class SiteHeader extends HTMLElement {
   connectedCallback() {
@@ -89,7 +72,7 @@ class SiteHeader extends HTMLElement {
       const cur = l.id === active ? ' aria-current="page"' : '';
       if (!l.sub && !l.mega) return `<a href="${l.href}"${cur}>${esc(l.label)}</a>`;
       const panel = l.mega
-        ? `<div class="nav-drop__panel nav-drop__panel--mega" id="drop-${i}"><a class="nav-drop__overview nav-mega__overview" href="${l.href}">${IS_V3 ? 'All businesses and services →' : 'Services overview →'}</a>${l.mega.map((g) =>
+        ? `<div class="nav-drop__panel nav-drop__panel--mega" id="drop-${i}"><a class="nav-drop__overview nav-mega__overview" href="${l.href}">Services overview →</a>${l.mega.map((g) =>
             `<div class="nav-mega__col"><a class="nav-mega__title" href="${g.href}">${esc(g.label)}</a>${g.items.map((x) => `<a href="${x.href}">${esc(x.label)}</a>`).join('')}</div>`).join('')}
             <a class="nav-mega__all" href="${l.href}#all-services">View all 8 services →</a></div>`
         : `<div class="nav-drop__panel" id="drop-${i}"><a class="nav-drop__overview" href="${l.href}">${esc(l.label)} overview</a>${l.sub.map((x) => `<a href="${x.href}">${esc(x.label)}</a>`).join('')}</div>`;
@@ -106,7 +89,7 @@ class SiteHeader extends HTMLElement {
           <nav class="site-nav" id="site-nav" aria-label="Main navigation">${links}</nav>
           <div class="site-header__actions">
             ${VERSION === 1 ? '<a class="lang-link" href="#" lang="ar">العربية</a>' : ''}
-            <a class="btn btn--primary" href="contact.html"${active === 'contact' ? ' aria-current="page"' : ''}>${IS_V3 ? 'Get in Touch' : 'Contact Us'}</a>
+            <a class="btn btn--primary" href="contact.html"${active === 'contact' ? ' aria-current="page"' : ''}>Contact Us</a>
             <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
             </button>
@@ -194,10 +177,10 @@ class SiteFooter extends HTMLElement {
           <div class="site-footer__bottom">
             <span>© ${year} A'amal Group. All rights reserved.</span>
             <nav aria-label="Legal and social">
-              ${IS_V3 ? '' : '<a href="#">Privacy Policy</a>'}
+              <a href="#">Privacy Policy</a>
               ${v2 ? '<a href="responsibility.html#speak-up">Report a Concern</a>' : ''}
               <a href="https://twitter.com/AAMAL_GROUP_SA" target="_blank" rel="noopener">X / Twitter</a>
-              ${IS_V3 ? '' : '<a href="#">LinkedIn</a>'}
+              <a href="#">LinkedIn</a>
             </nav>
           </div>
         </div>
@@ -363,7 +346,7 @@ function initMotion() {
 
   // Headings: words rise in one after another when they scroll into view
   const heads = Array.from(document.querySelectorAll('main h2, .s-hero__title'))
-    .filter((h) => !h.closest('.hero, .s-cta, .nav-drop__panel, .form-success'));
+    .filter((h) => !h.closest('.hero, .s-cta, .nav-drop__panel'));
   heads.forEach((h) => {
     let n = 0;
     const walk = (node) => {

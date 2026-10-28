@@ -23,8 +23,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/styles.css?v=ed9b313b">
   <link rel="stylesheet" href="../assets/css/services.css?v=8440f061">
-  <link rel="stylesheet" href="../assets/css/v3.css?v=2553af78">
-  <script src="../assets/js/main.js?v=f1335d2c" defer></script>
+  <link rel="stylesheet" href="../assets/css/v3.css?v=8f377cb8">
+  <script src="../assets/js/main.js?v=f0dd1653" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://abdsamhadanaa.github.io/aamal-website/v3/#org","name":"A'amal Group","alternateName":"Arab Economic & Business Group","url":"https://abdsamhadanaa.github.io/aamal-website/v3/","logo":"https://abdsamhadanaa.github.io/aamal-website/v3/../assets/img/logo.png","foundingDate":"1994","email":"info@aamal-group.com","telephone":"+966 13 897 3938","address":{"@type":"PostalAddress","streetAddress":"King Abdullah Road, Middle East Commercial Center, P.O. Box 4977","addressLocality":"Al Khobar","postalCode":"31952","addressCountry":"SA"},"sameAs":["https://twitter.com/AAMAL_GROUP_SA"]},{"@type":"WebPage","@id":"https://abdsamhadanaa.github.io/aamal-website/v3/careers.html","url":"https://abdsamhadanaa.github.io/aamal-website/v3/careers.html","name":"Careers — A'amal Group","description":"Careers at A'amal Group: open positions and how to apply.","isPartOf":{"@type":"WebSite","url":"https://abdsamhadanaa.github.io/aamal-website/v3/","name":"A'amal Group"},"publisher":{"@id":"https://abdsamhadanaa.github.io/aamal-website/v3/#org"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://abdsamhadanaa.github.io/aamal-website/v3/"},{"@type":"ListItem","position":2,"name":"Careers","item":"https://abdsamhadanaa.github.io/aamal-website/v3/careers.html"}]}]}</script>
 </head>
 <body data-version="2" class="v3">
@@ -38,7 +38,7 @@
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> / Careers</nav>
         <h1 class="h1">Grow with us</h1>
         <p class="lead">Join a team that builds, operates and invests across industries — and grows together.</p>
-        <a class="btn btn--primary" href="#openings" style="margin-top: 8px">Current vacancies</a>
+        <a class="btn btn--primary" href="#openings" style="margin-top: 8px">View open positions</a>
       </div>
     </section>
 
@@ -57,7 +57,12 @@
     <section class="section section--tint" id="openings">
       <div class="container stack" style="gap: 32px">
         <h2 class="h2">Open positions</h2>
-        <p class="x-note"><strong>Current vacancies will be listed here.</strong> To apply now, email your CV to <a href="mailto:info@aamal-group.com">info@aamal-group.com</a>.</p>
+        <ul class="jobs">
+          <li class="job"><div><span class="job__title">[Job title]</span><span class="job__meta">Contracting &amp; Technical · Al Khobar · Full time</span></div><a class="btn btn--small" href="#apply">Apply</a></li>
+          <li class="job"><div><span class="job__title">[Job title]</span><span class="job__meta">Hospitality &amp; Sports · [City] · Full time</span></div><a class="btn btn--small" href="#apply">Apply</a></li>
+          <li class="job"><div><span class="job__title">[Job title]</span><span class="job__meta">Project &amp; Business Management · Al Khobar · Full time</span></div><a class="btn btn--small" href="#apply">Apply</a></li>
+          <li class="job"><div><span class="job__title">[Job title]</span><span class="job__meta">Corporate · [City] · Contract</span></div><a class="btn btn--small" href="#apply">Apply</a></li>
+        </ul>
       </div>
     </section>
 
@@ -84,7 +89,11 @@
             <label class="field full">Message<textarea name="message" rows="4"></textarea></label>
             <button class="btn btn--primary full" type="submit" style="justify-self: start">Submit application</button>
           </form>
-          <div class="form-success form-notice" id="cv-success" tabindex="-1" role="alert" hidden><h2 class="h3">Online form not connected yet</h2><p>Nothing has been sent. This website form still needs to be connected to A'amal's email before it can deliver messages. Until then, please email <a href="mailto:info@aamal-group.com">info@aamal-group.com</a> or call <a href="tel:+966138973938">+966 13 897 3938</a>.</p><button class="btn btn--small" type="button" data-form-reset="cv-form">Back to the form</button></div>
+          <div class="form-success" id="cv-success" tabindex="-1" role="status" hidden>
+            <h2 class="h3">Thank you</h2>
+            <p>We've received your application and will be in touch if a suitable role opens up.</p>
+            <button class="btn btn--small" type="button" data-form-reset="cv-form">Send another</button>
+          </div>
         </div>
       </div>
     </section>
