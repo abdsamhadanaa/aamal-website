@@ -24,7 +24,7 @@ SECTORS = [
         "lead": "Building, commissioning, maintaining and protecting the plants that power the Kingdom's industry.",
         "intro": "A'amal's industrial companies support oil, gas, petrochemical, power and water operators across the full asset lifecycle — from construction and commissioning to maintenance, protective coating and emissions monitoring.",
         "hero": "hero-construction",
-        "card_img": "services/om-startup",
+        "card_img": "services/industrial-team",
         "services": ["operations-maintenance", "electrical-instrumentation", "waterproofing-industrial-coating", "industry-transformation"],
     },
     {

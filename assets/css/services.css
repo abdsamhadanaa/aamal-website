@@ -227,3 +227,6 @@
 .c-layout .field input, .c-layout .field select, .c-layout .field textarea { border-radius: var(--r-sm); }
 .c-layout .btn { border-radius: 999px; }
 .hero-strip--svc img:nth-child(3) { object-position: 12% 50%; }
+.s-split__img--43 { aspect-ratio: 4 / 3; height: auto; min-height: 0; max-height: none; align-self: center; }
+.s-split--rev > .s-split__img--43 { order: 2; }
+@media (max-width: 900px) { .s-split--rev > .s-split__img--43 { order: 0; } }

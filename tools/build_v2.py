@@ -447,7 +447,7 @@ def build_overview():
         links = "".join(f'<li>{CHECK}<a href="{x}.html">{e(C.SERVICES[x]["name"])}</a></li>' for x in sec["services"])
         rev = " s-split--rev" if i % 2 else ""
         rows.append(f"""        <div class="s-split{rev}">
-          {picture(sec["card_img"], "", sizes="(max-width: 900px) 100vw, 45vw", cls="s-split__img")}
+          {picture(sec["card_img"], "", sizes="(max-width: 900px) 100vw, 45vw", cls="s-split__img s-split__img--43")}
           <div class="s-split__text">
             <span class="s-pill">Sector {sec["num"]}</span>
             <h2 class="h2">{e(sec["name"])}</h2>
