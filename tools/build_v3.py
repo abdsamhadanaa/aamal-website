@@ -24,6 +24,41 @@ CAREERS = '''
   </main>'''
 
 
+SERVICES = ["Artificial Lagoons", "Sports Facilities", "Industrial Operations &amp; Maintenance", "Electrical &amp; Instrumentation",
+            "Waterproofing &amp; Industrial Coating", "Industry Transformation", "Human Resource Management", "Project Solutions"]
+
+
+def not_connected(m):
+    sid, form = m.group(1), m.group(2)
+    return (f'<div class="form-success form-notice" id="{sid}" tabindex="-1" role="alert" hidden>'
+            '<h2 class="h3">Online form not connected yet</h2>'
+            "<p>Nothing has been sent. This website form still needs to be connected to A'amal's email before it can deliver messages. "
+            'Until then, please email <a href="mailto:info@aamal-group.com">info@aamal-group.com</a> or call <a href="tel:+966138973938">+966 13 897 3938</a>.</p>'
+            f'<button class="btn btn--small" type="button" data-form-reset="{form}">Back to the form</button></div>')
+
+
+def content_fixes(html, name):
+    # Forms: never claim a message was sent while no backend is connected
+    html = re.sub(r'<div class="form-success" id="([\w-]+)"[^>]*>.*?data-form-reset="([\w-]+)".*?</button>\s*</div>', not_connected, html, flags=re.S)
+    if name == "contact.html":
+        opts = "".join(f"<option>{x}</option>" for x in SERVICES) + "<option>General enquiry</option>"
+        html = re.sub(r'<label class="field">Full name.*?<label class="field full">Message',
+                      '<label class="field">Full name<input type="text" name="name" autocomplete="name" required></label>\n'
+                      '            <label class="field">Email<input type="email" name="email" autocomplete="email" required></label>\n'
+                      '            <label class="field">Company<input type="text" name="company" autocomplete="organization"></label>\n'
+                      f'            <label class="field">Service of interest<select name="service">{opts}</select></label>\n'
+                      '            <label class="field full">Message', html, count=1, flags=re.S)
+        html = re.sub(r'<div class="c-card"><span class="c-card__ico">(?:(?!</div>).)*?Office hours.*?</div>', '', html, count=1, flags=re.S)
+    if name == "careers.html":
+        html = re.sub(r'<ul class="jobs">.*?</ul>',
+                      '<p class="x-note"><strong>Current vacancies will be listed here.</strong> To apply now, email your CV to '
+                      '<a href="mailto:info@aamal-group.com">info@aamal-group.com</a>.</p>', html, count=1, flags=re.S)
+        html = html.replace('View open positions', 'Current vacancies')
+    if name == "responsibility.html":
+        html = re.sub(r'\s*<p class="placeholder-text">\[Link to latest Communication on Progress\]</p>', '', html)
+    return html
+
+
 def transform(html, name):
     html = html.replace("/aamal-website/v2/", "/aamal-website/v3/")
     if '<meta name="robots"' not in html:
@@ -34,6 +69,7 @@ def transform(html, name):
         html = html.replace('<script src="../assets/js/main.js', f'<link rel="stylesheet" href="../assets/css/{v}">\n  <script src="../assets/js/main.js', 1)
     if "v3.css" not in html:
         html = html.replace('<script src="../assets/js/main.js', CSS + '\n  <script src="../assets/js/main.js', 1)
+    html = content_fixes(html, name)
     html = html.replace('<body data-version="2">', '<body data-version="2" class="v3">', 1)
     if name not in ("careers.html", "contact.html", "index.html") and "x-careers" not in html:
         html = html.replace("\n  </main>", CAREERS, 1)
