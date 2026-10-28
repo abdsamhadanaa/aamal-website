@@ -9,7 +9,8 @@ import os, re, shutil
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 V2, V3 = os.path.join(ROOT, "v2"), os.path.join(ROOT, "v3")
-CSS = '<link rel="stylesheet" href="../assets/css/v3.css">'
+import hashlib
+CSS = '<link rel="stylesheet" href="../assets/css/v3.css?v=' + hashlib.md5(open(os.path.join(ROOT, 'assets', 'css', 'v3.css'), 'rb').read()).hexdigest()[:8] + '">'
 SVC = re.compile(r'<link rel="stylesheet" href="\.\./assets/css/services\.css\?v=[0-9a-f]+">')
 
 CAREERS = '''
@@ -67,7 +68,8 @@ def transform(html, name):
         # every v3 page needs the rounded base layer
         v = re.search(r'services\.css\?v=[0-9a-f]+', open(os.path.join(V2, "about.html"), encoding="utf-8").read()).group(0)
         html = html.replace('<script src="../assets/js/main.js', f'<link rel="stylesheet" href="../assets/css/{v}">\n  <script src="../assets/js/main.js', 1)
-    if "v3.css" not in html:
+    html = re.sub(r'<link rel="stylesheet" href="\.\./assets/css/v3\.css[^"]*">\n?\s*', "", html)
+    if True:
         html = html.replace('<script src="../assets/js/main.js', CSS + '\n  <script src="../assets/js/main.js', 1)
     html = content_fixes(html, name)
     html = html.replace('<body data-version="2">', '<body data-version="2" class="v3">', 1)
