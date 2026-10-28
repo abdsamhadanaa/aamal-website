@@ -194,5 +194,6 @@
 @media (max-width: 1100px) { .x-founder { grid-template-columns: 1fr; } }
 
 /* Wider content area: smaller side margins on laptops and desktops */
-.v3 { --max: 1380px; }
-@media (min-width: 1100px) { .v3 { --gutter: 40px; } }
+.v3 { --max: 1320px; }
+@media (min-width: 1100px) { .v3 { --gutter: 32px; } }
+.v3 .x-hero__lead, .v3 .x-head > p, .v3 .x-founder__text p { max-width: 62ch; }
