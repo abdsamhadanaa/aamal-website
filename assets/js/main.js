@@ -34,12 +34,6 @@ const NAV = {
       { label: 'Social work & responsibility', href: 'responsibility.html' },
       { label: "A'amal Global Recognition", href: 'awards.html' },
     ] },
-    { id: 'recognition', label: 'Global Recognition', href: 'awards.html', sub: [
-      { label: 'Global leadership roles', href: 'awards.html#roles' },
-      { label: 'Awards and honours', href: 'awards.html#awards' },
-      { label: 'Company commitments', href: 'awards.html#company' },
-      { label: 'Milestones', href: 'awards.html#milestones' },
-    ] },
     { id: 'services', label: 'Services', href: 'services.html', mega: [
       { label: 'Hospitality & Sports', href: 'hospitality.html', items: [
         { label: 'Artificial Lagoons', href: 'artificial-lagoons.html' },
@@ -55,6 +49,12 @@ const NAV = {
         { label: 'Human Resource Management', href: 'human-resource-management.html' },
         { label: 'Project Solutions', href: 'project-solutions.html' },
       ] },
+    ] },
+    { id: 'recognition', label: 'Global Recognition', href: 'awards.html', sub: [
+      { label: 'Global leadership roles', href: 'awards.html#roles' },
+      { label: 'Awards and honours', href: 'awards.html#awards' },
+      { label: 'Company commitments', href: 'awards.html#company' },
+      { label: 'Milestones', href: 'awards.html#milestones' },
     ] },
     { id: 'responsibility', label: 'Sustainability', href: 'responsibility.html' },
     { id: 'media', label: 'Media', href: 'media.html' },
