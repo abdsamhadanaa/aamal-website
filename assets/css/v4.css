@@ -1,0 +1,75 @@
+/* A'amal — v4 design exploration, layered on v3.
+   Olayan: calm light-weight headings, generous space.
+   ALJ: an identity colour per sector (within A'amal's greens and charcoal).
+   Al Rushaid: one dark industrial band with glass cards. */
+
+.v4 { --sec: var(--green-dark); --sec-soft: #E7F3EA; }
+.v4.sec-h { --sec: #1FB04B; --sec-soft: #E8F8EC; }
+.v4.sec-i { --sec: #2E3133; --sec-soft: #ECEEEE; }
+.v4.sec-p { --sec: #157F36; --sec-soft: #E3F1E7; }
+
+/* Calm, larger headings with more air */
+.v4 .x-hero__title, .v4 .s-hero__title { font-weight: 400; letter-spacing: -.035em; }
+.v4 .x-h2, .v4 h2.h2 { font-weight: 400; letter-spacing: -.025em; font-size: clamp(2rem, 3.6vw, 3.1rem); }
+.v4 .section { padding-block: 112px; }
+@media (max-width: 760px) { .v4 .section { padding-block: 72px; } }
+.v4 .x-hero { padding-block: 72px 40px; }
+
+/* Sector identity on sector and service pages */
+.v4.sec-h .s-pill::before, .v4.sec-i .s-pill::before, .v4.sec-p .s-pill::before { background: var(--sec); }
+.v4.sec-h .s-hero, .v4.sec-i .s-hero, .v4.sec-p .s-hero { background: linear-gradient(180deg, var(--sec-soft) 0%, #fff 75%); }
+.v4.sec-h .s-hero__inner, .v4.sec-i .s-hero__inner, .v4.sec-p .s-hero__inner { position: relative; }
+.v4.sec-h .s-hero__inner::before, .v4.sec-i .s-hero__inner::before, .v4.sec-p .s-hero__inner::before { content: ""; width: 56px; height: 4px; border-radius: 4px; background: var(--sec); }
+.v4.sec-i .s-stat strong::after, .v4.sec-h .s-stat strong::after, .v4.sec-p .s-stat strong::after { background: var(--sec); }
+.v4 .offer-card { border-top: 3px solid var(--sec); }
+
+/* Home business cards: each sector keeps its colour */
+.v4 .biz { border-top: 4px solid transparent; }
+.v4 .biz:nth-child(1) { border-top-color: #1FB04B; }
+.v4 .biz:nth-child(2) { border-top-color: #2E3133; }
+.v4 .biz:nth-child(3) { border-top-color: #157F36; }
+.v4 .tag--h { background: #1FB04B; color: #fff; }
+
+/* Industries we serve */
+.v4-ind-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+.v4-ind-grid li { display: flex; flex-direction: column; gap: 14px; padding: 22px; border: 1px solid var(--line); border-radius: 20px; background: #fff; font-family: var(--font-display); font-size: 16px; color: var(--charcoal); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.v4-ind-grid li:hover { transform: translateY(-4px); border-color: #BFE3C9; box-shadow: 0 18px 40px -28px rgba(46, 49, 51, .4); }
+.v4-ind-ico { width: 48px; height: 48px; border-radius: 14px; background: var(--tint); color: var(--green-dark); display: grid; place-items: center; }
+
+/* Dark industrial band with glass cards */
+.v4-dark { position: relative; overflow: hidden; color: #fff; padding-block: 112px; }
+.v4-dark__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.v4-dark__veil { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(20, 23, 24, .92) 0%, rgba(20, 23, 24, .78) 45%, rgba(20, 23, 24, .55) 100%); }
+.v4-dark__inner { position: relative; display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: center; }
+.v4-dark__head { display: flex; flex-direction: column; gap: 18px; align-items: flex-start; }
+.v4-dark__head .x-h2 { color: #fff; }
+.v4-dark__head p { margin: 0; color: #D3D7D5; font-size: 17px; max-width: 46ch; }
+.s-pill--dark { background: rgba(255, 255, 255, .1) !important; border-color: rgba(255, 255, 255, .2); color: #fff; }
+.v4-glass-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.v4-glass { display: flex; flex-direction: column; gap: 10px; min-height: 150px; padding: 22px; border-radius: 20px; background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .18); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: #fff; text-decoration: none; transition: background .25s ease, transform .25s ease; }
+.v4-glass:hover { background: rgba(255, 255, 255, .14); transform: translateY(-4px); }
+.v4-glass__n { font-family: var(--font-display); font-size: 13px; color: #5FD184; }
+.v4-glass strong { font-family: var(--font-display); font-weight: 500; font-size: 19px; line-height: 1.25; }
+.v4-glass__more { margin-top: auto; font-size: 14px; color: #BFE8CB; }
+
+/* How we deliver */
+.v4-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--line); }
+.v4-steps li { display: flex; flex-direction: column; gap: 10px; padding: 28px 24px 0 0; position: relative; }
+.v4-steps li::before { content: ""; position: absolute; top: -1px; left: 0; width: 48px; height: 3px; background: var(--green); }
+.v4-steps__n { font-family: var(--font-display); font-size: 14px; color: var(--green-dark); font-weight: 600; }
+.v4-steps strong { font-family: var(--font-display); font-weight: 400; font-size: 28px; color: var(--charcoal); }
+.v4-steps li > span:last-child { color: var(--text); font-size: 15px; max-width: 26ch; }
+
+@media (max-width: 1100px) {
+  .v4-ind-grid { grid-template-columns: repeat(3, 1fr); }
+  .v4-dark__inner { grid-template-columns: 1fr; gap: 36px; }
+  .v4-steps { grid-template-columns: 1fr 1fr; row-gap: 32px; }
+}
+@media (max-width: 600px) {
+  .v4-ind-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .v4-ind-grid li { padding: 16px; font-size: 15px; }
+  .v4-glass-grid { grid-template-columns: 1fr; }
+  .v4-glass { min-height: 0; }
+  .v4-steps { grid-template-columns: 1fr; }
+  .v4-dark { padding-block: 72px; }
+}
