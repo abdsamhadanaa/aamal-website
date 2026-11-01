@@ -292,10 +292,11 @@
 
 /* ---------- Client review (M. Waqas, Nov 2026) ---------- */
 /* Larger logo */
-body.v3 .site-header__logo img { height: 92px; }
-body.v3 .site-header.is-scrolled .site-header__logo img { height: 64px; }
-@media (max-width: 1080px) { body.v3 .site-header__logo img { height: 72px; } }
-@media (max-width: 600px) { body.v3 .site-header__logo img, body.v3 .site-header.is-scrolled .site-header__logo img { height: 58px; } }
+body.v3 .site-header__logo img { height: 118px; }
+body.v3 .site-header.is-scrolled .site-header__logo img { height: 80px; }
+body.v3 .site-header__inner { padding-top: 10px; padding-bottom: 10px; }
+@media (max-width: 1080px) { body.v3 .site-header__logo img { height: 88px; } }
+@media (max-width: 600px) { body.v3 .site-header__logo img, body.v3 .site-header.is-scrolled .site-header__logo img { height: 70px; } }
 /* Footer: logo in its original colours on a light tile */
 .v3 .site-footer__logo-tile { display: inline-flex; padding: 14px 22px; border-radius: 20px; background: #fff; }
 .v3 .site-footer__brand .site-footer__logo-tile img { height: 104px; width: auto; }
