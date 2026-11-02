@@ -76,8 +76,12 @@ def saudi_photos(s):
     return s
 
 
+B20_IMG = '<img src="../assets/img/recognition/b20-usa-2026.webp" width="559" height="133" style="max-height:48px; width:auto" alt="B20 USA 2026 logo" loading="lazy" decoding="async">'
+
+
 def common(s, folder, css, js_file):
     s = founder_ceo(s)
+    s = s.replace(B20, B20_IMG)
     s = saudi_photos(s)
     if '<span class="s-pill">All services</span>' in s:
         # Services overview page: client asked to remove the stats row
