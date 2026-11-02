@@ -142,6 +142,9 @@ def bio_updates(s):
 def common(s, folder, css, js_file):
     s = founder_ceo(s)
     s = s.replace(B20, B20_IMG)
+    # Partners: Experts e&i (www.experts-ei.com) instead of the A'amal E&I text placeholder
+    s = re.sub(r'<a href="electrical-instrumentation\.html" title="A\'amal E&amp;I"><span class="logo-text">A\'amal<small>E&amp;I</small></span></a>',
+               '<a href="https://www.experts-ei.com/" target="_blank" rel="noopener" title="Experts e&amp;i"><img src="../assets/img/partners/logo-experts-ei.webp" width="560" height="64" alt="Experts e&amp;i" loading="lazy" decoding="async"></a>', s)
     s = bio_updates(s)
     s = saudi_photos(s)
     if '<span class="s-pill">All services</span>' in s:
