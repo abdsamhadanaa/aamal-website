@@ -45,7 +45,14 @@ def home_v2(s):
     return s
 
 
+def founder_ceo(s):
+    """Client: use "Founder & CEO", never "our Founder & CEO"."""
+    s = s.replace('>On the world stage</h2>', '>Founder &amp; CEO on the world stage</h2>').replace('>In the news</h2>', '>Founder &amp; CEO in the news</h2>')
+    return re.sub(r'\b[Oo]ur (Founder (?:&amp;|&|and) CEO)', r'\1', s)
+
+
 def common(s, folder, css, js_file):
+    s = founder_ceo(s)
     s = s.replace('/aamal-website/v2/', f'/aamal-website/{folder}/').replace('/aamal-website/v3/', f'/aamal-website/{folder}/')
     s = re.sub(r'<meta name="robots" content="[^"]*">', '<meta name="robots" content="noindex, nofollow">', s)
     if '<meta name="robots"' not in s:
