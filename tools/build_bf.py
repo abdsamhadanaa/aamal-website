@@ -66,9 +66,10 @@ def drop_about_stats(s):
 
 def saudi_photos(s):
     """Client: Saudi (not Gulf) style attire — thobe, shemagh/ghutra with agal and bisht."""
-    s = s.replace('pbm-saudi-coffee', 'saudi-team').replace('pbm-saudi-desk', 'saudi-leaders')
-    s = s.replace('saudi-leaders.webp 1600w', 'saudi-leaders.webp 1200w')
-    s = re.sub(r'(saudi-(?:team|leaders)\.webp"[^>]*?)alt="[^"]*"', r'\1alt="Saudi professionals in thobe, shemagh and bisht"', s)
+    # No faces, and the photo should say what the business does:
+    # HR = handshake over documents (thobe sleeve); PM = Saudi professional with shemagh and agal at his desk, seen from above
+    s = s.replace('pbm-saudi-coffee', 'hr-handshake')
+    s = re.sub(r'(hr-handshake\.webp"[^>]*?)alt="[^"]*"', r'\1alt="Handshake over documents after a successful hire"', s)
     return s
 
 
