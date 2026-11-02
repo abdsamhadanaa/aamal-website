@@ -53,7 +53,10 @@ def founder_ceo(s):
 
 def drop_about_stats(s):
     """Client: remove the stats row (30+ / 3 / 3 / 2021) under the About hero."""
-    return re.sub(r'\s*<div class="container s-stats">.*?</div></div>', '', s, count=1, flags=re.S)
+    s = re.sub(r'\s*<div class="container s-stats">.*?</div></div>', '', s, count=1, flags=re.S)
+    # Client: remove "Journey and achievements" (roles and awards stay on the Global Recognition page)
+    s = re.sub(r'\n\s*<!-- Founder & CEO: journey and achievements -->', '', s)
+    return bv3.drop_section(s, 'id="journey"', required=False)
 
 
 def common(s, folder, css, js_file):
