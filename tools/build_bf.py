@@ -107,9 +107,7 @@ def role_card(logo, title, role, text, year=""):
 
 
 def bio_updates(s):
-    if 'id="founder"' in s and 'id="biography"' not in s and 'href="#overview">About us</a>' in s:
-        i = s.index('id="founder"'); j = s.index("</section>", i) + len("</section>")
-        s = s[:j] + "\n" + BIO.rstrip() + s[j:]
+    # The biography text itself is not shown; it is only used to update roles and awards below.
     if 'id="roles"' in s and '<h3>ICC World Chambers Federation</h3>' in s:
         sub = bv3.sub1
         s = sub(s, "<p>Connecting a network of more than 3,000 chambers of commerce in over 100 countries.</p>",
