@@ -1,0 +1,18 @@
+/* Client-review preview built on V2 (V3bF): M. Waqas comments, Nov 2026 */
+body.bf .site-header__logo img { height: 112px; }
+body.bf .site-header.is-scrolled .site-header__logo img { height: 78px; }
+body.bf .site-header__inner { padding-top: 10px; padding-bottom: 10px; }
+@media (max-width: 1080px) { body.bf .site-header__logo img { height: 84px; } }
+@media (max-width: 600px) { body.bf .site-header__logo img, body.bf .site-header.is-scrolled .site-header__logo img { height: 68px; } }
+.bf .site-footer__logo-tile { display: inline-flex; padding: 14px 22px; border-radius: 20px; background: #fff; }
+.bf .site-footer__brand .site-footer__logo-tile img { height: 104px; width: auto; }
+.bf .site-footer__brand .btn { padding: 14px 28px; }
+.bf .about-overview { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 56px; align-items: start; }
+.bf .about-overview__head { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+.bf .about-overview__body { display: flex; flex-direction: column; gap: 18px; font-size: 18px; line-height: 1.7; color: var(--text); max-width: 62ch; }
+.bf .about-overview__body p { margin: 0; }
+.bf .about-overview__sectors { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 8px 0 0; padding: 0; }
+.bf .about-overview__sectors li { padding: 8px 14px; border-radius: 999px; background: var(--tint, #EEF7F1); color: var(--green-dark); font-size: 14px; font-weight: 600; }
+@media (max-width: 900px) { .bf .about-overview { grid-template-columns: 1fr; gap: 24px; } }
+.bf .logo-text { display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; letter-spacing: .02em; color: var(--charcoal); font-size: 20px; line-height: 1; white-space: nowrap; }
+.bf .logo-text small { font-weight: 500; font-size: .7em; margin-left: 6px; color: var(--green-dark); }
