@@ -72,6 +72,9 @@ def saudi_photos(s):
     # No faces, and the photo should say what the business does:
     # HR = handshake over documents (thobe sleeve); PM = Saudi professional with shemagh and agal at his desk, seen from above
     s = s.replace('pbm-saudi-coffee', 'hr-handshake')
+    # PM: Saudi executive in red shemagh and bisht (cropped below the face)
+    s = s.replace('pbm-saudi-desk.webp 1600w', 'pm-saudi-bisht.webp 1200w').replace('pbm-saudi-desk', 'pm-saudi-bisht')
+    s = re.sub(r'(pm-saudi-bisht\.webp"[^>]*?)alt="[^"]*"', r'\1alt="Saudi executive in a red shemagh and bisht"', s)
     s = re.sub(r'(hr-handshake\.webp"[^>]*?)alt="[^"]*"', r'\1alt="Handshake over documents after a successful hire"', s)
     return s
 
