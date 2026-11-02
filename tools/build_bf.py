@@ -13,6 +13,9 @@ js = open(f"{tmp}/assets/js/main.js", encoding="utf-8").read()
 # Client: main service categories in the menu are headings, not links
 js = js.replace('<a class="nav-mega__title" href="${g.href}">${esc(g.label)}</a>', '<span class="nav-mega__title">${esc(g.label)}</span>')
 assert 'class="nav-mega__title" href' not in js
+# Client: no "Services overview" link in the Services dropdown
+js = js.replace('<a class="nav-drop__overview nav-mega__overview" href="${l.href}">Services overview →</a>', '')
+assert 'Services overview' not in js
 open(f"{ROOT}/assets/js/v3bf.js", "w").write(js)
 open(f"{ROOT}/assets/js/bf.js", "w").write(js.replace("const V3 = document.body.classList.contains('v3');",
     "const V3 = document.body.classList.contains('v3') || document.body.classList.contains('bf');"))
