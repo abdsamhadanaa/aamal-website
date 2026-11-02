@@ -61,6 +61,9 @@ def drop_about_stats(s):
 
 def common(s, folder, css, js_file):
     s = founder_ceo(s)
+    if '<span class="s-pill">All services</span>' in s:
+        # Services overview page: client asked to remove the stats row
+        s = re.sub(r'\s*<div class="container s-stats">.*?</div></div>', '', s, count=1, flags=re.S)
     if '<title>About' in s or 'href="#overview">About us</a>' in s:
         s = drop_about_stats(s)
     s = s.replace('/aamal-website/v2/', f'/aamal-website/{folder}/').replace('/aamal-website/v3/', f'/aamal-website/{folder}/')
