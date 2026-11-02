@@ -312,3 +312,5 @@ body.v3 .site-header__inner { padding-top: 10px; padding-bottom: 10px; }
 .v3 .logo-text { display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; letter-spacing: .02em; color: var(--charcoal); font-size: 20px; line-height: 1; white-space: nowrap; }
 .v3 .logo-text small { font-weight: 500; font-size: .7em; margin-left: 6px; color: var(--green-dark); }
 .v3 .site-footer__brand .btn { padding: 14px 28px; }
+
+.site-nav span.nav-mega__title { display: block; cursor: default; }

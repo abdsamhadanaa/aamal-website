@@ -7,7 +7,12 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 tmp = tempfile.mkdtemp()
 subprocess.run(f"git -C {ROOT} archive v3-audit v3 tools/build_v3.py assets/css/v3.css assets/js/main.js | tar -x -C {tmp}", shell=True, check=True)
 shutil.copy(f"{tmp}/assets/css/v3.css", f"{ROOT}/assets/css/v3bf.css")
+with open(f"{ROOT}/assets/css/v3bf.css", "a") as fh:
+    fh.write("\n.site-nav span.nav-mega__title { display: block; cursor: default; }\n")
 js = open(f"{tmp}/assets/js/main.js", encoding="utf-8").read()
+# Client: main service categories in the menu are headings, not links
+js = js.replace('<a class="nav-mega__title" href="${g.href}">${esc(g.label)}</a>', '<span class="nav-mega__title">${esc(g.label)}</span>')
+assert 'class="nav-mega__title" href' not in js
 open(f"{ROOT}/assets/js/v3bf.js", "w").write(js)
 open(f"{ROOT}/assets/js/bf.js", "w").write(js.replace("const V3 = document.body.classList.contains('v3');",
     "const V3 = document.body.classList.contains('v3') || document.body.classList.contains('bf');"))
@@ -59,8 +64,17 @@ def drop_about_stats(s):
     return bv3.drop_section(s, 'id="journey"', required=False)
 
 
+def saudi_photos(s):
+    """Client: Saudi (not Gulf) style attire — thobe, shemagh/ghutra with agal and bisht."""
+    s = s.replace('pbm-saudi-coffee', 'saudi-team').replace('pbm-saudi-desk', 'saudi-leaders')
+    s = s.replace('saudi-leaders.webp 1600w', 'saudi-leaders.webp 1200w')
+    s = re.sub(r'(saudi-(?:team|leaders)\.webp"[^>]*?)alt="[^"]*"', r'\1alt="Saudi professionals in thobe, shemagh and bisht"', s)
+    return s
+
+
 def common(s, folder, css, js_file):
     s = founder_ceo(s)
+    s = saudi_photos(s)
     if '<span class="s-pill">All services</span>' in s:
         # Services overview page: client asked to remove the stats row
         s = re.sub(r'\s*<div class="container s-stats">.*?</div></div>', '', s, count=1, flags=re.S)

@@ -16,3 +16,4 @@ body.bf .site-header__inner { padding-top: 10px; padding-bottom: 10px; }
 @media (max-width: 900px) { .bf .about-overview { grid-template-columns: 1fr; gap: 24px; } }
 .bf .logo-text { display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; letter-spacing: .02em; color: var(--charcoal); font-size: 20px; line-height: 1; white-space: nowrap; }
 .bf .logo-text small { font-weight: 500; font-size: .7em; margin-left: 6px; color: var(--green-dark); }
+.site-nav span.nav-mega__title { display: block; cursor: default; }
