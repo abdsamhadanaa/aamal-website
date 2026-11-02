@@ -79,9 +79,72 @@ def saudi_photos(s):
 B20_IMG = '<img src="../assets/img/recognition/b20-usa-2026.webp" width="559" height="133" style="max-height:48px; width:auto" alt="B20 USA 2026 logo" loading="lazy" decoding="async">'
 
 
+# ---------- Updated biography of Yassin Al Suroor (Nov 2026) ----------
+BIO = """
+    <section class="section" id="biography">
+      <div class="container about-overview">
+        <div class="about-overview__head">
+          <span class="s-pill">Founder &amp; CEO</span>
+          <h2 class="h2">Yassin Al Suroor</h2>
+          <a class="text-link" href="https://sa.linkedin.com/in/yassin-al-suroor-840a551b" target="_blank" rel="noopener">LinkedIn profile →</a>
+        </div>
+        <div class="about-overview__body">
+          <p>Yassin Al Suroor is an Entrepreneur, Founder &amp; CEO of A'amal Group, a diversified enterprise operating across the Middle East, Southeast Asia, and Africa. He actively invests strategically in innovative companies globally, particularly in the digital economy. He serves as Chairman of Airswift Saudi and Chairman of Study Group Saudi. In addition, he serves on the boards of numerous regional and international companies and has played a pivotal role in developing privatization and public-private partnership (PPP) projects.</p>
+          <p>Yassin's contributions to the business world have earned him multiple awards, including the Best Entrepreneur in Investment Award, the Family Office Lifetime Achievement Award, the Global Inspirational Leaders Award, and recognition as one of the Successful Businessmen in Saudi Arabia by The Gulf Entrepreneur magazine in 2024, as well as recognition by the B20/G20 Saudi Arabia and the World Health Organization. His leadership and business acumen have garnered acclaim from international business communities, as well as governmental and non-governmental organizations.</p>
+          <p>He has held key positions in global organizations, including Chairman of the International Chamber of Commerce in Saudi Arabia, Vice Chair of the International Chamber of Commerce (ICC) in Paris, the world's largest business organization representing 45 million companies globally. He served as an Executive Board member and G20 representative of the World Chambers Federation, the world's largest chamber organization representing 12,000 chambers globally. Yassin also sits on the board of the Arab-Belgian-Luxembourg Chamber of Commerce and is a member of the United Nations Global Compact, a voluntary initiative supporting UN goals. His involvement in global business extends to his role on the Executive Committee of B20 Saudi Arabia in 2020, as well as his membership in the B20 International Business Advocacy Caucus in Indonesia (2022), Brazil (2024), South Africa (2025), and as Co-Chair of the Economic Growth Task Force of B20 USA 2026.</p>
+          <p>A recognized international speaker, Yassin is widely regarded for his expertise in Public-Private Partnerships. He has been a keynote speaker at numerous high-profile forums. Yassin advocates for businesses that contribute to peace and well-being through CSR. He is the co-founder and a board member of The National Role Model Society in Saudi Arabia and sits on the Board of Trustees of the Merchants of Peace Fund in Paris. He also supports humanitarian efforts focused on empowering the lives of children.</p>
+        </div>
+      </div>
+    </section>
+"""
+
+MEDAL = '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#1FB04B" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 13.5L7 22l5-3 5 3-1.5-8.5"/></svg>'
+
+
+def role_card(logo, title, role, text, year=""):
+    y = f'<span class="recog-card__year">{year}</span>' if year else ""
+    return f'<article class="recog-card"><div class="recog-card__logo">{logo}</div>{y}<h3>{title}</h3><strong>{role}</strong><p>{text}</p></article>'
+
+
+def bio_updates(s):
+    if 'id="founder"' in s and 'id="biography"' not in s and 'href="#overview">About us</a>' in s:
+        i = s.index('id="founder"'); j = s.index("</section>", i) + len("</section>")
+        s = s[:j] + "\n" + BIO.rstrip() + s[j:]
+    if 'id="roles"' in s and '<h3>ICC World Chambers Federation</h3>' in s:
+        sub = bv3.sub1
+        s = sub(s, "<p>Connecting a network of more than 3,000 chambers of commerce in over 100 countries.</p>",
+                "<p>The world's largest chamber organisation, representing 12,000 chambers globally.</p>")
+        s = s.replace("<h3>ICC World Chambers Federation</h3><strong>Executive Committee Member · G20 Representative</strong>",
+                      "<h3>ICC World Chambers Federation</h3><strong>Executive Board Member · G20 Representative</strong>")
+        s = sub(s, "<p>Continuing to represent global business priorities to G20 leaders, through Brazil and South Africa.</p>",
+                "<p>Continuing to represent global business priorities to G20 leaders, in Brazil (2024) and South Africa (2025).</p>")
+        s = re.sub(r'(<h3>B20 USA 2026</h3>)<p>[^<]*</p>', r'\1<strong>Co-Chair, Economic Growth Task Force</strong><p>Shaping business recommendations on economic growth for the United States G20 Presidency.</p>', s)
+        # New chairmanships, after ICC Saudi Arabia
+        i = s.index("<h3>ICC Saudi Arabia</h3>"); j = s.index("</article>", i) + len("</article>")
+        new = (role_card('<img src="../assets/img/partners/logo-airswift.svg" width="208" height="89" style="max-height:48px" alt="Airswift logo" loading="lazy" decoding="async">',
+                         "Airswift Saudi", "Chairman", "Workforce solutions for the energy, process and infrastructure industries in the Kingdom.")
+               + role_card('<span class="logo-text">Study Group</span>', "Study Group Saudi", "Chairman", "Leading the Saudi arm of the international education group."))
+        s = s[:j] + new + s[j:]
+        n = s[s.index('id="roles"'):].split("</section>")[0].count('<article class="recog-card">')
+        s = re.sub(r'<strong>\d+</strong><span>Global leadership roles</span>', f'<strong>{n}</strong><span>Global leadership roles</span>', s)
+        s = s.replace("<strong>3</strong><span>B20 / G20 presidencies served</span>", "<strong>5</strong><span>B20 / G20 presidencies served</span>")
+        # Awards and recognition
+        s = sub(s, "<h3>Successful Entrepreneur</h3><span>Recognised by The Gulf Entrepreneur magazine</span>",
+                "<h3>Successful Businessmen in Saudi Arabia</h3><span>The Gulf Entrepreneur magazine, 2024</span>")
+        i = s.index("<h3>Successful Businessmen in Saudi Arabia</h3>"); j = s.index("</article>", i) + len("</article>")
+        extra = "".join(f'<article class="award-item">{MEDAL}<div><h3>{t}</h3><span>{d}</span></div></article>' for t, d in
+                        [("Recognition by B20 / G20 Saudi Arabia", "For contributions during the Kingdom's G20 Presidency"),
+                         ("Recognition by the World Health Organization", "Awarded to Yassin Al Suroor")])
+        s = s[:j] + extra + s[j:]
+        a = s[s.index('id="awards"'):].split("</section>")[0].count('<article class="award-item">')
+        s = re.sub(r'<strong>\d+</strong><span>International awards</span>', f'<strong>{a}</strong><span>Awards and recognitions</span>', s)
+    return s
+
+
 def common(s, folder, css, js_file):
     s = founder_ceo(s)
     s = s.replace(B20, B20_IMG)
+    s = bio_updates(s)
     s = saudi_photos(s)
     if '<span class="s-pill">All services</span>' in s:
         # Services overview page: client asked to remove the stats row
