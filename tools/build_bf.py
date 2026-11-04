@@ -18,6 +18,8 @@ assert 'class="nav-mega__title" href' not in js
 js = js.replace('<a class="nav-drop__overview nav-mega__overview" href="${l.href}">Services overview →</a>', '')
 assert 'Services overview' not in js
 js = js.replace("A'amal Global Recognition", "Global Recognition")
+js = js.replace("{ label: \"A'amal at Global Stage\", href: 'awards.html#global-stage' },", "{ label: \"A'amal at Global Stage\", href: 'awards.html#global-stage' },\n    { label: 'Global engagement', href: 'awards.html#global-engagement' },")
+assert 'awards.html#global-engagement' in js
 open(f"{ROOT}/assets/js/v3bf.js", "w").write(js)
 open(f"{ROOT}/assets/js/bf.js", "w").write(js.replace("const V3 = document.body.classList.contains('v3');",
     "const V3 = document.body.classList.contains('v3') || document.body.classList.contains('bf');"))
@@ -163,6 +165,37 @@ def partner_tiles(s):
     return s.replace("partners__grid partners__grid--logos", "partners__grid partners__grid--logos partners__grid--bf", 1)
 
 
+# ---------- Global Recognition: Global Stage + Global Engagement (highest-resolution photos only) ----------
+STAGE = [("founder/world-chambers-congress.webp", 1000, 750, "Speaker at the 12th World Chambers Congress — “Leading with vision”"),
+         ("media/m10.webp", 746, 561, "Panel speaker as Chairman of ICC Saudi Arabia and ICC Executive Board Member"),
+         ("media/m19.webp", 900, 600, "Address to the Singapore Business Federation"),
+         ("media/m20.webp", 900, 596, "ICC and Qatar Chamber forum"),
+         ("media/m21.webp", 900, 653, "Panel discussion at an ICC forum"),
+         ("media/m18.webp", 900, 599, "Panel speaker at an international business conference")]
+ENGAGE = [("media/m7.webp", 900, 669, "CNBC Arabia interview on the Saudi economy"),
+          ("media/m8.webp", 900, 651, "CNBC Arabia interview at the Saudi Trade Finance Summit"),
+          ("media/m12.webp", 900, 679, "Signing an agreement between A'amal Group and SMIT — Morocco's Tourism Engineering and Investment Company"),
+          ("founder/award-dubai.webp", 954, 1000, "Receiving an award at a business leadership event in Dubai"),
+          ("founder/who-meeting.webp", 750, 1000, "Meeting with the World Health Organization"),
+          ("founder/sridf-agreement.webp", 750, 526, "Signing an agreement with the Silk Road International Development Fund (SRIDF)")]
+
+
+def gs_section(sid, pill, title, lead, items, tint):
+    cards = "".join(f'<figure class="gs-card"><span class="gs-card__img"><img src="../assets/img/{src}" width="{w}" height="{h}" alt="{cap}" loading="lazy" decoding="async"></span><figcaption>{cap}</figcaption></figure>' for src, w, h, cap in items)
+    return (f'<section class="section{" section--tint" if tint else ""}" id="{sid}">\n      <div class="container stack" style="gap: 32px">\n'
+            f'        <div class="section-head"><div><span class="s-pill">{pill}</span><h2 class="h2" style="margin-top: 12px">{title}</h2></div><p>{lead}</p></div>\n'
+            f'        <div class="gs-grid">{cards}</div>\n      </div>\n    </section>')
+
+
+def global_sections(s):
+    if 'id="global-stage"' not in s:
+        return s
+    a = s.index('<section class="section" id="global-stage">'); b = s.index("</section>", a) + len("</section>")
+    new = (gs_section("global-stage", "A'amal Group", "A'amal at Global Stage", "Conferences and forums where A'amal Group represents Saudi business.", STAGE, False)
+           + "\n\n    " + gs_section("global-engagement", "Media &amp; partnerships", "Global engagement", "Television interviews, agreements and official meetings around the world.", ENGAGE, True))
+    return s[:a] + new + s[b:]
+
+
 def common(s, folder, css, js_file):
     s = founder_ceo(s)
     s = s.replace(B20, B20_IMG)
@@ -202,6 +235,7 @@ def common(s, folder, css, js_file):
     # Client: no sector chips; the sectors go back into the sentence, as in the client's text
     s = re.sub(r'numerous sectors, including:</p>\s*<ul class="about-overview__sectors">.*?</ul>',
                "numerous sectors, including Real Estate, Hospitality, Construction Management, Energy Efficiency, Oil and Gas, HR Management, Industry Transformation and Investment.</p>", s, count=1, flags=re.S)
+    s = global_sections(s)
     return css(s)
 
 

@@ -76,6 +76,7 @@ if (V3) {
     { label: 'Global leadership roles', href: 'awards.html#roles' },
     { label: 'Awards and honours', href: 'awards.html#awards' },
     { label: "A'amal at Global Stage", href: 'awards.html#global-stage' },
+    { label: 'Global engagement', href: 'awards.html#global-engagement' },
   ];
 }
 
