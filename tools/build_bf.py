@@ -264,6 +264,22 @@ def cobrand(s):
     return re.sub(r'<img class="s-hero__img" src="\.\./assets/img/services/' + re.escape(bg) + r'\.webp"[^>]*>', lambda m: html, s, count=1)
 
 
+EI_CARD = ('\n          <div class="partner-card">\n'
+  '            <div class="partner-card__logo"><img src="../assets/img/partners/logo-experts-ei.webp" width="560" height="64" alt="Experts e&amp;i logo" loading="lazy" decoding="async"></div>\n'
+  '            <div class="partner-card__text">\n'
+  '              <span class="eyebrow">Our partner</span>\n'
+  '              <strong>Experts e&amp;i</strong>\n'
+  '              <p>Our electrical and instrumentation partner. <a class="text-link" href="https://www.experts-ei.com/" target="_blank" rel="noopener">experts-ei.com</a></p>\n'
+  '            </div>\n'
+  '          </div>')
+
+def ei_partner(s):
+    if PAGE[0] != "electrical-instrumentation.html" or "logo-experts-ei" in s:
+        return s
+    i = s.index('<div class="downloads">')
+    j = s.index('</div>', s.index('</a>', i)) + len('</div>')
+    return s[:j] + EI_CARD + s[j:]
+
 def duplays_photos(s):
     """Client: Sports Facilities page uses photos from our partner DUPLAYS (duplays.com)."""
     if PAGE[0] != "sports-facilities.html":
@@ -342,6 +358,7 @@ def common(s, folder, css, js_file):
     s = swap_hr_hero(s)
     s = cobrand(s)
     s = duplays_photos(s)
+    s = ei_partner(s)
     # Client: DUPLAYS stadium photo for Sports Facilities everywhere (home slide/bento, service cards)
     s = s.replace('src="../assets/img/services/sports-hero.webp" width="791" height="442"',
                   'src="../assets/img/services/dup-stadium.webp" srcset="../assets/img/services/dup-stadium-800.webp 800w, ../assets/img/services/dup-stadium.webp 1200w" sizes="(max-width: 900px) 100vw, 50vw" width="1200" height="800"')
