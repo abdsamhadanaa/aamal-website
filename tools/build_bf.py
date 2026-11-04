@@ -194,6 +194,10 @@ def common(s, folder, css, js_file):
                '<div class="about-overview__head about-overview__head--logo"><div class="about-overview__logo"><img src="../assets/img/logo-v2.png" width="409" height="300" alt="A\'amal Group — Arab Economic &amp; Business Group — We grow together" loading="lazy" decoding="async"></div></div>', s, count=1)
     # Client: "Global Recognition", without "A'amal"
     s = s.replace("A'amal Global Recognition", "Global Recognition").replace("A&#x27;amal Global Recognition", "Global Recognition")
+    # Client: style the logo card like the Founder & CEO photo, with the same 1994 badge
+    badge = ('<div class="heritage__badge"><strong>1994</strong><span>Founded in Al Khobar</span></div>' if folder == "v3bf"
+             else '<span class="x-founder__badge"><strong>1994</strong>Founded in Al Khobar</span>')
+    s = s.replace('loading="lazy" decoding="async"></div></div>', 'loading="lazy" decoding="async">' + badge + '</div></div>', 1) if 'about-overview__logo' in s else s
     return css(s)
 
 
