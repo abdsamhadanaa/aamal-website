@@ -347,6 +347,10 @@ def common(s, folder, css, js_file):
                   'src="../assets/img/services/dup-stadium.webp" srcset="../assets/img/services/dup-stadium-800.webp 800w, ../assets/img/services/dup-stadium.webp 1200w" sizes="(max-width: 900px) 100vw, 50vw" width="1200" height="800"')
     s = s.replace('alt="Render of a sports complex with football pitches and padel courts"', 'alt="Aerial view of a sports campus with a stadium, track and pitches"')
     s = s.replace('alt="Sports complex render"', 'alt="Aerial view of a sports campus"')
+    if PAGE[0] == "hospitality.html":  # Client: sector hero shows sport (DUPLAYS courts) instead of the lagoon
+        s = re.sub(r'(<img class="s-hero__img" src="\.\./assets/img/services/)cl-hotel-aerial(\.webp" srcset="\.\./assets/img/services/)cl-hotel-aerial(-800\.webp 800w, \.\./assets/img/services/)cl-hotel-aerial(\.webp 1200w"[^>]*?)width="\d+" height="\d+" alt="[^"]*"',
+                   r'\1dup-courts\2dup-courts\3dup-courts\4width="1200" height="511" alt="Indoor padel and multi-sport courts"', s, count=1)
+        s = s.replace("cl-hotel-aerial", "dup-courts") if 'class="s-hero__img" src="../assets/img/services/dup-courts' in s else s
     if PAGE[0] == "index.html":  # Client: home Hospitality & Sports card uses a DUPLAYS photo
         s = s.replace('<img src="../assets/img/services/cl-hotel-aerial-800.webp" width="800" height="450" alt="Aerial view of a resort built around a crystal lagoon"',
                       '<img src="../assets/img/services/dup-stadium-800.webp" width="800" height="533" alt="Aerial view of a sports campus with a stadium, track and pitches"')
