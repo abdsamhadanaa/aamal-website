@@ -205,6 +205,25 @@ def global_sections(s):
     return s[:a] + new + s[b:]
 
 
+PAGE = [""]
+# Client: replace the orange-coverall site photo with the updated, faceless photos
+SITE_TEAM = {"human-resource-management.html": ("hr-handshake", "Handshake over documents after a successful hire"),
+             "management.html": ("pm-plans", "Project team reviewing engineering drawings"),
+             "project-solutions.html": ("pbm-meeting", "Team taking notes in a project meeting"),
+             "services.html": ("pbm-meeting", "Team taking notes in a project meeting")}
+
+
+def swap_site_team(s):
+    new = SITE_TEAM.get(PAGE[0])
+    if not new:
+        return s
+    n, alt = new
+    w = "1100w" if n == "pbm-meeting" else "1200w"
+    s = re.sub(r'src="\.\./assets/img/services/as-site-team\.webp" srcset="[^"]*"', f'src="../assets/img/services/{n}.webp" srcset="../assets/img/services/{n}-800.webp 800w, ../assets/img/services/{n}.webp {w}"', s)
+    s = s.replace('src="../assets/img/services/as-site-team.webp"', f'src="../assets/img/services/{n}.webp"')
+    return re.sub(r'(src="\.\./assets/img/services/' + n + r'\.webp"[^>]*?)alt="[^"]*"', r'\1alt="' + alt + '"', s)
+
+
 def common(s, folder, css, js_file):
     s = founder_ceo(s)
     s = s.replace(B20, B20_IMG)
@@ -249,6 +268,7 @@ def common(s, folder, css, js_file):
     s = s.replace('<div class="about-overview__body">\n          <p>Since our inception', '<div class="about-overview__body">\n          <h2 class="h2 about-overview__title">About Us</h2>\n          <p>Since our inception', 1)
     # Client: no photo strip under the Services hero
     s = re.sub(r'\s*<div class="container">\s*<div class="hero-strip hero-strip--svc">.*?</div>\s*</div>', '', s, count=1, flags=re.S)
+    s = swap_site_team(s)
     return css(s)
 
 
@@ -264,6 +284,7 @@ def build_v3bf():  # V2 based
         if name == "index.html":
             s = home_v2(s)
         s = s.replace('<body data-version="2">', '<body data-version="2" class="bf">', 1)
+        PAGE[0] = name
         s = common(s, "v3bf", lambda x: x.replace('<script src="../assets/js/bf.js', link + '\n  <script src="../assets/js/bf.js', 1), "bf.js")
         open(f"{d}/{name}", "w", encoding="utf-8").write(s)
     print("v3bf (V2 based):", len(os.listdir(d)))
@@ -274,6 +295,7 @@ def build_v4bf():  # V3 based
     H3 = h('assets/css/v3bf.css')
     for f in sorted(glob.glob(f"{tmp}/v3/*.html")):
         s = open(f, encoding="utf-8").read()
+        PAGE[0] = os.path.basename(f)
         s = common(s, "v4bf", lambda x: re.sub(r'\.\./assets/css/v3\.css\?v=[0-9a-f]+', '../assets/css/v3bf.css?v=' + H3, x), "v3bf.js")
         open(f"{d}/{os.path.basename(f)}", "w", encoding="utf-8").write(s)
     print("v4bf (V3 based):", len(os.listdir(d)))
