@@ -18,6 +18,7 @@ assert 'class="nav-mega__title" href' not in js
 js = js.replace('<a class="nav-drop__overview nav-mega__overview" href="${l.href}">Services overview →</a>', '')
 assert 'Services overview' not in js
 js = js.replace("A'amal Global Recognition", "Global Recognition")
+js = js.replace("Project & Business Management", "Project Management Solution").replace("Project &amp; Business Management", "Project Management Solution")
 # Client: About Us menu = About Us, Founder & CEO message, Mission and Vision
 js = js.replace("about.sub = about.sub.filter((x) => x.href !== 'awards.html');",
                 "about.sub = [{ label: 'Founder & CEO message', href: 'about.html#founder' }, { label: 'Mission and Vision', href: 'about.html#vision' }];")
@@ -269,6 +270,9 @@ def common(s, folder, css, js_file):
     # Client: no photo strip under the Services hero
     s = re.sub(r'\s*<div class="container">\s*<div class="hero-strip hero-strip--svc">.*?</div>\s*</div>', '', s, count=1, flags=re.S)
     s = swap_site_team(s)
+    # Client: the third sector is called "Project Management Solution" everywhere
+    s = s.replace("Project &amp; Business Management", "Project Management Solution").replace("Project & Business Management", "Project Management Solution")
+    s = s.replace("<span>Business Management</span></a>", "<span>Project Management Solution</span></a>")
     return css(s)
 
 

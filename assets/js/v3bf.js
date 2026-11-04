@@ -45,7 +45,7 @@ const NAV = {
         { label: 'Waterproofing & Industrial Coating', href: 'waterproofing-industrial-coating.html' },
         { label: 'Industry Transformation', href: 'industry-transformation.html' },
       ] },
-      { label: 'Project & Business Management', href: 'management.html', items: [
+      { label: 'Project Management Solution', href: 'management.html', items: [
         { label: 'Human Resource Management', href: 'human-resource-management.html' },
         { label: 'Project Solutions', href: 'project-solutions.html' },
       ] },
@@ -183,7 +183,7 @@ class SiteFooter extends HTMLElement {
               <span class="site-footer__title">Services</span>
               <a href="hospitality.html">Hospitality &amp; Sports</a>
               <a href="contracting.html">Contracting &amp; Technical</a>
-              <a href="management.html">Project &amp; Business Management</a>
+              <a href="management.html">Project Management Solution</a>
             </nav>`}
             <div class="site-footer__col">
               <span class="site-footer__title">Contact</span>
