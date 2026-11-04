@@ -304,7 +304,7 @@ def common(s, folder, css, js_file):
     s = s.replace("Project &amp; Business Management", "Project Management Solution").replace("Project & Business Management", "Project Management Solution")
     s = s.replace("<span>Business Management</span></a>", "<span>Project Management Solution</span></a>")
     # Client: the Services page lists the 8 services like the menu — no sector (category) blocks or tags
-    if PAGE[0] in ("artificial-lagoons.html", "sports-facilities.html"):
+    while '<h2 class="h2">See it in action</h2>' in s:
         s = bv3.drop_section(s, '<h2 class="h2">See it in action</h2>', required=False)
     if PAGE[0] == "services.html":
         s = bv3.drop_section(s, '<h2 class="h2">Hospitality &amp; Sports</h2>', required=False)
