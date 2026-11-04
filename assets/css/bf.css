@@ -17,3 +17,17 @@ body.bf .site-header__inner { padding-top: 10px; padding-bottom: 10px; }
 .bf .logo-text { display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; letter-spacing: .02em; color: var(--charcoal); font-size: 20px; line-height: 1; white-space: nowrap; }
 .bf .logo-text small { font-weight: 500; font-size: .7em; margin-left: 6px; color: var(--green-dark); }
 .site-nav span.nav-mega__title { display: block; cursor: default; }
+
+/* Partners: balanced logos with a short note (client review) */
+.partners__grid--bf { display: grid !important; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+.partners__grid--bf a { height: auto !important; display: grid !important; grid-template-rows: 64px auto; align-content: start; justify-items: center; align-items: center; gap: 14px; padding: 26px 18px 20px !important; background: #fff; border: 1px solid #E3E8E4; border-radius: 16px !important; text-decoration: none; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.partners__grid--bf a:hover { transform: translateY(-4px); border-color: #BFE3C9; box-shadow: 0 16px 34px -24px rgba(46, 49, 51, .45); }
+.partners__grid--bf img { display: block; width: auto; height: auto; max-width: 82%; max-height: 42px; object-fit: contain; flex: none; }
+.partners__grid--bf img[src*="logo-airswift"] { max-height: 56px; }
+.partners__grid--bf img[src*="logo-duplays"] { max-height: 30px; }
+.partners__grid--bf img[src*="logo-experts-ei"] { max-height: 26px; }
+.partners__grid--bf img[src*="logo-crystal-lagoons"] { max-height: 40px; }
+.partners__grid--bf .partner-tag { height: auto; background: none; display: block; width: 100%; padding-top: 12px; border-top: 1px solid #EEF1EF; text-align: center; font-size: 13px; line-height: 1.35; color: #5A6166; }
+@media (max-width: 1100px) { .partners__grid--bf { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .partners__grid--bf { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } .partners__grid--bf a { grid-template-rows: 56px auto; padding: 18px 12px 14px !important; } }
+.x-partners .partners__grid--bf { grid-template-columns: repeat(2, minmax(0, 1fr)); }

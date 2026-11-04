@@ -9,6 +9,7 @@ subprocess.run(f"git -C {ROOT} archive v3-audit v3 tools/build_v3.py assets/css/
 shutil.copy(f"{tmp}/assets/css/v3.css", f"{ROOT}/assets/css/v3bf.css")
 with open(f"{ROOT}/assets/css/v3bf.css", "a") as fh:
     fh.write("\n.site-nav span.nav-mega__title { display: block; cursor: default; }\n")
+    fh.write(open(f"{ROOT}/assets/css/bf.css", encoding="utf-8").read().split("/* Partners: balanced logos")[1].join(["/* Partners: balanced logos", ""]) if False else "\n/* Partners: balanced logos" + open(f"{ROOT}/assets/css/bf.css", encoding="utf-8").read().split("/* Partners: balanced logos", 1)[1])
 js = open(f"{tmp}/assets/js/main.js", encoding="utf-8").read()
 # Client: main service categories in the menu are headings, not links
 js = js.replace('<a class="nav-mega__title" href="${g.href}">${esc(g.label)}</a>', '<span class="nav-mega__title">${esc(g.label)}</span>')
@@ -142,6 +143,25 @@ def bio_updates(s):
     return s
 
 
+PARTNER_TAGS = {"logo-crystal-lagoons": "Artificial lagoons technology", "logo-airswift": "Workforce &amp; recruitment",
+                "logo-weel-sandvig": "Energy &amp; process innovation", "logo-duplays": "Sports facilities &amp; programming",
+                "logo-experts-ei": "Electrical &amp; instrumentation"}
+
+
+def partner_tiles(s):
+    """Partners: logos at a balanced optical size, each with a one-line note on what the partner brings."""
+    if "partners__grid--logos" not in s:
+        return s
+    def tag(m):
+        key = re.search(r'partners/(logo-[a-z-]+)\.', m.group(0))
+        t = PARTNER_TAGS.get(key.group(1)) if key else None
+        if not t:
+            return m.group(0)
+        return m.group(0)[:-4] + f'<span class="partner-tag">{t}</span></a>'
+    s = re.sub(r'<a href="[^"]*"[^>]*><img src="\.\./assets/img/partners/[^"]+"[^>]*></a>', tag, s)
+    return s.replace("partners__grid partners__grid--logos", "partners__grid partners__grid--logos partners__grid--bf", 1)
+
+
 def common(s, folder, css, js_file):
     s = founder_ceo(s)
     s = s.replace(B20, B20_IMG)
@@ -164,6 +184,7 @@ def common(s, folder, css, js_file):
     if '<meta name="robots"' not in s:
         s = s.replace("<head>", '<head>\n  <meta name="robots" content="noindex, nofollow">', 1)
     s = re.sub(r'\.\./assets/js/main\.js(\?v=[0-9a-f]+)?', f'../assets/js/{js_file}?v=' + h(f'assets/js/{js_file}'), s)
+    s = partner_tiles(s)
     return css(s)
 
 
