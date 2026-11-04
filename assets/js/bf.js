@@ -32,7 +32,7 @@ const NAV = {
     { id: 'about', label: 'About Us', href: 'about.html', sub: [
       { label: 'Founder & CEO message', href: 'about.html#founder' },
       { label: 'Social work & responsibility', href: 'responsibility.html' },
-      { label: "A'amal Global Recognition", href: 'awards.html' },
+      { label: "Global Recognition", href: 'awards.html' },
     ] },
     { id: 'services', label: 'Services', href: 'services.html', mega: [
       { label: 'Hospitality & Sports', href: 'hospitality.html', items: [
@@ -164,7 +164,7 @@ class SiteFooter extends HTMLElement {
               <span class="site-footer__title">Company</span>
               <a href="about.html">About Us</a>
               <a href="responsibility.html">${v2 ? 'Sustainability' : 'Social Responsibility'}</a>
-              <a href="awards.html">${v2 ? "A'amal Global Recognition" : 'Awards'}</a>
+              <a href="awards.html">${v2 ? "Global Recognition" : 'Awards'}</a>
               <a href="media.html">Media</a>
               <a href="careers.html">Careers</a>
             </nav>
