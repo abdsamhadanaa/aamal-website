@@ -241,6 +241,17 @@ def swap_engineers(s):
     return s
 
 
+def swap_hr_hero(s):
+    # Client: HR hero in Saudi style, faceless
+    if PAGE[0] != "human-resource-management.html":
+        return s
+    s = s.replace("hr-airswift-800.webp 800w, ../assets/img/services/hr-airswift.webp 1100w",
+                  "pbm-saudi-desk-800.webp 800w, ../assets/img/services/pbm-saudi-desk.webp 1600w")
+    s = s.replace("hr-airswift", "pbm-saudi-desk")
+    return re.sub(r'(<img class="s-hero__img" src="\.\./assets/img/services/pbm-saudi-desk\.webp"[^>]*?)alt="[^"]*"',
+                  r'\1alt="Saudi professional reviewing HR documents at his desk"', s, count=1)
+
+
 def common(s, folder, css, js_file):
     s = founder_ceo(s)
     s = s.replace(B20, B20_IMG)
@@ -287,6 +298,7 @@ def common(s, folder, css, js_file):
     s = re.sub(r'\s*<div class="container">\s*<div class="hero-strip hero-strip--svc">.*?</div>\s*</div>', '', s, count=1, flags=re.S)
     s = swap_site_team(s)
     s = swap_engineers(s)
+    s = swap_hr_hero(s)
     # Client: the third sector is called "Project Management Solution" everywhere
     s = s.replace("Project &amp; Business Management", "Project Management Solution").replace("Project & Business Management", "Project Management Solution")
     s = s.replace("<span>Business Management</span></a>", "<span>Project Management Solution</span></a>")
