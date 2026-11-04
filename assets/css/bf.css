@@ -44,3 +44,11 @@ body.bf .about-overview__logo { border-radius: 0; box-shadow: none; border: 1px 
 body.bf .about-overview__logo .heritage__badge { position: absolute; right: -20px; bottom: 28px; }
 .v3 .about-overview__logo { overflow: visible; }
 @media (max-width: 640px) { body.bf .about-overview__logo .heritage__badge { right: 12px; } }
+/* About logo card on phones and tablets: smaller logo, badge sits on the card's bottom edge */
+@media (max-width: 900px) {
+  .about-overview__head--logo { height: auto !important; margin-bottom: 40px !important; }
+  .about-overview__logo { padding: 34px 24px 44px !important; }
+  .about-overview__logo img { max-width: 230px !important; }
+  body.bf .about-overview__logo .heritage__badge, .about-overview__logo .x-founder__badge { right: 16px !important; bottom: -24px !important; padding: 10px 16px; }
+  body.bf .about-overview__logo .heritage__badge strong, .about-overview__logo .x-founder__badge strong { font-size: 22px; }
+}
