@@ -18,6 +18,11 @@ assert 'class="nav-mega__title" href' not in js
 js = js.replace('<a class="nav-drop__overview nav-mega__overview" href="${l.href}">Services overview →</a>', '')
 assert 'Services overview' not in js
 js = js.replace("A'amal Global Recognition", "Global Recognition")
+# Client: About Us menu = About Us, Founder & CEO message, Mission and Vision
+js = js.replace("about.sub = about.sub.filter((x) => x.href !== 'awards.html');",
+                "about.sub = [{ label: 'Founder & CEO message', href: 'about.html#founder' }, { label: 'Mission and Vision', href: 'about.html#vision' }];")
+js = js.replace('href="${l.href}">${esc(l.label)} overview</a>', 'href="${l.id === \'about\' ? \'about.html#overview\' : l.href}">${l.id === \'about\' ? \'About Us\' : esc(l.label) + \' overview\'}</a>')
+assert "Mission and Vision" in js and "'About Us' : esc" in js
 js = js.replace("{ label: \"A'amal at Global Stage\", href: 'awards.html#global-stage' },", "{ label: 'Global engagement', href: 'awards.html#global-engagement' },\n    { label: \"A'amal at Global Stage\", href: 'awards.html#global-stage' },")
 assert 'awards.html#global-engagement' in js
 open(f"{ROOT}/assets/js/v3bf.js", "w").write(js)
@@ -236,6 +241,8 @@ def common(s, folder, css, js_file):
     s = re.sub(r'numerous sectors, including:</p>\s*<ul class="about-overview__sectors">.*?</ul>',
                "numerous sectors, including Real Estate, Hospitality, Construction Management, Energy Efficiency, Oil and Gas, HR Management, Industry Transformation and Investment.</p>", s, count=1, flags=re.S)
     s = global_sections(s)
+    # Client: an "About Us" heading on the overview text
+    s = s.replace('<div class="about-overview__body">\n          <p>Since our inception', '<div class="about-overview__body">\n          <h2 class="h2 about-overview__title">About Us</h2>\n          <p>Since our inception', 1)
     return css(s)
 
 
