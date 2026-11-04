@@ -243,6 +243,31 @@ def swap_engineers(s):
     return s
 
 
+COBRAND = {
+    "human-resource-management.html": ("hr-handshake", "logo-airswift.svg", 208, 89, "Airswift", "Strategic workforce partnership in Saudi Arabia"),
+    "artificial-lagoons.html": ("cl-cabo", "logo-crystal-lagoons.png", 687, 136, "Crystal Lagoons", "Crystal Lagoons technology partner in Saudi Arabia"),
+    "sports-facilities.html": ("sports-hero", "logo-duplays.png", 480, 112, "DUPLAYS", "Sports facilities &amp; programming partnership"),
+    "industry-transformation.html": ("ws-refinery-night", "logo-weel-sandvig.svg", 232, 46, "Weel &amp; Sandvig", "Energy &amp; process innovation partnership"),
+    "electrical-instrumentation.html": ("ei-hero", "logo-experts-ei.webp", 560, 64, "Experts e&amp;i", "Electrical &amp; instrumentation partnership"),
+}
+
+
+def cobrand(s):
+    """Client: service hero as an A'amal x partner co-brand design."""
+    c = COBRAND.get(PAGE[0])
+    if not c:
+        return s
+    bg, logo, w, h, name, line = c
+    html = ('<div class="s-hero__img cobrand" role="img" aria-label="A\'amal Group in partnership with ' + name + '" '
+            'style="--cb-bg:url(../img/services/' + bg + '.webp)">'
+            '<div class="cobrand__panel">'
+            '<img src="../assets/img/logo-v2-large.png" alt="A\'amal Group" width="786" height="577" class="cobrand__aamal">'
+            '<span class="cobrand__x" aria-hidden="true"></span>'
+            '<img src="../assets/img/partners/' + logo + '" alt="' + name + '" width="' + str(w) + '" height="' + str(h) + '" class="cobrand__partner">'
+            '</div><p class="cobrand__line">' + line + '</p></div>')
+    return re.sub(r'<img class="s-hero__img" src="\.\./assets/img/services/' + re.escape(bg) + r'\.webp"[^>]*>', lambda m: html, s, count=1)
+
+
 def swap_hr_hero(s):
     # Client: HR hero in Saudi style, faceless
     if PAGE[0] != "human-resource-management.html":
@@ -251,16 +276,7 @@ def swap_hr_hero(s):
                   "hr-handshake-800.webp 800w, ../assets/img/services/hr-handshake.webp 1200w")
     s = s.replace("hr-airswift", "hr-handshake")
     s = s.replace('alt="Two professionals in suits meeting over a laptop"', 'alt="Handshake over documents after a successful hire"')
-    # Client: co-brand design (A'amal x Airswift) instead of the photo
-    s = re.sub(r'<img class="s-hero__img" src="\.\./assets/img/services/hr-handshake\.webp"[^>]*>',
-        '<div class="s-hero__img cobrand" role="img" aria-label="A\'amal Group in partnership with Airswift">'
-        '<div class="cobrand__panel">'
-        '<img src="../assets/img/logo-v2-large.png" alt="A\'amal Group" width="786" height="577" class="cobrand__aamal">'
-        '<span class="cobrand__x" aria-hidden="true"></span>'
-        '<img src="../assets/img/partners/logo-airswift.svg" alt="Airswift" width="208" height="89" class="cobrand__airswift">'
-        '</div>'
-        '<p class="cobrand__line">Strategic workforce partnership in Saudi Arabia</p>'
-        '</div>', s, count=1)
+    s = cobrand(s)
     return re.sub(r'(<img class="s-hero__img" src="\.\./assets/img/services/pbm-saudi-desk\.webp"[^>]*?)alt="[^"]*"',
                   r'\1alt="Handshake over documents after a successful hire"', s, count=1)
 
@@ -312,6 +328,7 @@ def common(s, folder, css, js_file):
     s = swap_site_team(s)
     s = swap_engineers(s)
     s = swap_hr_hero(s)
+    s = cobrand(s)
     # Client: the third sector is called "Project Management Solution" everywhere
     s = s.replace("Project &amp; Business Management", "Project Management Solution").replace("Project & Business Management", "Project Management Solution")
     s = s.replace("<span>Business Management</span></a>", "<span>Project Management Solution</span></a>")
