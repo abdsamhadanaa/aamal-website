@@ -199,6 +199,9 @@ def common(s, folder, css, js_file):
     badge = '<span class="about-overview__tag"><strong>Since 1994</strong><i> · </i>Al Khobar, Saudi Arabia</span>'
     s = s.replace('loading="lazy" decoding="async"></div></div>', 'loading="lazy" decoding="async">' + badge + '</div></div>', 1) if 'about-overview__logo' in s else s
     # (Read more on phones removed at the client's request: full text shows everywhere)
+    # Client: no sector chips; the sectors go back into the sentence, as in the client's text
+    s = re.sub(r'numerous sectors, including:</p>\s*<ul class="about-overview__sectors">.*?</ul>',
+               "numerous sectors, including Real Estate, Hospitality, Construction Management, Energy Efficiency, Oil and Gas, HR Management, Industry Transformation and Investment.</p>", s, count=1, flags=re.S)
     return css(s)
 
 
