@@ -42,7 +42,7 @@ def home_v2(s):
     s = re.sub(r'<li><span class="recog__logo"><img src="\.\./assets/img/recognition/g2t-awards\.png"[^>]*></span><strong>G2T Awards</strong><span>[^<]*</span></li>',
                '<li><span class="recog__logo">' + B20 + '</span><strong>B20 USA 2026</strong><span>United States G20 Presidency</span></li>', s)
     # Our Businesses
-    s = sub(s, '<span class="eyebrow">Our Businesses</span>\n            <h2 class="h2">Three sectors, one partner</h2>', '<h2 class="h2">Our Businesses</h2>')
+    # (client later asked to keep "Three sectors, one partner")
     # Partners
     s = sub(s, '<a href="sports-facilities.html" title="Apex"><img src="../assets/img/partners/logo-apex.png" width="240" height="225" alt="Apex" loading="lazy" decoding="async"></a>',
             '<a href="https://duplays.com/" target="_blank" rel="noopener" title="Duplays"><img src="../assets/img/partners/logo-duplays.png" width="480" height="112" alt="Duplays" loading="lazy" decoding="async"></a>\n'
@@ -145,6 +145,7 @@ def bio_updates(s):
 def common(s, folder, css, js_file):
     s = founder_ceo(s)
     s = s.replace(B20, B20_IMG)
+    s = s.replace('<div><h2 class="x-h2">Our Businesses</h2></div>', '<div><span class="s-pill">Our Businesses</span><h2 class="x-h2">Three sectors, one partner</h2></div>')
     # Client: home intro lists each service, separated by dashes
     s = re.sub(r'A diversified Saudi group working across hospitality and sports, industrial services, and project and business management(?: —|,) with a firm commitment',
                'A diversified Saudi group working across Hospitality - Sports Facilities - Industrial Services - Project Management Solution, with a firm commitment', s)
