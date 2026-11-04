@@ -82,3 +82,11 @@ body.bf .about-overview__logo .heritage__badge { position: absolute; right: -20p
   .about-overview__sectors { gap: 6px !important; }
   .about-overview__sectors li { font-size: 13px !important; padding: 6px 12px !important; }
 }
+/* Numbers: one card per figure — big green number, short label underneath */
+.s-stats { display: grid !important; grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: 16px !important; padding-top: 40px !important; padding-bottom: 8px !important; text-align: left !important; }
+.s-stat { position: relative; display: flex; flex-direction: column; gap: 8px; padding: 22px 22px 20px; background: #fff; border: 1px solid #E3E8E4; border-radius: 16px; overflow: hidden; }
+.s-stat::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(180deg, #1FB04B, #157F36); }
+.s-stat strong { display: block !important; font-family: var(--font-display); font-weight: 700 !important; font-size: clamp(2rem, 3.2vw, 2.6rem) !important; line-height: 1 !important; color: #157F36 !important; letter-spacing: -.02em; }
+.s-stat strong::after { display: none !important; }
+.s-stat span { display: block; font-size: 14px !important; line-height: 1.4; color: #5A6166 !important; }
+@media (max-width: 900px) { .s-stats { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important; } .s-stat { padding: 18px 16px 16px; } }
