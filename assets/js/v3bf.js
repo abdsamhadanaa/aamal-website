@@ -65,7 +65,7 @@ const NAV = {
 /* Version 3 (client review, Nov 2026): leaner menu */
 const V3 = document.body.classList.contains('v3');
 if (V3) {
-  const strip = (arr) => arr.filter((l) => l.id !== 'responsibility');
+  const strip = (arr) => arr;
   NAV.splice(0, NAV.length, ...strip(NAV));
   const about = NAV.find((l) => l.id === 'about');
   about.sub = [{ label: 'Founder & CEO message', href: 'about.html#founder' }, { label: 'Mission and Vision', href: 'about.html#vision' }];

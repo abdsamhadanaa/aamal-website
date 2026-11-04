@@ -26,6 +26,8 @@ js = js.replace('href="${l.href}">${esc(l.label)} overview</a>', 'href="${l.id =
 assert "Mission and Vision" in js and "'About Us' : esc" in js
 js = js.replace("{ label: \"A'amal at Global Stage\", href: 'awards.html#global-stage' },", "{ label: 'Global engagement', href: 'awards.html#global-engagement' },\n    { label: \"A'amal at Global Stage\", href: 'awards.html#global-stage' },")
 assert 'awards.html#global-engagement' in js
+# Client: keep Sustainability in the menu
+js = js.replace("const strip = (arr) => arr.filter((l) => l.id !== 'responsibility');", "const strip = (arr) => arr;")
 open(f"{ROOT}/assets/js/v3bf.js", "w").write(js)
 open(f"{ROOT}/assets/js/bf.js", "w").write(js.replace("const V3 = document.body.classList.contains('v3');",
     "const V3 = document.body.classList.contains('v3') || document.body.classList.contains('bf');"))
