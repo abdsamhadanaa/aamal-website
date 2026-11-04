@@ -32,7 +32,9 @@ body.bf .site-header__inner { padding-top: 10px; padding-bottom: 10px; }
 @media (max-width: 600px) { .partners__grid--bf { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } .partners__grid--bf a { grid-template-rows: 56px auto; padding: 18px 12px 14px !important; } }
 .x-partners .partners__grid--bf { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
-/* About overview: A'amal logo beside the text */
-.about-overview__logo { margin-top: 20px; width: 100%; max-width: 480px; aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center; padding: 40px 48px; border-radius: 28px; background: radial-gradient(120% 90% at 30% 20%, #FFFFFF 0%, #EEF7F1 55%, #E1F0E6 100%); border: 1px solid #D5E9DB; box-shadow: 0 30px 60px -40px rgba(21, 127, 54, .55); }
-.about-overview__logo img { display: block; width: 100%; max-width: 340px; height: auto; }
-@media (max-width: 900px) { .about-overview__logo { max-width: 100%; aspect-ratio: auto; padding: 32px; } .about-overview__logo img { max-width: 260px; } }
+/* About overview: the A'amal logo is the hero, as tall as the text beside it */
+.about-overview:has(.about-overview__head--logo) { align-items: stretch !important; }
+.about-overview__head--logo { position: static !important; display: flex !important; height: 100%; }
+.about-overview__logo { flex: 1; width: 100%; min-height: 100%; display: flex; align-items: center; justify-content: center; padding: 48px; border-radius: 28px; background: radial-gradient(120% 90% at 30% 20%, #FFFFFF 0%, #EEF7F1 55%, #E1F0E6 100%); border: 1px solid #D5E9DB; box-shadow: 0 30px 60px -40px rgba(21, 127, 54, .55); }
+.about-overview__logo img { display: block; width: 100%; max-width: 440px; height: auto; }
+@media (max-width: 900px) { .about-overview__logo { padding: 32px; min-height: 0; } .about-overview__logo img { max-width: 300px; } }

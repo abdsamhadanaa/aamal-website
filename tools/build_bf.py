@@ -189,8 +189,9 @@ def common(s, folder, css, js_file):
     # Client: no buttons under the About hero
     s = re.sub(r'\s*<div class="btn-row"[^>]*>\s*<a class="btn btn--primary" href="#overview">About us</a>\s*<a class="btn btn--outline" href="services.html">Our services</a>\s*</div>', '', s)
     # Client: A'amal logo beside the About us overview
-    s = s.replace('<h2 class="h2">An impeccable track record since 1994</h2>\n        </div>',
-                  '<h2 class="h2">An impeccable track record since 1994</h2>\n          <div class="about-overview__logo"><img src="../assets/img/logo-v2.png" width="409" height="300" alt="A\'amal Group — Arab Economic &amp; Business Group — We grow together" loading="lazy" decoding="async"></div>\n        </div>', 1)
+    # Client: the logo is the hero of this section (no pill or heading), as tall as the text
+    s = re.sub(r'<div class="about-overview__head">\s*<span class="s-pill">About us</span>\s*<h2 class="h2">An impeccable track record since 1994</h2>\s*</div>',
+               '<div class="about-overview__head about-overview__head--logo"><div class="about-overview__logo"><img src="../assets/img/logo-v2.png" width="409" height="300" alt="A\'amal Group — Arab Economic &amp; Business Group — We grow together" loading="lazy" decoding="async"></div></div>', s, count=1)
     # Client: "Global Recognition", without "A'amal"
     s = s.replace("A'amal Global Recognition", "Global Recognition").replace("A&#x27;amal Global Recognition", "Global Recognition")
     return css(s)
