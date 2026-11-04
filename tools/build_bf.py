@@ -226,6 +226,21 @@ def swap_site_team(s):
     return re.sub(r'(src="\.\./assets/img/services/' + n + r'\.webp"[^>]*?)alt="[^"]*"', r'\1alt="' + alt + '"', s)
 
 
+def swap_engineers(s):
+    # Client: replace the two-engineers hero (faces visible) with our faceless site photo
+    if PAGE[0] == "index.html":
+        return s
+    if PAGE[0] == "human-resource-management.html":
+        n, w = "hr-airswift", "1100w"
+    else:
+        n, w = "om-site-team", "960w"
+    s = re.sub(r'as-engineers-plant\.webp 1200w', f'{n}.webp {w}', s)
+    s = s.replace("as-engineers-plant", n)
+    s = s.replace('alt="Two engineers in hi-vis reviewing a tablet at a plant at dusk"',
+                  'alt="Aerial view of an A\'amal project site team" style="object-position:50% 22%"')
+    return s
+
+
 def common(s, folder, css, js_file):
     s = founder_ceo(s)
     s = s.replace(B20, B20_IMG)
@@ -271,6 +286,7 @@ def common(s, folder, css, js_file):
     # Client: no photo strip under the Services hero
     s = re.sub(r'\s*<div class="container">\s*<div class="hero-strip hero-strip--svc">.*?</div>\s*</div>', '', s, count=1, flags=re.S)
     s = swap_site_team(s)
+    s = swap_engineers(s)
     # Client: the third sector is called "Project Management Solution" everywhere
     s = s.replace("Project &amp; Business Management", "Project Management Solution").replace("Project & Business Management", "Project Management Solution")
     s = s.replace("<span>Business Management</span></a>", "<span>Project Management Solution</span></a>")
