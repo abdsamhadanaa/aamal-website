@@ -59,3 +59,26 @@ body.bf .about-overview__logo .heritage__badge { position: absolute; right: -20p
 .about-overview__logo img { margin: auto 0; }
 .about-overview__tag { display: block; width: 100%; padding-top: 14px; border-top: 1px solid #EEF1EF; text-align: center; font-size: 14px; line-height: 1.4; color: #5A6166; }
 @media (max-width: 900px) { .about-overview__logo, body.bf .about-overview__logo { padding: 30px 22px 18px !important; gap: 18px; } .about-overview__head--logo { margin-bottom: 8px !important; } }
+
+/* About overview on phones: compact logo card, short text with "Read more" */
+.about-more { display: flex; flex-direction: column; gap: 18px; }
+.about-more__btn { display: none; }
+@media (max-width: 700px) {
+  .about-overview__logo, body.bf .about-overview__logo { flex-direction: row !important; align-items: center; gap: 0 !important; padding: 18px 16px !important; }
+  .about-overview__logo img { width: 52% !important; max-width: 180px !important; margin: 0 !important; }
+  .about-overview__tag { flex: 1; border-top: 0; border-left: 1px solid #EEF1EF; padding: 4px 0 4px 14px; margin-left: 14px; text-align: left; font-size: 13px; }
+  .about-overview__head--logo { margin-bottom: 4px !important; }
+  .about-overview__body { font-size: 16px !important; gap: 14px !important; }
+  .about-more:not(.is-open) { display: none; }
+  .about-more__btn { display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; padding: 10px 18px; border: 1px solid #CFE3D5; border-radius: 999px; background: #F2F8F4; color: var(--green-dark, #157F36); font: 600 14px/1 var(--font-body, inherit); cursor: pointer; }
+  .about-more__btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+  .about-more__btn svg { transition: transform .2s ease; }
+}
+.about-overview__tag strong { font-weight: 600; color: var(--charcoal, #2E3133); }
+.about-overview__tag i { font-style: normal; }
+@media (max-width: 700px) {
+  .about-overview__tag strong { display: block; font-size: 16px; margin-bottom: 2px; }
+  .about-overview__tag i { display: none; }
+  .about-overview__sectors { gap: 6px !important; }
+  .about-overview__sectors li { font-size: 13px !important; padding: 6px 12px !important; }
+}

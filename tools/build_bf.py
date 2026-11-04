@@ -196,8 +196,13 @@ def common(s, folder, css, js_file):
     s = s.replace("A'amal Global Recognition", "Global Recognition").replace("A&#x27;amal Global Recognition", "Global Recognition")
     # Client: style the logo card like the Founder & CEO photo, with the same 1994 badge
     # (later: styled like the partner cards — logo, divider, one short line)
-    badge = '<span class="about-overview__tag">Since 1994 · Al Khobar, Saudi Arabia</span>'
+    badge = '<span class="about-overview__tag"><strong>Since 1994</strong><i> · </i>Al Khobar, Saudi Arabia</span>'
     s = s.replace('loading="lazy" decoding="async"></div></div>', 'loading="lazy" decoding="async">' + badge + '</div></div>', 1) if 'about-overview__logo' in s else s
+    # Mobile: first paragraph shows, the rest opens with "Read more" (always open on desktop)
+    m = re.search(r'(<div class="about-overview__body">\s*<p>.*?</p>)\s*(<p>We\'re a dynamic.*?</p>\s*<p>At A\'amal Group, we stand.*?</p>)', s, flags=re.S)
+    if m and 'about-more' not in s:
+        s = s.replace(m.group(0), m.group(1) + '\n          <div class="about-more" id="about-more">' + m.group(2) + '</div>\n          <button class="about-more__btn" type="button" aria-expanded="false" aria-controls="about-more"><span>Read more</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>', 1)
+        s = s.replace('</body>', '<script>document.querySelectorAll(".about-more__btn").forEach(function(b){b.addEventListener("click",function(){var m=document.getElementById(b.getAttribute("aria-controls"));var o=m.classList.toggle("is-open");b.setAttribute("aria-expanded",String(o));b.firstChild.textContent=o?"Read less":"Read more";});});</script>\n</body>', 1)
     return css(s)
 
 
