@@ -185,6 +185,8 @@ def common(s, folder, css, js_file):
         s = s.replace("<head>", '<head>\n  <meta name="robots" content="noindex, nofollow">', 1)
     s = re.sub(r'\.\./assets/js/main\.js(\?v=[0-9a-f]+)?', f'../assets/js/{js_file}?v=' + h(f'assets/js/{js_file}'), s)
     s = partner_tiles(s)
+    # Client: no buttons under the About hero
+    s = re.sub(r'\s*<div class="btn-row"[^>]*>\s*<a class="btn btn--primary" href="#overview">About us</a>\s*<a class="btn btn--outline" href="services.html">Our services</a>\s*</div>', '', s)
     return css(s)
 
 
