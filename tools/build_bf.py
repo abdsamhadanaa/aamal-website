@@ -18,7 +18,7 @@ assert 'class="nav-mega__title" href' not in js
 js = js.replace('<a class="nav-drop__overview nav-mega__overview" href="${l.href}">Services overview →</a>', '')
 assert 'Services overview' not in js
 js = js.replace("A'amal Global Recognition", "Global Recognition")
-js = js.replace("{ label: \"A'amal at Global Stage\", href: 'awards.html#global-stage' },", "{ label: \"A'amal at Global Stage\", href: 'awards.html#global-stage' },\n    { label: 'Global engagement', href: 'awards.html#global-engagement' },")
+js = js.replace("{ label: \"A'amal at Global Stage\", href: 'awards.html#global-stage' },", "{ label: 'Global engagement', href: 'awards.html#global-engagement' },\n    { label: \"A'amal at Global Stage\", href: 'awards.html#global-stage' },")
 assert 'awards.html#global-engagement' in js
 open(f"{ROOT}/assets/js/v3bf.js", "w").write(js)
 open(f"{ROOT}/assets/js/bf.js", "w").write(js.replace("const V3 = document.body.classList.contains('v3');",
@@ -191,8 +191,8 @@ def global_sections(s):
     if 'id="global-stage"' not in s:
         return s
     a = s.index('<section class="section" id="global-stage">'); b = s.index("</section>", a) + len("</section>")
-    new = (gs_section("global-stage", "A'amal Group", "A'amal at Global Stage", "Conferences and forums where A'amal Group represents Saudi business.", STAGE, False)
-           + "\n\n    " + gs_section("global-engagement", "Media &amp; partnerships", "Global engagement", "Television interviews, agreements and official meetings around the world.", ENGAGE, True))
+    new = (gs_section("global-engagement", "Media &amp; partnerships", "Global engagement", "Television interviews, agreements and official meetings around the world.", ENGAGE, False)
+           + "\n\n    " + gs_section("global-stage", "A'amal Group", "A'amal at Global Stage", "Conferences and forums where A'amal Group represents Saudi business.", STAGE, True))
     return s[:a] + new + s[b:]
 
 
