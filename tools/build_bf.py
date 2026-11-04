@@ -249,6 +249,16 @@ def swap_hr_hero(s):
                   "hr-handshake-800.webp 800w, ../assets/img/services/hr-handshake.webp 1200w")
     s = s.replace("hr-airswift", "hr-handshake")
     s = s.replace('alt="Two professionals in suits meeting over a laptop"', 'alt="Handshake over documents after a successful hire"')
+    # Client: co-brand design (A'amal x Airswift) instead of the photo
+    s = re.sub(r'<img class="s-hero__img" src="\.\./assets/img/services/hr-handshake\.webp"[^>]*>',
+        '<div class="s-hero__img cobrand" role="img" aria-label="A\'amal Group in partnership with Airswift">'
+        '<div class="cobrand__panel">'
+        '<img src="../assets/img/logo-v2-large.png" alt="A\'amal Group" width="786" height="577" class="cobrand__aamal">'
+        '<span class="cobrand__x" aria-hidden="true"></span>'
+        '<img src="../assets/img/partners/logo-airswift.svg" alt="Airswift" width="208" height="89" class="cobrand__airswift">'
+        '</div>'
+        '<p class="cobrand__line">Strategic workforce partnership in Saudi Arabia</p>'
+        '</div>', s, count=1)
     return re.sub(r'(<img class="s-hero__img" src="\.\./assets/img/services/pbm-saudi-desk\.webp"[^>]*?)alt="[^"]*"',
                   r'\1alt="Handshake over documents after a successful hire"', s, count=1)
 
