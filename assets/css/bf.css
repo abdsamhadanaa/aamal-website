@@ -52,3 +52,10 @@ body.bf .about-overview__logo .heritage__badge { position: absolute; right: -20p
   body.bf .about-overview__logo .heritage__badge, .about-overview__logo .x-founder__badge { right: 16px !important; bottom: -24px !important; padding: 10px 16px; }
   body.bf .about-overview__logo .heritage__badge strong, .about-overview__logo .x-founder__badge strong { font-size: 22px; }
 }
+
+/* About logo card, styled like the partner cards (client choice) */
+.about-overview__logo, body.bf .about-overview__logo { flex-direction: column; gap: 22px; background: #fff !important; border: 1px solid #E3E8E4 !important; border-radius: 16px !important; box-shadow: none !important; padding: 48px 40px 28px !important; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.about-overview__logo:hover { transform: translateY(-4px); border-color: #BFE3C9 !important; box-shadow: 0 16px 34px -24px rgba(46, 49, 51, .45) !important; }
+.about-overview__logo img { margin: auto 0; }
+.about-overview__tag { display: block; width: 100%; padding-top: 14px; border-top: 1px solid #EEF1EF; text-align: center; font-size: 14px; line-height: 1.4; color: #5A6166; }
+@media (max-width: 900px) { .about-overview__logo, body.bf .about-overview__logo { padding: 30px 22px 18px !important; gap: 18px; } .about-overview__head--logo { margin-bottom: 8px !important; } }

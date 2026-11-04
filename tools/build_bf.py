@@ -195,8 +195,8 @@ def common(s, folder, css, js_file):
     # Client: "Global Recognition", without "A'amal"
     s = s.replace("A'amal Global Recognition", "Global Recognition").replace("A&#x27;amal Global Recognition", "Global Recognition")
     # Client: style the logo card like the Founder & CEO photo, with the same 1994 badge
-    badge = ('<div class="heritage__badge"><strong>1994</strong><span>Founded in Al Khobar</span></div>' if folder == "v3bf"
-             else '<span class="x-founder__badge"><strong>1994</strong>Founded in Al Khobar</span>')
+    # (later: styled like the partner cards — logo, divider, one short line)
+    badge = '<span class="about-overview__tag">Since 1994 · Al Khobar, Saudi Arabia</span>'
     s = s.replace('loading="lazy" decoding="async"></div></div>', 'loading="lazy" decoding="async">' + badge + '</div></div>', 1) if 'about-overview__logo' in s else s
     return css(s)
 
