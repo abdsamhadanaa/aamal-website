@@ -81,6 +81,10 @@ def saudi_photos(s):
     # No faces, and the photo should say what the business does:
     # HR = handshake over documents (thobe sleeve); PM = Saudi professional with shemagh and agal at his desk, seen from above
     s = s.replace('pbm-saudi-coffee', 'hr-handshake')
+    # Project & Business Management: a working meeting at the table, no faces (replaces the photo of two men)
+    s = s.replace('pbm-business.webp 1100w', 'pbm-meeting.webp 1100w').replace('pbm-business', 'pbm-meeting')
+    s = re.sub(r'(pbm-meeting\.webp"[^>]*?)alt="[^"]*"', r'\1alt="Team taking notes in a project meeting"', s)
+    s = s.replace('pbm-meeting.webp 1100w" style="object-position: 50% 30%"', 'pbm-meeting.webp 1100w" style="object-position: 50% 50%"')
     # PM: a project team reviewing engineering drawings (no faces, shows the service)
     s = s.replace('pbm-saudi-desk.webp 1600w', 'pm-plans.webp 1200w').replace('pbm-saudi-desk', 'pm-plans')
     s = re.sub(r'(pm-plans\.webp"[^>]*?)alt="[^"]*"', r'\1alt="Project team reviewing engineering drawings"', s)
