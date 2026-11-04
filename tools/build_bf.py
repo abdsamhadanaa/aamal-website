@@ -247,6 +247,8 @@ def common(s, folder, css, js_file):
     s = global_sections(s)
     # Client: an "About Us" heading on the overview text
     s = s.replace('<div class="about-overview__body">\n          <p>Since our inception', '<div class="about-overview__body">\n          <h2 class="h2 about-overview__title">About Us</h2>\n          <p>Since our inception', 1)
+    # Client: no photo strip under the Services hero
+    s = re.sub(r'\s*<div class="container">\s*<div class="hero-strip hero-strip--svc">.*?</div>\s*</div>', '', s, count=1, flags=re.S)
     return css(s)
 
 
