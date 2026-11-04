@@ -342,6 +342,11 @@ def common(s, folder, css, js_file):
     s = swap_hr_hero(s)
     s = cobrand(s)
     s = duplays_photos(s)
+    # Client: DUPLAYS stadium photo for Sports Facilities everywhere (home slide/bento, service cards)
+    s = s.replace('src="../assets/img/services/sports-hero.webp" width="791" height="442"',
+                  'src="../assets/img/services/dup-stadium.webp" srcset="../assets/img/services/dup-stadium-800.webp 800w, ../assets/img/services/dup-stadium.webp 1200w" sizes="(max-width: 900px) 100vw, 50vw" width="1200" height="800"')
+    s = s.replace('alt="Render of a sports complex with football pitches and padel courts"', 'alt="Aerial view of a sports campus with a stadium, track and pitches"')
+    s = s.replace('alt="Sports complex render"', 'alt="Aerial view of a sports campus"')
     # Client: the third sector is called "Project Management Solution" everywhere
     s = s.replace("Project &amp; Business Management", "Project Management Solution").replace("Project & Business Management", "Project Management Solution")
     s = s.replace("<span>Business Management</span></a>", "<span>Project Management Solution</span></a>")
