@@ -245,10 +245,6 @@ def swap_engineers(s):
 
 COBRAND = {
     "human-resource-management.html": ("hr-handshake", "logo-airswift.svg", 208, 89, "Airswift", "Strategic workforce partnership in Saudi Arabia"),
-    "artificial-lagoons.html": ("cl-cabo", "logo-crystal-lagoons.png", 687, 136, "Crystal Lagoons", "Crystal Lagoons technology partner in Saudi Arabia"),
-    "sports-facilities.html": ("sports-hero", "logo-duplays.png", 480, 112, "DUPLAYS", "Sports facilities &amp; programming partnership"),
-    "industry-transformation.html": ("ws-refinery-night", "logo-weel-sandvig.svg", 232, 46, "Weel &amp; Sandvig", "Energy &amp; process innovation partnership"),
-    "electrical-instrumentation.html": ("ei-hero", "logo-experts-ei.webp", 560, 64, "Experts e&amp;i", "Electrical &amp; instrumentation partnership"),
 }
 
 
@@ -266,6 +262,22 @@ def cobrand(s):
             '<img src="../assets/img/partners/' + logo + '" alt="' + name + '" width="' + str(w) + '" height="' + str(h) + '" class="cobrand__partner">'
             '</div><p class="cobrand__line">' + line + '</p></div>')
     return re.sub(r'<img class="s-hero__img" src="\.\./assets/img/services/' + re.escape(bg) + r'\.webp"[^>]*>', lambda m: html, s, count=1)
+
+
+def duplays_photos(s):
+    """Client: Sports Facilities page uses photos from our partner DUPLAYS (duplays.com)."""
+    if PAGE[0] != "sports-facilities.html":
+        return s
+    def img(cls, n, w, h, alt, extra):
+        return (f'<img class="{cls}" src="../assets/img/services/{n}.webp" srcset="../assets/img/services/{n}-800.webp 800w, '
+                f'../assets/img/services/{n}.webp 1200w" sizes="{extra}" width="{w}" height="{h}" alt="{alt}"')
+    s = re.sub(r'<img class="s-hero__img" src="\.\./assets/img/services/sports-hero\.webp"[^>]*?(?=( fetchpriority| loading|>))',
+               img("s-hero__img", "dup-stadium", 1200, 800, "Aerial view of a sports campus with a stadium, track and pitches — DUPLAYS", "(max-width: 1240px) 100vw, 1200px"), s, count=1)
+    s = re.sub(r'<img class="s-split__img" src="\.\./assets/img/services/sports-complex\.webp"[^>]*?(?= loading|>)',
+               img("s-split__img", "dup-courts", 1200, 511, "Indoor padel and multi-sport courts — DUPLAYS", "(max-width: 900px) 100vw, 45vw"), s, count=1)
+    s = re.sub(r'<img class="s-cta__img" src="\.\./assets/img/services/cl-hotel-aerial\.webp"[^>]*?(?= loading|>)',
+               img("s-cta__img", "dup-dome", 1200, 783, "", "100vw"), s, count=1)
+    return s.replace("sports-hero.webp", "dup-stadium.webp")
 
 
 def swap_hr_hero(s):
@@ -329,6 +341,7 @@ def common(s, folder, css, js_file):
     s = swap_engineers(s)
     s = swap_hr_hero(s)
     s = cobrand(s)
+    s = duplays_photos(s)
     # Client: the third sector is called "Project Management Solution" everywhere
     s = s.replace("Project &amp; Business Management", "Project Management Solution").replace("Project & Business Management", "Project Management Solution")
     s = s.replace("<span>Business Management</span></a>", "<span>Project Management Solution</span></a>")
