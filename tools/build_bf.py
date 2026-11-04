@@ -349,7 +349,7 @@ def common(s, folder, css, js_file):
     s = s.replace('alt="Sports complex render"', 'alt="Aerial view of a sports campus"')
     if PAGE[0] == "index.html":  # Client: home Hospitality & Sports card uses a DUPLAYS photo
         s = s.replace('<img src="../assets/img/services/cl-hotel-aerial-800.webp" width="800" height="450" alt="Aerial view of a resort built around a crystal lagoon"',
-                      '<img src="../assets/img/services/dup-courts-800.webp" width="800" height="341" alt="Indoor padel and multi-sport courts"')
+                      '<img src="../assets/img/services/dup-stadium-800.webp" width="800" height="533" alt="Aerial view of a sports campus with a stadium, track and pitches"')
     # Client: the third sector is called "Project Management Solution" everywhere
     s = s.replace("Project &amp; Business Management", "Project Management Solution").replace("Project & Business Management", "Project Management Solution")
     s = s.replace("<span>Business Management</span></a>", "<span>Project Management Solution</span></a>")
