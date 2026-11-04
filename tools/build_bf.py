@@ -246,10 +246,11 @@ def swap_hr_hero(s):
     if PAGE[0] != "human-resource-management.html":
         return s
     s = s.replace("hr-airswift-800.webp 800w, ../assets/img/services/hr-airswift.webp 1100w",
-                  "pbm-saudi-desk-800.webp 800w, ../assets/img/services/pbm-saudi-desk.webp 1600w")
-    s = s.replace("hr-airswift", "pbm-saudi-desk")
+                  "hr-handshake-800.webp 800w, ../assets/img/services/hr-handshake.webp 1200w")
+    s = s.replace("hr-airswift", "hr-handshake")
+    s = s.replace('alt="Two professionals in suits meeting over a laptop"', 'alt="Handshake over documents after a successful hire"')
     return re.sub(r'(<img class="s-hero__img" src="\.\./assets/img/services/pbm-saudi-desk\.webp"[^>]*?)alt="[^"]*"',
-                  r'\1alt="Saudi professional reviewing HR documents at his desk"', s, count=1)
+                  r'\1alt="Handshake over documents after a successful hire"', s, count=1)
 
 
 def common(s, folder, css, js_file):
