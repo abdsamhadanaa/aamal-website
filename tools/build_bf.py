@@ -83,9 +83,10 @@ def saudi_photos(s):
     # HR = handshake over documents (thobe sleeve); PM = Saudi professional with shemagh and agal at his desk, seen from above
     s = s.replace('pbm-saudi-coffee', 'hr-handshake')
     # Project & Business Management: a working meeting at the table, no faces (replaces the photo of two men)
-    s = s.replace('pbm-business.webp 1100w', 'pbm-meeting.webp 1100w').replace('pbm-business', 'pbm-meeting')
-    s = re.sub(r'(pbm-meeting\.webp"[^>]*?)alt="[^"]*"', r'\1alt="Team taking notes in a project meeting"', s)
-    s = s.replace('pbm-meeting.webp 1100w" style="object-position: 50% 30%"', 'pbm-meeting.webp 1100w" style="object-position: 50% 50%"')
+    # Project Management Solution sector: our own photo that shows the service (team reviewing project drawings)
+    s = s.replace('pbm-business.webp 1100w', 'pm-plans.webp 1200w').replace('pbm-business', 'pm-plans')
+    s = re.sub(r'(pm-plans\.webp"[^>]*?)alt="[^"]*"', r'\1alt="Project team reviewing engineering drawings"', s)
+    s = s.replace('pm-plans.webp 1200w" style="object-position: 50% 30%"', 'pm-plans.webp 1200w" style="object-position: 50% 50%"')
     # PM: a project team reviewing engineering drawings (no faces, shows the service)
     s = s.replace('pbm-saudi-desk.webp 1600w', 'pm-plans.webp 1200w').replace('pbm-saudi-desk', 'pm-plans')
     s = re.sub(r'(pm-plans\.webp"[^>]*?)alt="[^"]*"', r'\1alt="Project team reviewing engineering drawings"', s)
@@ -209,9 +210,9 @@ def global_sections(s):
 PAGE = [""]
 # Client: replace the orange-coverall site photo with the updated, faceless photos
 SITE_TEAM = {"human-resource-management.html": ("hr-handshake", "Handshake over documents after a successful hire"),
-             "management.html": ("pm-plans", "Project team reviewing engineering drawings"),
-             "project-solutions.html": ("pbm-meeting", "Team taking notes in a project meeting"),
-             "services.html": ("pbm-meeting", "Team taking notes in a project meeting")}
+             "management.html": ("hr-handshake", "Handshake over documents after a successful hire"),
+             "project-solutions.html": ("pm-plans", "Project team reviewing engineering drawings"),
+             "services.html": ("pm-plans", "Project team reviewing engineering drawings")}
 
 
 def swap_site_team(s):
