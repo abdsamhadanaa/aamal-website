@@ -449,15 +449,23 @@ body.bf .about-overview__logo .heritage__badge { position: absolute; right: -20p
   .otabs__list { grid-template-columns: 1fr; }
 }
 
-/* About Us: bigger text (client) */
-.page-about main section:not(.s-hero) p { font-size: max(1.15rem, 1em); line-height: 1.7; }
-.page-about .s-hero__lead { font-size: 1.3rem; line-height: 1.6; }
-.page-about main section .about-overview__body p { font-size: 1.3rem; line-height: 1.7; }
-.page-about main section .leader__quote p { font-size: 1.22rem; line-height: 1.75; }
-.page-about main .chips li { font-size: 1.05rem; }
-.page-about main h2 { font-size: clamp(2rem, 3.4vw, 2.9rem); }
-.page-about main h3 { font-size: 1.4rem; }
+/* Site-wide: bigger text, tighter spacing, wider content (client) */
+:root { --section: 76px; }
+body.bf { --max: 1320px; }
+body.v3 { --max: 1380px; }
+@media (max-width: 760px) { :root { --section: 48px; } }
+main section:not(.s-hero):not(.hero):not(.x-hero) p { font-size: max(1.12rem, 1em); line-height: 1.7; }
+main .lead, main .s-hero__lead, main .about-overview__body p, main .x-hero p { font-size: 1.28rem; line-height: 1.6; }
+main section .leader__quote p { font-size: 1.2rem; line-height: 1.75; }
+main .split__body, main .service-item__body p, main .feature-row__text p { font-size: 1.15rem; }
+main section li { font-size: max(1.06rem, 1em); }
+main .chips li { font-size: 1.02rem; }
+main .h2, main section h2 { font-size: clamp(2.05rem, 3.4vw, 2.9rem); margin-bottom: .3em; }
+main section h3 { font-size: max(1.35rem, 1em); }
+main .eyebrow, main .s-pill { font-size: .95rem; }
+main .stat__label, main .s-stat span { font-size: 1.02rem; }
+.site-nav { font-size: 16px; }
 @media (max-width: 700px) {
-  .page-about .s-hero__lead, .page-about main section .about-overview__body p { font-size: 1.15rem; }
-  .page-about .leader__quote p, .page-about main section:not(.s-hero) p { font-size: 1.08rem; }
+  main section:not(.s-hero):not(.hero):not(.x-hero) p, main section .leader__quote p { font-size: 1.06rem; }
+  main .lead, main .s-hero__lead, main .about-overview__body p { font-size: 1.14rem; }
 }
