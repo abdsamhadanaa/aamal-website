@@ -451,6 +451,6 @@ body.bf .about-overview__logo .heritage__badge { position: absolute; right: -20p
 
 /* Site-wide: tighter section spacing, wider content (client); original font sizes */
 :root { --section: 48px; }
-body.bf { --max: 2600px; --gutter: 16px; }
-body.v3 { --max: 2600px; --gutter: 18px; }
+body.bf, body.v3 { --max: 1920px; --gutter: 20px; }
+@media (min-width: 1100px) { body.bf, body.v3 { --gutter: 48px; } }
 @media (max-width: 760px) { :root { --section: 36px; } body.bf, body.v3 { --gutter: 14px; } }
