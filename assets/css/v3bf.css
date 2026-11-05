@@ -483,4 +483,8 @@ main .stat__value { font-size: 46px; }
 :is(.bf, .v3) .s-stat span, :is(.bf, .v3) .stat__label { font-size: 17px; }
 :is(.bf, .v3) .x-hero__lead { font-size: 1.4rem; line-height: 1.55; }
 :is(.bf, .v3) .x-hero dd, :is(.bf, .v3) .x-hero dl span, :is(.bf, .v3) .x-hero__stats span { font-size: 16.5px; }
+/* Large screens: scale the whole page so text and spacing stay proportional */
+@media (min-width: 1700px) { html { zoom: 1.18; } :root { --section: 50px; } }
+@media (min-width: 1950px) { html { zoom: 1.32; } }
+@media (min-width: 2400px) { html { zoom: 1.5; } }
 /* end site-wide */
