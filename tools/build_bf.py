@@ -280,6 +280,78 @@ def ei_partner(s):
     j = s.index('</div>', s.index('</a>', i)) + len('</div>')
     return s[:j] + EI_CARD + s[j:]
 
+# Client: "What we offer" as an icon grid (Dribbble reference), long lists behind "View full scope"
+_I = {
+ "pen": '<path d="M3 21l3-1 11-11-2-2L4 18z"/><path d="M14 6l2-2 4 4-2 2"/>',
+ "gauge": '<circle cx="12" cy="13" r="8"/><path d="M12 13l4-4"/><path d="M8 5l-1-2M16 5l1-2"/>',
+ "box": '<path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/>',
+ "monitor": '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M7 10h2l2-3 2 6 2-3h2"/>',
+ "helmet": '<path d="M3 18h18"/><path d="M5 18v-3a7 7 0 0114 0v3"/><path d="M10 9V6h4v3"/>',
+ "wrench": '<path d="M14.7 6.3a4 4 0 015 5L12 19l-4 1 1-4z"/><path d="M5 5l4 4"/>',
+ "wave": '<path d="M2 12c2.5-2 4.5-2 7 0s4.5 2 7 0 4.5-2 6 0"/><path d="M2 17c2.5-2 4.5-2 7 0s4.5 2 7 0 4.5-2 6 0"/><path d="M2 7c2.5-2 4.5-2 7 0s4.5 2 7 0 4.5-2 6 0"/>',
+ "home": '<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/>',
+ "bed": '<path d="M3 18V7M21 18v-5a3 3 0 00-3-3H10v8"/><path d="M3 14h18"/><circle cx="6.5" cy="11" r="1.5"/>',
+ "sun": '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+ "star": '<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>',
+ "user": '<circle cx="10" cy="8" r="4"/><path d="M3 20a7 7 0 0114 0"/><path d="M17 4l2 2 3-3"/>',
+ "globe": '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/>',
+ "layers": '<path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/>',
+ "chart": '<path d="M4 20V4M4 20h16"/><path d="M8 15l3-4 3 2 5-6"/>',
+ "factory": '<path d="M3 21V10l6 3V9l6 3V5h6v16z"/><path d="M7 17h2M12 17h2M17 17h2"/>',
+ "drop": '<path d="M12 3s6 6.5 6 11a6 6 0 01-12 0c0-4.5 6-11 6-11z"/>',
+ "flame": '<path d="M12 3c1 4 5 5 5 10a5 5 0 01-10 0c0-3 2-4 2-7 2 1 3 2 3 4"/>',
+ "ship": '<path d="M3 17l2 3h14l2-3H3z"/><path d="M6 17V11h12v6M12 4v7M9 7h6"/>',
+ "cpu": '<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>',
+ "check": '<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16.5 9"/>',
+ "play": '<circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4z"/>',
+ "power": '<path d="M12 3v8"/><path d="M6.3 7a8 8 0 1011.4 0"/>',
+ "doc": '<path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/>',
+ "people": '<circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.5"/><path d="M2.5 20a6.5 6.5 0 0113 0M15 14.5a5 5 0 016.5 5"/>',
+ "headset": '<path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/>',
+ "chat": '<path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8"/>',
+ "link": '<path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/>',
+ "ball": '<circle cx="12" cy="12" r="9"/><path d="M12 7l4 3-1.5 5h-5L8 10z"/><path d="M12 3v4M21 10l-5 0M17.5 19l-3-4M6.5 19l3-4M3 10h5"/>',
+ "bag": '<path d="M5 8h14l-1 13H6z"/><path d="M9 8V6a3 3 0 016 0v2"/>',
+ "flag": '<path d="M5 21V4"/><path d="M5 4h12l-2 4 2 4H5"/>',
+ "brush": '<path d="M19 3l2 2-9 9-3-3z"/><path d="M8 13a3 3 0 00-3 3c0 2-2 3-2 3h4a4 4 0 004-4z"/>',
+ "pipe": '<path d="M3 9h10a4 4 0 014 4v8"/><path d="M3 15h7a1 1 0 011 1v5"/><path d="M3 7v10M15 21h8"/>',
+}
+_RULES = [
+ ("electrical design","pen"),("instrumentation design","gauge"),("electrical procurement","box"),("instrumentation procurement","monitor"),
+ ("construction","helmet"),("maintenance","wrench"),("public access","wave"),("real estate","home"),("hospitality","bed"),("beach","sun"),
+ ("experiences","star"),("talent","user"),("global","globe"),("managed","layers"),("pems","chart"),("oil","flame"),("energy","factory"),
+ ("shipping","ship"),("technolog","cpu"),("pre-commissioning","check"),("commissioning","power"),("start-up","play"),("turnkey","helmet"),
+ ("proprietary","cpu"),("implementation","layers"),("procedures","doc"),("outsourcing","people"),("technical support","headset"),
+ ("consultancy","chat"),("integration","link"),("clubhouse","home"),("design","pen"),("fit-out","ball"),("consumables","bag"),
+ ("contracting","doc"),("operate","power"),("event","flag"),("polyurethane","drop"),("acrylic","brush"),("cementitious","layers"),
+ ("bituminous","drop"),("industrial coating","factory"),("pipe","pipe"),
+]
+def _icon(title):
+    t = title.lower()
+    for k, v in _RULES:
+        if k in t:
+            return _I[v]
+    return _I["check"]
+
+def offer_icons(s):
+    if 'id="offer"' not in s or "offer-card__icon" in s:
+        return s
+    i = s.index('id="offer"'); j = s.index('</section>', i)
+    sec = s[i:j]
+    sec = re.sub(r'\s*<ul class="s-included">.*?</ul>', '', sec, count=1, flags=re.S)
+    def card(m):
+        a = m.group(0)
+        title = re.search(r'<h3>(.*?)</h3>', a, re.S).group(1)
+        a = re.sub(r'<span class="offer-card__num">\d+</span>',
+                   '<span class="offer-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + _icon(title) + '</svg></span>', a, count=1)
+        def wrap(u):
+            n = u.group(0).count('<li>')
+            return '<details class="offer-card__more"><summary>View full scope (' + str(n) + ')</summary>' + u.group(0) + '</details>'
+        a = re.sub(r'<ul class="dot-list">.*?</ul>', wrap, a, count=1, flags=re.S)
+        return a
+    sec = re.sub(r'<article class="offer-card">.*?</article>', card, sec, flags=re.S)
+    return s[:i] + sec + s[j:]
+
 def duplays_photos(s):
     """Client: Sports Facilities page uses photos from our partner DUPLAYS (duplays.com)."""
     if PAGE[0] != "sports-facilities.html":
@@ -359,6 +431,7 @@ def common(s, folder, css, js_file):
     s = cobrand(s)
     s = duplays_photos(s)
     s = ei_partner(s)
+    s = offer_icons(s)
     # Client: DUPLAYS stadium photo for Sports Facilities everywhere (home slide/bento, service cards)
     s = s.replace('src="../assets/img/services/sports-hero.webp" width="791" height="442"',
                   'src="../assets/img/services/dup-stadium.webp" srcset="../assets/img/services/dup-stadium-800.webp 800w, ../assets/img/services/dup-stadium.webp 1200w" sizes="(max-width: 900px) 100vw, 50vw" width="1200" height="800"')
