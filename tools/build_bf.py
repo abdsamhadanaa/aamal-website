@@ -431,7 +431,7 @@ def common(s, folder, css, js_file):
     s = cobrand(s)
     s = duplays_photos(s)
     s = ei_partner(s)
-    s = offer_icons(s)
+    # s = offer_icons(s)  # client: not liked, kept for reference
     # Client: DUPLAYS stadium photo for Sports Facilities everywhere (home slide/bento, service cards)
     s = s.replace('src="../assets/img/services/sports-hero.webp" width="791" height="442"',
                   'src="../assets/img/services/dup-stadium.webp" srcset="../assets/img/services/dup-stadium-800.webp 800w, ../assets/img/services/dup-stadium.webp 1200w" sizes="(max-width: 900px) 100vw, 50vw" width="1200" height="800"')

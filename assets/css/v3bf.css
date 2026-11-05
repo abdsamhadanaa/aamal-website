@@ -417,21 +417,3 @@ body.bf .about-overview__logo .heritage__badge { position: absolute; right: -20p
   .s-hero__img.cobrand { gap: 14px; }
   .cobrand__line { font-size: .9rem; }
 }
-
-/* What we offer: icon grid (client pick, Dribbble reference) */
-#offer.section--tint { background: #E7F0EA; }
-#offer > .container { background: #fff; border-radius: 28px; padding: 64px 56px; box-shadow: 0 30px 60px -40px rgba(21,127,54,.35); }
-#offer .offer-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 48px 56px; }
-#offer .offer-grid > .offer-card { flex: 0 1 calc((100% - 112px) / 3); background: none; border: 0; box-shadow: none; padding: 0; display: flex; flex-direction: column; gap: 10px; transform: none; }
-#offer .offer-card:hover { transform: none; box-shadow: none; }
-#offer .offer-card__icon { width: 52px; height: 52px; border-radius: 50%; background: var(--green); color: #fff; display: grid; place-items: center; margin-bottom: 8px; box-shadow: 0 10px 20px -10px rgba(31,176,75,.7); }
-#offer .offer-card__icon svg { width: 24px; height: 24px; }
-#offer .offer-card h3 { font-size: 1.2rem; margin: 0; color: var(--ink); }
-#offer .offer-card > p { margin: 0; color: var(--muted); line-height: 1.6; }
-#offer .offer-card__more summary { display: inline-block; padding: 2px 2px 2px 1px; cursor: pointer; color: var(--green-dark); font-weight: 600; font-size: .92rem; list-style: none; }
-#offer .offer-card__more summary::-webkit-details-marker { display: none; }
-#offer .offer-card__more summary::after { content: " +"; }
-#offer .offer-card__more[open] summary::after { content: " \2212"; }
-#offer .offer-card__more .dot-list { margin-top: 10px; }
-@media (max-width: 900px) { #offer > .container { padding: 44px 28px; } #offer .offer-grid { gap: 36px 28px; } #offer .offer-grid > .offer-card { flex-basis: calc((100% - 28px) / 2); } }
-@media (max-width: 600px) { #offer > .container { border-radius: 20px; width: calc(100% - 32px); padding: 36px 22px; } #offer .offer-grid > .offer-card { flex-basis: 100%; } }
