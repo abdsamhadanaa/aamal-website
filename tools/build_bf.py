@@ -411,6 +411,12 @@ def offer_tabs(s):
     s = s[:i] + sec + s[j:]
     return s.replace('</body>', _TABS_JS + '\n</body>', 1)
 
+def about_class(s):
+    # Client: bigger text on About Us
+    if PAGE[0] != "about.html":
+        return s
+    return re.sub(r'<body([^>]*?)class="([^"]*)"', r'<body\1class="\2 page-about"', s, count=1)
+
 def duplays_photos(s):
     """Client: Sports Facilities page uses photos from our partner DUPLAYS (duplays.com)."""
     if PAGE[0] != "sports-facilities.html":
@@ -492,6 +498,7 @@ def common(s, folder, css, js_file):
     s = ei_partner(s)
     # s = offer_icons(s)  # client: not liked, kept for reference
     s = offer_tabs(s)
+    s = about_class(s)
     # Client: DUPLAYS stadium photo for Sports Facilities everywhere (home slide/bento, service cards)
     s = s.replace('src="../assets/img/services/sports-hero.webp" width="791" height="442"',
                   'src="../assets/img/services/dup-stadium.webp" srcset="../assets/img/services/dup-stadium-800.webp 800w, ../assets/img/services/dup-stadium.webp 1200w" sizes="(max-width: 900px) 100vw, 50vw" width="1200" height="800"')

@@ -151,3 +151,16 @@ body.bf .about-overview__logo .heritage__badge { position: absolute; right: -20p
   .otabs__body h3 { font-size: 1.35rem; }
   .otabs__list { grid-template-columns: 1fr; }
 }
+
+/* About Us: bigger text (client) */
+.page-about main section:not(.s-hero) p { font-size: max(1.15rem, 1em); line-height: 1.7; }
+.page-about .s-hero__lead { font-size: 1.3rem; line-height: 1.6; }
+.page-about main section .about-overview__body p { font-size: 1.3rem; line-height: 1.7; }
+.page-about main section .leader__quote p { font-size: 1.22rem; line-height: 1.75; }
+.page-about main .chips li { font-size: 1.05rem; }
+.page-about main h2 { font-size: clamp(2rem, 3.4vw, 2.9rem); }
+.page-about main h3 { font-size: 1.4rem; }
+@media (max-width: 700px) {
+  .page-about .s-hero__lead, .page-about main section .about-overview__body p { font-size: 1.15rem; }
+  .page-about .leader__quote p, .page-about main section:not(.s-hero) p { font-size: 1.08rem; }
+}
