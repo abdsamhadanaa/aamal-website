@@ -352,6 +352,65 @@ def offer_icons(s):
     sec = re.sub(r'<article class="offer-card">.*?</article>', card, sec, flags=re.S)
     return s[:i] + sec + s[j:]
 
+# Client pick (option B): "What we offer" as tabs with a photo panel — E&I page first for review
+OFFER_TABS_DRAFT = {
+    "electrical-instrumentation.html": ["services/pm-plans", "services/ws-refinery-night", "services/ei-hero",
+                                        "hero-refinery", "hero-construction", "hero-oil-gas"],
+}
+OFFER_TABS = {}  # client reviewing a private draft (draft-offer/) first
+_CK = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.7 2.7L16.5 9"/></svg>'
+_TABS_JS = """<script>
+document.querySelectorAll('.otabs').forEach(function (w) {
+  var tabs = w.querySelectorAll('[role=tab]'), panels = w.querySelectorAll('[role=tabpanel]');
+  function show(i, focus) {
+    tabs.forEach(function (t, j) { var on = i === j; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; t.classList.toggle('is-on', on); });
+    panels.forEach(function (p, j) { p.hidden = i !== j; });
+    if (focus) tabs[i].focus();
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { show(i); });
+    t.addEventListener('keydown', function (e) {
+      var k = e.key, n = tabs.length;
+      if (k === 'ArrowDown' || k === 'ArrowRight') { e.preventDefault(); show((i + 1) % n, true); }
+      if (k === 'ArrowUp' || k === 'ArrowLeft') { e.preventDefault(); show((i - 1 + n) % n, true); }
+    });
+  });
+});
+</script>"""
+
+def offer_tabs(s):
+    imgs = OFFER_TABS.get(PAGE[0])
+    if not imgs or 'class="otabs"' in s:
+        return s
+    i = s.index('id="offer"'); j = s.index('</section>', i)
+    sec = s[i:j]
+    cards = re.findall(r'<article class="offer-card">(.*?)</article>', sec, re.S)
+    tabs, panels = [], []
+    for n, c in enumerate(cards):
+        t = re.search(r'<h3>(.*?)</h3>', c, re.S).group(1)
+        d = re.search(r'<p>(.*?)</p>', c, re.S).group(1)
+        lis = re.findall(r'<li>(.*?)</li>', c, re.S)
+        im = imgs[n % len(imgs)]
+        on = n == 0
+        tabs.append('<button type="button" role="tab" id="ot-%d" aria-controls="op-%d" aria-selected="%s" tabindex="%d" class="otabs__tab%s"><span>%02d</span>%s</button>'
+                    % (n, n, "true" if on else "false", 0 if on else -1, " is-on" if on else "", n + 1, t))
+        lst = ('<ul class="otabs__list">' + "".join('<li>' + _CK + '<span>' + l + '</span></li>' for l in lis) + '</ul>') if lis else ''
+        panels.append('<div role="tabpanel" id="op-%d" aria-labelledby="ot-%d" class="otabs__panel"%s>'
+                      '<img class="otabs__img" src="../assets/img/%s-800.webp" srcset="../assets/img/%s-800.webp 800w, ../assets/img/%s.webp 1200w" sizes="(max-width: 900px) 100vw, 800px" width="1200" height="800" alt="" loading="lazy" decoding="async">'
+                      '<div class="otabs__body"><h3>%s</h3><p>%s</p>%s</div></div>'
+                      % (n, n, "" if on else " hidden", im, im, im, t, d, lst))
+    block = ('<div class="otabs"><div class="otabs__nav" role="tablist" aria-label="Our services">' + "".join(tabs) +
+             '</div><div class="otabs__panels">' + "".join(panels) + '</div></div>')
+    sec = re.sub(r'\s*<ul class="s-included">.*?</ul>', '', sec, count=1, flags=re.S)
+    k = sec.index('<div class="offer-grid">')
+    e = sec.index('</article>\n        </div>', k) + len('</article>\n        </div>') if '</article>\n        </div>' in sec[k:] else None
+    if e is None:
+        m = re.search(r'<div class="offer-grid">.*?</article>\s*</div>', sec[k:], re.S)
+        e = k + m.end()
+    sec = sec[:k] + block + sec[e:]
+    s = s[:i] + sec + s[j:]
+    return s.replace('</body>', _TABS_JS + '\n</body>', 1)
+
 def duplays_photos(s):
     """Client: Sports Facilities page uses photos from our partner DUPLAYS (duplays.com)."""
     if PAGE[0] != "sports-facilities.html":
@@ -432,6 +491,7 @@ def common(s, folder, css, js_file):
     s = duplays_photos(s)
     s = ei_partner(s)
     # s = offer_icons(s)  # client: not liked, kept for reference
+    s = offer_tabs(s)
     # Client: DUPLAYS stadium photo for Sports Facilities everywhere (home slide/bento, service cards)
     s = s.replace('src="../assets/img/services/sports-hero.webp" width="791" height="442"',
                   'src="../assets/img/services/dup-stadium.webp" srcset="../assets/img/services/dup-stadium-800.webp 800w, ../assets/img/services/dup-stadium.webp 1200w" sizes="(max-width: 900px) 100vw, 50vw" width="1200" height="800"')
