@@ -88,7 +88,7 @@ body.bf .about-overview__logo .heritage__badge { position: absolute; right: -20p
 .s-stat::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(180deg, #1FB04B, #157F36); }
 .s-stat strong { display: block !important; font-family: var(--font-display); font-weight: 700 !important; font-size: clamp(2rem, 3.2vw, 2.6rem) !important; line-height: 1 !important; color: #157F36 !important; letter-spacing: -.02em; }
 .s-stat strong::after { display: none !important; }
-.s-stat span { display: block; font-size: 14px !important; line-height: 1.4; color: #5A6166 !important; }
+.s-stat span { display: block; font-size: 16.5px !important; line-height: 1.4; color: #5A6166 !important; }
 @media (max-width: 900px) { .s-stats { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important; } .s-stat { padding: 18px 16px 16px; } }
 
 /* Global Recognition: Global Stage and Global Engagement galleries */
@@ -153,25 +153,37 @@ body.bf .about-overview__logo .heritage__badge { position: absolute; right: -20p
 }
 
 /* Site-wide: bigger text, tighter spacing, wider content (client) */
-:root { --section: 76px; }
-body.bf { --max: 1320px; }
-body.v3 { --max: 1380px; }
-@media (max-width: 760px) { :root { --section: 48px; } }
-main section:not(.s-hero):not(.hero):not(.x-hero) p { font-size: max(1.2rem, 1em); line-height: 1.7; }
-main .lead, main .s-hero__lead, main .about-overview__body p, main .x-hero p, main .hero p { font-size: 1.35rem; line-height: 1.6; }
-main section .leader__quote p { font-size: 1.25rem; line-height: 1.75; }
-main .split__body, main .service-item__body p, main .feature-row__text p { font-size: 1.2rem; }
-main section li { font-size: max(1.12rem, 1em); }
-main .chips li { font-size: 1.06rem; }
-main .h2, main section h2 { font-size: clamp(2.1rem, 3.5vw, 3rem); margin-bottom: .3em; }
-main section h3 { font-size: max(1.62rem, 1em); }
-main .eyebrow, main .s-pill { font-size: 1rem; }
-main .stat__label, main .s-stat span { font-size: 1.08rem; }
-.site-nav { font-size: 16.5px; }
-@media (max-width: 700px) {
-  main section:not(.s-hero):not(.hero):not(.x-hero) p, main section .leader__quote p { font-size: 1.12rem; }
-  main section li { font-size: 1.08rem; }
-  main .lead, main .s-hero__lead, main .about-overview__body p, main .hero p { font-size: 1.2rem; }
-  main section h3 { font-size: 1.4rem; }
+:root { --section: 60px; }
+body.bf { --max: 1440px; }
+body.v3 { --max: 1480px; }
+@media (max-width: 760px) { :root { --section: 40px; } }
+main section:not(.s-hero):not(.hero):not(.x-hero) p { font-size: max(1.3rem, 1em); line-height: 1.7; }
+main .lead, main .s-hero__lead, main .about-overview__body p, main .x-hero p, main .hero p { font-size: 1.5rem; line-height: 1.55; }
+main section .leader__quote p { font-size: 1.35rem; line-height: 1.7; }
+main .split__body, main .service-item__body p, main .feature-row__text p { font-size: 1.3rem; }
+main section li { font-size: max(1.22rem, 1em); }
+main .chips li { font-size: 1.12rem; }
+main .h2, main section h2 { font-size: clamp(2.3rem, 4vw, 3.3rem); margin-bottom: .3em; }
+:is(.bf, .v3) main section h3 { font-size: max(1.8rem, 1em); }
+main section h4 { font-size: 1.35rem; }
+main .eyebrow, main .s-pill { font-size: 1.05rem; }
+main .stat__label, main .s-stat span, main .muted, main cite, main small { font-size: max(1.1rem, 1em); }
+main .btn, main .text-link, main .s-cta a { font-size: 1.12rem; }
+main .stat__value { font-size: 46px; }
+.site-nav { font-size: 17px; }
+.site-footer { font-size: 17px; }
+@media (max-width: 760px) {
+  main section:not(.s-hero):not(.hero):not(.x-hero) p, main section .leader__quote p, main .split__body { font-size: 1.2rem; }
+  main section li { font-size: 1.15rem; }
+  main .lead, main .s-hero__lead, main .about-overview__body p, main .hero p { font-size: 1.3rem; }
+  main .h2, main section h2 { font-size: 2.1rem; }
+  :is(.bf, .v3) main section h3 { font-size: 1.55rem; }
 }
+/* small text: lift labels and meta so nothing reads tiny */
+:is(.bf, .v3) main :is(.x-chip span, .x-office span, .biz__tag, .tag, .x-trust__label, .hero-logos__label, .hero__count, .offer-card__num, .partner-tag, .press-card__meta, .v2030__kicker, .v2030__foot span, .x-founder__badge, .service-card__num, .x-pillar__n, .hero__kicker, .about-overview__tag, .about-overview__tag *) { font-size: 15px; }
+:is(.bf, .v3) main :is(small, cite, dd, figcaption, time, .breadcrumb, .breadcrumb a, .muted, .job__meta, .recog-card strong, .recog-card__year, .heritage__badge span, .s-stat span, .svc-card__more, .x-bento__a span, .x-bento__b span, .x-bento__c span, .x-bento__d span, .x-office em, .x-chip strong, .press-card .text-link, .download-link span, .x-pillar span, .biz__more, .steps__num, .cities strong, .s-industries strong, .clients__more summary, .x-quote cite, .gs-card figcaption, .biz__list a, .biz__list span) { font-size: 17px; }
+:is(.bf, .v3) main :is(.recog-card strong, .tile h3, .tile h4) { font-size: 18px; }
+:is(.bf, .v3) .s-stat span, :is(.bf, .v3) .stat__label { font-size: 17px; }
+:is(.bf, .v3) .x-hero__lead { font-size: 1.4rem; line-height: 1.55; }
+:is(.bf, .v3) .x-hero dd, :is(.bf, .v3) .x-hero dl span, :is(.bf, .v3) .x-hero__stats span { font-size: 16.5px; }
 /* end site-wide */
