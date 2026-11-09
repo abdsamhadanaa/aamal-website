@@ -502,6 +502,7 @@ def common(s, folder, css, js_file):
     s = swap_hr_hero(s)
     s = cobrand(s)
     s = duplays_photos(s)
+    s = hr_field_team(s)
     s = ei_partner(s)
     # s = offer_icons(s)  # client: not liked, kept for reference
     s = offer_tabs(s)
