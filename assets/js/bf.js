@@ -172,6 +172,7 @@ class SiteFooter extends HTMLElement {
                   <a href="project-solutions.html">Project Management Solution</a>
                 </div>
               </details>
+              <a class="sf-loc" href="https://www.google.com/maps/search/?api=1&amp;query=Middle+East+Commercial+Center+Al+Khobar" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Al Khobar, Saudi Arabia</a>
               <a href="tel:+966138973938">+966 13 897 3938</a>
               <a href="mailto:info@aamal-group.com">info@aamal-group.com</a>
               <a class="btn btn--primary" href="contact.html">Get in Touch</a>

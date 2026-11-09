@@ -186,3 +186,4 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .sf-drop__panel a { color: var(--charcoal, #2E3133) !important; opacity: 1 !important; text-decoration: none !important; padding: 10px 14px; border-radius: 10px; font-size: 15px; }
 .sf-drop__panel a:hover { background: #EEF5F0; color: var(--green-dark, #157F36) !important; }
 @media (max-width: 760px) { .sf-drop__panel { min-width: 260px; } }
+.sf-loc { display: inline-flex; align-items: center; gap: 6px; }
