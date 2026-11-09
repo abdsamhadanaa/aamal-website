@@ -503,6 +503,8 @@ def common(s, folder, css, js_file):
     s = cobrand(s)
     s = duplays_photos(s)
     s = hr_field_team(s)
+    if PAGE[0] == "index.html" and "v3bf" in folder:  # Client: HR slide in the home header uses the field engineers photo
+        s = re.sub(r'<img class="hero__slide" src="\.\./assets/img/services/hr-handshake\.webp"[^>]*>', lambda m: '<img class="hero__slide" src="../assets/img/services/hr-field-team.webp" srcset="../assets/img/services/hr-field-team-800.webp 800w, ../assets/img/services/hr-field-team.webp 1200w" sizes="100vw" width="1200" height="587" alt="Two field engineers in safety gear reviewing a tablet at an industrial plant" data-label="Human Resource Management" loading="lazy" decoding="async">', s, count=1)
     s = ei_partner(s)
     # s = offer_icons(s)  # client: not liked, kept for reference
     s = offer_tabs(s)
