@@ -499,7 +499,7 @@ def common(s, folder, css, js_file):
     # s = offer_icons(s)  # client: not liked, kept for reference
     s = offer_tabs(s)
     # Client: DUPLAYS stadium photo for Sports Facilities everywhere (home slide/bento, service cards)
-    if not (PAGE[0] == "index.html" and "v4bf" in folder):  # Client: V4bF home keeps the original sports render in the header
+    if not (PAGE[0] == "index.html" and "v3bf" in folder):  # Client: V3bF home keeps the original sports render in the header
         s = s.replace('src="../assets/img/services/sports-hero.webp" width="791" height="442"',
                       'src="../assets/img/services/dup-stadium.webp" srcset="../assets/img/services/dup-stadium-800.webp 800w, ../assets/img/services/dup-stadium.webp 1200w" sizes="(max-width: 900px) 100vw, 50vw" width="1200" height="800"')
         s = s.replace('alt="Render of a sports complex with football pitches and padel courts"', 'alt="Aerial view of a sports campus with a stadium, track and pitches"')
@@ -508,7 +508,7 @@ def common(s, folder, css, js_file):
         s = re.sub(r'(<img class="s-hero__img" src="\.\./assets/img/services/)cl-hotel-aerial(\.webp" srcset="\.\./assets/img/services/)cl-hotel-aerial(-800\.webp 800w, \.\./assets/img/services/)cl-hotel-aerial(\.webp 1200w"[^>]*?)width="\d+" height="\d+" alt="[^"]*"',
                    r'\1dup-courts\2dup-courts\3dup-courts\4width="1200" height="511" alt="Indoor padel and multi-sport courts"', s, count=1)
         s = s.replace("cl-hotel-aerial", "dup-courts") if 'class="s-hero__img" src="../assets/img/services/dup-courts' in s else s
-    if PAGE[0] == "index.html":  # Client: home Hospitality & Sports card uses a DUPLAYS photo (V3bF only has this card)
+    if False:  # Client: V3bF home keeps the original lagoon photo on the Hospitality & Sports card
         s = s.replace('<img src="../assets/img/services/cl-hotel-aerial-800.webp" width="800" height="450" alt="Aerial view of a resort built around a crystal lagoon"',
                       '<img src="../assets/img/services/dup-stadium-800.webp" width="800" height="533" alt="Aerial view of a sports campus with a stadium, track and pitches"')
     # Client: the third sector is called "Project Management Solution" everywhere
