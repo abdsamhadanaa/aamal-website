@@ -90,9 +90,8 @@ class SiteHeader extends HTMLElement {
       const cur = l.id === active ? ' aria-current="page"' : '';
       if (!l.sub && !l.mega) return `<a href="${l.href}"${cur}>${esc(l.label)}</a>`;
       const panel = l.mega
-        ? `<div class="nav-drop__panel nav-drop__panel--mega" id="drop-${i}">${l.mega.map((g) =>
-            `<div class="nav-mega__col"><span class="nav-mega__title">${esc(g.label)}</span>${g.items.map((x) => `<a href="${x.href}">${esc(x.label)}</a>`).join('')}</div>`).join('')}
-            <a class="nav-mega__all" href="${l.href}#all-services">View all 8 services →</a></div>`
+        ? `<div class="nav-drop__panel nav-drop__panel--mega" id="drop-${i}"><div class="nav-mega__flat">${l.mega.flatMap((g) => g.items).map((x) => `<a href="${x.href}">${esc(x.label)}</a>`).join('')}</div>
+            <a class="nav-mega__all" href="${l.href}#all-services">View all services →</a></div>`
         : `<div class="nav-drop__panel" id="drop-${i}"><a class="nav-drop__overview" href="${l.id === 'about' ? 'about.html#overview' : l.href}">${l.id === 'about' ? 'About Us' : esc(l.label) + ' overview'}</a>${l.sub.map((x) => `<a href="${x.href}">${esc(x.label)}</a>`).join('')}</div>`;
       return `<div class="nav-drop"><div class="nav-drop__head"><a href="${l.href}"${cur}>${esc(l.label)}</a><button class="nav-drop__btn" type="button" aria-expanded="false" aria-controls="drop-${i}" aria-label="Show ${esc(l.label)} links">${caret}</button></div>${panel}</div>`;
     }).join('');
