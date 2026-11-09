@@ -221,3 +221,9 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
   .bf .site-footer__brand h2 { font-size: 20px; }
   .bf .site-footer__bottom nav { gap: 14px; }
 }
+
+/* Awards: moving organisations strip */
+.bf .hero-logos .brand-marquee__track { gap: 14px; animation-duration: 50s; }
+.bf .hero-logos .brand-marquee__track li { width: 170px; height: 88px; padding: 12px 16px; border-radius: 14px; }
+.bf .hero-logos .brand-marquee__track img { max-height: 58px; }
+@media (max-width: 600px) { .bf .hero-logos .brand-marquee__track li { width: 130px; height: 72px; } .bf .hero-logos .brand-marquee__track img { max-height: 46px; } }
