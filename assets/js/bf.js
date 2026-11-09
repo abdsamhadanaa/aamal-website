@@ -152,6 +152,30 @@ class SiteFooter extends HTMLElement {
   connectedCallback() {
     const year = new Date().getFullYear();
     const v2 = VERSION === 2;
+    if (this.hasAttribute('compact')) {
+      this.innerHTML = `
+      <footer class="site-footer site-footer--compact">
+        <div class="container site-footer__inner">
+          <div class="sf-compact">
+            <a class="sf-compact__logo" href="index.html">${V3 ? `<span class="site-footer__logo-tile"><img src="${IMG}${LOGO.light}" alt="A'amal Group" width="${LOGO.w}" height="${LOGO.h}" loading="lazy" decoding="async"></span>` : `<img src="${IMG}${LOGO.dark}" alt="A'amal Group" width="${LOGO.w}" height="${LOGO.h}" loading="lazy" decoding="async">`}</a>
+            <nav class="sf-compact__links" aria-label="Contact">
+              <a href="tel:+966138973938">+966 13 897 3938</a>
+              <a href="mailto:info@aamal-group.com">info@aamal-group.com</a>
+              <a class="btn btn--primary" href="contact.html">Get in Touch</a>
+            </nav>
+          </div>
+          <div class="site-footer__bottom">
+            <span>© ${year} A'amal Group. All rights reserved.</span>
+            <nav aria-label="Legal and social">
+              <a href="#">Privacy Policy</a>
+              <a href="https://twitter.com/AAMAL_GROUP_SA" target="_blank" rel="noopener">X / Twitter</a>
+              <a href="#">LinkedIn</a>
+            </nav>
+          </div>
+        </div>
+      </footer>`;
+      return;
+    }
     this.innerHTML = `
       <footer class="site-footer">
         <div class="container site-footer__inner">
