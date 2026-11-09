@@ -187,3 +187,7 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .sf-drop__panel a:hover { background: #EEF5F0; color: var(--green-dark, #157F36) !important; }
 @media (max-width: 760px) { .sf-drop__panel { min-width: 260px; } }
 .sf-loc { display: inline-flex; align-items: center; gap: 6px; }
+
+/* About overview: justified paragraphs (client) */
+.about-overview__body p { text-align: justify; text-justify: inter-word; }
+@media (max-width: 600px) { .about-overview__body p { text-align: left; } }
