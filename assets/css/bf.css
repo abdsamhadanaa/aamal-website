@@ -158,4 +158,5 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 @media (max-width: 760px) { :root { --section: 44px; } body.bf, body.v3 { --gutter: 18px; } }
 
 /* Home: Who we are, text only (client) */
-.heritage.heritage--text { display: block; max-width: 900px; }
+.heritage.heritage--text { display: block; }
+.heritage--text .heritage__text { max-width: 920px; }
