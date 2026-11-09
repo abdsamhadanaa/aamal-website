@@ -198,3 +198,26 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 
 /* Mobile: text before image in split sections so images don't stack (client) */
 @media (max-width: 900px) { .s-split > .s-split__img, .s-split > picture { order: 2; } .s-split > .s-split__text { order: 1; } }
+
+/* Slimmer footer */
+.bf .site-footer__inner { padding-top: 44px; padding-bottom: 22px; gap: 30px; }
+.bf .site-footer__cols { gap: 32px; }
+.bf .site-footer__brand { gap: 12px; }
+.bf .site-footer__logo-tile { padding: 10px 16px; border-radius: 14px; }
+.bf .site-footer__brand .site-footer__logo-tile img { height: 68px; }
+.bf .site-footer__brand h2 { font-size: 22px; }
+.bf .site-footer__brand .btn { padding: 10px 22px; }
+.bf .site-footer__col { gap: 0; }
+.bf .site-footer__title { margin-bottom: 4px; }
+.bf .site-footer__col a { padding: 3px 0; font-size: 15px; }
+.bf .site-footer address { font-size: 15px; }
+.bf .site-footer__bottom { padding-top: 16px; }
+@media (max-width: 600px) {
+  .bf .site-footer__inner { padding-top: 32px; gap: 24px; }
+  .bf .site-footer__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 16px; }
+  .bf .site-footer__brand, .bf .site-footer__cols > .site-footer__col:last-child { grid-column: 1 / -1; }
+  .bf .site-footer__col a { font-size: 14px; }
+  .bf .site-footer__brand .site-footer__logo-tile img { height: 56px !important; }
+  .bf .site-footer__brand h2 { font-size: 20px; }
+  .bf .site-footer__bottom nav { gap: 14px; }
+}
