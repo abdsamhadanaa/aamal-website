@@ -159,6 +159,19 @@ class SiteFooter extends HTMLElement {
           <div class="sf-compact">
             <a class="sf-compact__logo" href="index.html">${V3 ? `<span class="site-footer__logo-tile"><img src="${IMG}${LOGO.light}" alt="A'amal Group" width="${LOGO.w}" height="${LOGO.h}" loading="lazy" decoding="async"></span>` : `<img src="${IMG}${LOGO.dark}" alt="A'amal Group" width="${LOGO.w}" height="${LOGO.h}" loading="lazy" decoding="async">`}</a>
             <nav class="sf-compact__links" aria-label="Contact">
+              <details class="sf-drop">
+                <summary>Our Services<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></summary>
+                <div class="sf-drop__panel">
+                  <a href="artificial-lagoons.html">Artificial Lagoons</a>
+                  <a href="sports-facilities.html">Sports Facilities</a>
+                  <a href="operations-maintenance.html">Operations &amp; Maintenance</a>
+                  <a href="electrical-instrumentation.html">Electrical &amp; Instrumentation</a>
+                  <a href="waterproofing-industrial-coating.html">Waterproofing &amp; Coating</a>
+                  <a href="industry-transformation.html">Industry Transformation</a>
+                  <a href="human-resource-management.html">Human Resource Management</a>
+                  <a href="project-solutions.html">Project Management Solution</a>
+                </div>
+              </details>
               <a href="tel:+966138973938">+966 13 897 3938</a>
               <a href="mailto:info@aamal-group.com">info@aamal-group.com</a>
               <a class="btn btn--primary" href="contact.html">Get in Touch</a>
@@ -475,4 +488,12 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroSlider();
   initFilters();
   initForms();
+});
+
+/* Compact footer services dropdown: close on outside click / Escape */
+document.addEventListener('click', (e) => {
+  document.querySelectorAll('.sf-drop[open]').forEach((d) => { if (!d.contains(e.target)) d.removeAttribute('open'); });
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') document.querySelectorAll('.sf-drop[open]').forEach((d) => d.removeAttribute('open'));
 });

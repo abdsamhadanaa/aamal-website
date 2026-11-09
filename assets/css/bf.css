@@ -176,3 +176,13 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .sf-compact__links a:not(.btn) { color: inherit; text-decoration: none; opacity: .85; }
 .sf-compact__links a:not(.btn):hover { opacity: 1; text-decoration: underline; }
 @media (max-width: 760px) { .sf-compact { flex-direction: column; align-items: flex-start; } }
+.sf-drop { position: relative; }
+.sf-drop summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; color: inherit; font-weight: 500; user-select: none; }
+.sf-drop summary::-webkit-details-marker { display: none; }
+.sf-drop summary:hover { border-color: rgba(255,255,255,.7); }
+.sf-drop summary svg { transition: transform .2s ease; }
+.sf-drop:not([open]) summary svg { transform: rotate(180deg); }
+.sf-drop__panel { position: absolute; bottom: calc(100% + 10px); left: 0; z-index: 20; min-width: 280px; background: #fff; border-radius: 16px; box-shadow: 0 20px 40px -12px rgba(0,0,0,.35); padding: 8px; display: grid; }
+.sf-drop__panel a { color: var(--charcoal, #2E3133) !important; opacity: 1 !important; text-decoration: none !important; padding: 10px 14px; border-radius: 10px; font-size: 15px; }
+.sf-drop__panel a:hover { background: #EEF5F0; color: var(--green-dark, #157F36) !important; }
+@media (max-width: 760px) { .sf-drop__panel { min-width: 260px; } }
