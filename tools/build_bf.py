@@ -417,6 +417,13 @@ def about_class(s):
         return s
     return re.sub(r'<body([^>]*?)class="([^"]*)"', r'<body\1class="\2 page-about"', s, count=1)
 
+def hr_field_team(s):
+    """Client: HR overview photo is field engineers at a plant (V3bF)."""
+    if PAGE[0] != "human-resource-management.html":
+        return s
+    return s.replace('<img class="s-split__img" src="../assets/img/services/hr-handshake.webp" srcset="../assets/img/services/hr-handshake-800.webp 800w, ../assets/img/services/hr-handshake.webp 1200w" sizes="(max-width: 900px) 100vw, 45vw" width="1200" height="800" alt="Handshake over documents after a successful hire"',
+                     '<img class="s-split__img" src="../assets/img/services/hr-field-team.webp" srcset="../assets/img/services/hr-field-team-800.webp 800w, ../assets/img/services/hr-field-team.webp 1200w" sizes="(max-width: 900px) 100vw, 45vw" width="1200" height="587" alt="Two field engineers in safety gear reviewing a tablet at an industrial plant"', 1)
+
 def duplays_photos(s):
     """Client: Sports Facilities page uses photos from our partner DUPLAYS (duplays.com)."""
     if PAGE[0] != "sports-facilities.html":
