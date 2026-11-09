@@ -171,7 +171,7 @@ class SiteFooter extends HTMLElement {
               <span class="site-footer__title">Contact</span>
               <a href="tel:+966138973938">+966 13 897 3938</a>
               <a href="mailto:info@aamal-group.com">info@aamal-group.com</a>
-              <address>King Abdullah Road, Middle East Commercial Center<br>P.O. Box 4977, Al Khobar 31952<br>Kingdom of Saudi Arabia</address>
+              <address>King Abdullah Road, Middle East Commercial Center<br>Al Khobar 31952<br>Kingdom of Saudi Arabia</address>
             </div>
           </div>
           <div class="site-footer__bottom">
