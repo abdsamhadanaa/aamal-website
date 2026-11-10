@@ -496,3 +496,30 @@ document.addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') document.querySelectorAll('.sf-drop[open]').forEach((d) => d.removeAttribute('open'));
 });
+
+
+/* Awards: crossfade slideshow with dots */
+document.querySelectorAll('[data-fade]').forEach((box) => {
+  const imgs = [...box.querySelectorAll(':scope > img')];
+  const dots = box.querySelector('.aw-dots');
+  if (imgs.length < 2 || !dots) return;
+  let i = 0, timer = null;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const btns = imgs.map((img, n) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.setAttribute('role', 'tab'); b.setAttribute('aria-label', 'Show photo ' + (n + 1));
+    b.addEventListener('click', () => { show(n); restart(); });
+    dots.appendChild(b); return b;
+  });
+  const show = (n) => {
+    i = (n + imgs.length) % imgs.length;
+    imgs.forEach((im, k) => im.classList.toggle('is-active', k === i));
+    btns.forEach((b, k) => b.setAttribute('aria-selected', k === i ? 'true' : 'false'));
+  };
+  const start = () => { if (!reduce && !timer) timer = setInterval(() => show(i + 1), 4500); };
+  const stop = () => { clearInterval(timer); timer = null; };
+  const restart = () => { stop(); start(); };
+  box.addEventListener('mouseenter', stop); box.addEventListener('mouseleave', start);
+  imgs.forEach((im) => { im.loading = 'eager'; });
+  show(0); start();
+});
