@@ -73,7 +73,6 @@ if (V3) {
     if (x.href === 'project-solutions.html') x.label = 'Project Management Solution';
   }));
   NAV.find((l) => l.id === 'recognition').sub = [
-    { label: 'Global leadership roles', href: 'awards.html#roles' },
     { label: 'Awards and honours', href: 'awards.html#awards' },
     { label: 'Global engagement', href: 'awards.html#global-engagement' },
     { label: "A'amal at Global Stage", href: 'awards.html#global-stage' },
