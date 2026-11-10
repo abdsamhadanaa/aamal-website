@@ -228,16 +228,12 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .bf .hero-logos .brand-marquee__track img { max-height: 58px; }
 @media (max-width: 600px) { .bf .hero-logos .brand-marquee__track li { width: 130px; height: 72px; } .bf .hero-logos .brand-marquee__track img { max-height: 46px; } }
 
-/* Awards: rotating award photos */
-.bf .aw-slides { --n: 4; --t: 4s; position: relative; width: 100%; max-width: 460px; aspect-ratio: 580 / 820; border-radius: 24px; overflow: hidden; box-shadow: 0 24px 50px -30px rgba(46, 49, 51, .45); background: #e9efe9; }
-.bf .aw-slides img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; opacity: 0; animation: aw-fade calc(var(--n) * var(--t)) infinite; }
-.bf .aw-slides img:nth-child(2) { animation-delay: calc(var(--t) * 1); }
-.bf .aw-slides img:nth-child(3) { animation-delay: calc(var(--t) * 2); }
-.bf .aw-slides img:nth-child(4) { animation-delay: calc(var(--t) * 3); }
-.bf .aw-slides img:nth-child(5) { animation-delay: calc(var(--t) * 4); }
-.bf .aw-slides img:nth-child(6) { animation-delay: calc(var(--t) * 5); }
-.bf .aw-slides img:nth-child(7) { animation-delay: calc(var(--t) * 6); }
-.bf .aw-slides img:nth-child(8) { animation-delay: calc(var(--t) * 7); }
-@keyframes aw-fade { 0% { opacity: 0; transform: scale(1.02); } 6% { opacity: 1; } 25% { opacity: 1; } 31% { opacity: 0; transform: scale(1.09); } 100% { opacity: 0; } }
+/* Awards: sliding award photos */
+.bf .aw-slides { position: relative; width: 100%; max-width: 460px; aspect-ratio: 580 / 820; border-radius: 24px; overflow: hidden; box-shadow: 0 24px 50px -30px rgba(46, 49, 51, .45); background: #e9efe9; }
+.bf .aw-slides__track { display: flex; height: 100%; animation: aw-slide 20s cubic-bezier(.65, 0, .35, 1) infinite; }
+.bf .aw-slides__track img { flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; animation: aw-pan 5s ease-in-out infinite alternate; }
+.bf .aw-slides:hover .aw-slides__track, .bf .aw-slides:hover img { animation-play-state: paused; }
+@keyframes aw-slide { 0%, 20% { transform: translateX(0); } 25%, 45% { transform: translateX(-100%); } 50%, 70% { transform: translateX(-200%); } 75%, 95% { transform: translateX(-300%); } 100% { transform: translateX(-400%); } }
+@keyframes aw-pan { from { transform: scale(1.02); } to { transform: scale(1.1) translateY(-2%); } }
 @media (max-width: 900px) { .bf .aw-slides { margin: 0 auto 8px; max-width: 380px; } }
-@media (prefers-reduced-motion: reduce) { .bf .aw-slides img { animation: none; } .bf .aw-slides img:first-child { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .bf .aw-slides__track, .bf .aw-slides__track img { animation: none; } }
