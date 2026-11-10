@@ -51,10 +51,9 @@ const NAV = {
       ] },
     ] },
     { id: 'recognition', label: 'Global Recognition', href: 'awards.html', sub: [
-      { label: 'Global leadership roles', href: 'awards.html#roles' },
+      { label: 'Organisations we lead', href: 'awards.html#organisations' },
       { label: 'Awards and honours', href: 'awards.html#awards' },
-      { label: 'Company commitments', href: 'awards.html#company' },
-      { label: 'Milestones', href: 'awards.html#milestones' },
+      { label: "A'amal at Global Stage", href: 'awards.html#global-stage' },
     ] },
     { id: 'responsibility', label: 'Sustainability', href: 'responsibility.html' },
     { id: 'media', label: 'Media', href: 'media.html' },
@@ -73,6 +72,7 @@ if (V3) {
     if (x.href === 'project-solutions.html') x.label = 'Project Management Solution';
   }));
   NAV.find((l) => l.id === 'recognition').sub = [
+    { label: 'Organisations we lead', href: 'awards.html#organisations' },
     { label: 'Awards and honours', href: 'awards.html#awards' },
     { label: "A'amal at Global Stage", href: 'awards.html#global-stage' },
   ];
