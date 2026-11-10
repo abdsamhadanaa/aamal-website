@@ -74,7 +74,6 @@ if (V3) {
   }));
   NAV.find((l) => l.id === 'recognition').sub = [
     { label: 'Awards and honours', href: 'awards.html#awards' },
-    { label: 'Global engagement', href: 'awards.html#global-engagement' },
     { label: "A'amal at Global Stage", href: 'awards.html#global-stage' },
   ];
 }
