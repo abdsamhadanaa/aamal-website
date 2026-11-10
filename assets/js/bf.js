@@ -519,7 +519,7 @@ document.querySelectorAll('[data-fade]').forEach((box) => {
   const start = () => { if (!reduce && !timer) timer = setInterval(() => show(i + 1), 4500); };
   const stop = () => { clearInterval(timer); timer = null; };
   const restart = () => { stop(); start(); };
-  box.addEventListener('mouseenter', stop); box.addEventListener('mouseleave', start);
+  document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
   imgs.forEach((im) => { im.loading = 'eager'; });
   show(0); start();
 });
