@@ -254,3 +254,54 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 /* Contact link inside the mobile menu (the header button is hidden there) */
 .bf .site-nav .site-nav__contact { display: none; }
 @media (max-width: 1080px) { .bf .site-nav .site-nav__contact { display: block; color: var(--green-dark, #157F36); font-weight: 600; border-bottom: 0; } }
+
+/* ---------- Pre-launch audit fixes (Nov 2026) ---------- */
+/* Screen-reader-only text */
+.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* Phones: a shorter sticky header leaves more room for content */
+@media (max-width: 600px) {
+  body.bf .site-header__logo img { height: 52px; }
+  body.bf .site-header.is-scrolled .site-header__logo img { height: 44px; }
+}
+/* Mobile menu open: the page behind it doesn't scroll */
+@media (max-width: 1080px) {
+  html.menu-open, html.menu-open body { overflow: hidden; }
+  html.menu-open .site-nav.is-open { max-height: calc(100dvh - 90px); overflow-y: auto; overscroll-behavior: contain; }
+}
+
+/* Offer cards: fixed columns so a last card never sits alone on its row */
+.bf .offer-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.bf .offer-grid > :last-child:nth-child(3n + 1) { grid-column: 1 / -1; }
+@media (max-width: 1100px) {
+  .bf .offer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bf .offer-grid > :last-child:nth-child(3n + 1) { grid-column: auto; }
+  .bf .offer-grid > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
+@media (max-width: 700px) {
+  .bf .offer-grid { grid-template-columns: 1fr; }
+}
+
+/* Contact page: three contact cards */
+.bf .c-cards { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 960px) { .bf .c-cards { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px) { .bf .c-cards { grid-template-columns: 1fr; } }
+
+/* Form: spam trap hidden from people, status message under the button */
+.form .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form-status { grid-column: 1 / -1; margin: 0; padding: 12px 16px; border-radius: var(--r-sm, 8px); background: #FDECEA; color: #8C1D18; font-size: 15px; }
+.form-status a { color: inherit; font-weight: 600; }
+.form [type="submit"][disabled] { opacity: .7; cursor: progress; }
+
+/* Privacy page */
+.legal { max-width: 760px; }
+.legal h2 { font-size: 24px; margin: 36px 0 10px; }
+.legal p, .legal li { color: var(--text, #3B3F42); }
+.legal .legal-note { background: #FFF6E0; border-left: 4px solid #E5A100; padding: 12px 16px; font-size: 15px; }
+
+/* Printing: show all content, hide navigation chrome */
+@media print {
+  .rv, .tw, .wipe, .rv img { opacity: 1 !important; transform: none !important; filter: none !important; clip-path: none !important; transition: none !important; animation: none !important; }
+  .site-nav, .nav-toggle, .scroll-progress, .skip-link, .site-header__actions { display: none !important; }
+  .site-header { position: static !important; box-shadow: none !important; }
+}

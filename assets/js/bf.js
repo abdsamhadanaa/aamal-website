@@ -80,6 +80,13 @@ if (V3) {
 /* ---------- Shared header ---------- */
 class SiteHeader extends HTMLElement {
   connectedCallback() {
+    // Pages ship with the header already in the HTML (tools/prerender-layout.mjs), so it shows
+    // without JavaScript and doesn't shift the page. Only build it here if it's missing.
+    if (!this.querySelector('.site-header')) this.render();
+    this.bind();
+  }
+
+  render() {
     const active = this.getAttribute('active') || '';
     const esc = (t) => t.replace(/&/g, '&amp;');
     const caret = '<svg class="nav-caret" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
@@ -111,35 +118,46 @@ class SiteHeader extends HTMLElement {
           </div>
         </div>
       </header>`;
+  }
 
-    // Dropdowns: open on hover (desktop, via CSS) or by the caret button (touch, keyboard, mobile)
+  bind() {
+    // Dropdowns: open on hover (desktop, via CSS) or by the caret button (touch, keyboard, mobile).
+    // The category name itself is a normal link to its overview page.
     const closeAll = (except) => this.querySelectorAll('.nav-drop.is-open').forEach((o) => {
       if (o === except) return;
       o.classList.remove('is-open'); o.querySelector('.nav-drop__btn').setAttribute('aria-expanded', 'false');
     });
     this.querySelectorAll('.nav-drop').forEach((d) => {
       const btn = d.querySelector('.nav-drop__btn');
-      const label = d.querySelector('.nav-drop__head > a');
-      const toggleDrop = (e) => {
+      btn.addEventListener('click', (e) => {
         e.preventDefault();
         const open = !d.classList.contains('is-open');
         closeAll(d);
         d.classList.toggle('is-open', open);
         btn.setAttribute('aria-expanded', String(open));
-      };
-      // Clicking the category name or the arrow pins the menu open; it stays until you click elsewhere
-      btn.addEventListener('click', toggleDrop);
-      label.addEventListener('click', toggleDrop);
+      });
     });
-    document.addEventListener('click', (e) => { if (!e.target.closest('.nav-drop')) this.querySelectorAll('.nav-drop.is-open').forEach((o) => { o.classList.remove('is-open'); o.querySelector('.nav-drop__btn').setAttribute('aria-expanded', 'false'); }); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') this.querySelectorAll('.nav-drop.is-open').forEach((o) => { o.classList.remove('is-open'); o.querySelector('.nav-drop__btn').setAttribute('aria-expanded', 'false'); }); });
 
     const toggle = this.querySelector('.nav-toggle');
     const nav = this.querySelector('.site-nav');
-    toggle.addEventListener('click', () => {
-      const open = nav.classList.toggle('is-open');
+    const setMenu = (open, returnFocus) => {
+      nav.classList.toggle('is-open', open);
+      document.documentElement.classList.toggle('menu-open', open);
       toggle.setAttribute('aria-expanded', String(open));
       toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      if (!open && returnFocus) toggle.focus();
+    };
+    toggle.addEventListener('click', () => setMenu(!nav.classList.contains('is-open')));
+    nav.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
+    matchMedia('(min-width: 1081px)').addEventListener('change', (m) => { if (m.matches) setMenu(false); });
+
+    document.addEventListener('click', (e) => { if (!e.target.closest('.nav-drop')) closeAll(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      const dropBtn = document.activeElement && document.activeElement.closest('.nav-drop.is-open') && document.activeElement.closest('.nav-drop').querySelector('.nav-drop__btn');
+      closeAll();
+      if (dropBtn) dropBtn.focus();
+      if (nav.classList.contains('is-open')) setMenu(false, true);
     });
   }
 }
@@ -147,6 +165,7 @@ class SiteHeader extends HTMLElement {
 /* ---------- Shared footer ---------- */
 class SiteFooter extends HTMLElement {
   connectedCallback() {
+    if (this.querySelector('footer')) return; // already in the HTML (tools/prerender-layout.mjs)
     const year = new Date().getFullYear();
     const v2 = VERSION === 2;
     if (this.hasAttribute('compact')) {
@@ -178,9 +197,8 @@ class SiteFooter extends HTMLElement {
           <div class="site-footer__bottom">
             <span>© ${year} A'amal Group. All rights reserved.</span>
             <nav aria-label="Legal and social">
-              <a href="#">Privacy Policy</a>
+              <a href="privacy.html">Privacy Policy</a>
               <a href="https://twitter.com/AAMAL_GROUP_SA" target="_blank" rel="noopener">X / Twitter</a>
-              <a href="#">LinkedIn</a>
             </nav>
           </div>
         </div>
@@ -229,10 +247,9 @@ class SiteFooter extends HTMLElement {
           <div class="site-footer__bottom">
             <span>© ${year} A'amal Group. All rights reserved.</span>
             <nav aria-label="Legal and social">
-              <a href="#">Privacy Policy</a>
+              <a href="privacy.html">Privacy Policy</a>
               ${v2 ? '<a href="responsibility.html#speak-up">Report a Concern</a>' : ''}
               <a href="https://twitter.com/AAMAL_GROUP_SA" target="_blank" rel="noopener">X / Twitter</a>
-              <a href="#">LinkedIn</a>
             </nav>
           </div>
         </div>
@@ -310,37 +327,98 @@ function initFilters() {
 }
 
 /* ---------- Forms ----------
-   Front-end only: checks required fields, then shows a thank-you message.
-   Connect `form.action` to your backend or a form service to actually send. */
+   The contact form posts to the URL in its `action` attribute (a form service such as Formspree
+   or Web3Forms — see README "Contact form"). With no action set, it opens the visitor's email app
+   with the message filled in, so an enquiry is never silently lost. */
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const MAILTO = 'info@aamal-group.com';
+
+function fieldError(input) {
+  const v = input.value.trim();
+  if (input.required && !v) return 'This field is required.';
+  if (v && input.type === 'email' && !EMAIL_RE.test(v)) return 'Please enter a valid email address, like name@company.com.';
+  if (v && input.type === 'tel' && !/^[+()\d\s-]{7,20}$/.test(v)) return 'Please enter a valid phone number.';
+  if (input.maxLength > 0 && v.length > input.maxLength) return `Please keep this under ${input.maxLength} characters.`;
+  return '';
+}
+
 function initForms() {
   document.querySelectorAll('form[data-form]').forEach((form) => {
-    form.addEventListener('submit', (e) => {
+    const status = form.querySelector('[data-form-status]');
+    const submit = form.querySelector('[type="submit"]');
+    const submitLabel = submit ? submit.textContent : '';
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       form.querySelectorAll('.field-error').forEach((el) => el.remove());
+      if (status) { status.hidden = true; status.textContent = ''; }
       let firstInvalid = null;
+      let errors = 0;
 
-      form.querySelectorAll('[required]').forEach((input) => {
-        if (!input.checkValidity()) {
+      form.querySelectorAll('input:not([type="hidden"]):not([name="website"]), select, textarea').forEach((input) => {
+        const err = fieldError(input);
+        if (err) {
           const msg = document.createElement('span');
           msg.className = 'field-error';
-          msg.id = `${input.name}-error`;
-          msg.textContent = input.type === 'email' && input.value ? 'Please enter a valid email address.' : 'This field is required.';
+          msg.id = `${form.id}-${input.name}-error`;
+          msg.textContent = err;
           input.setAttribute('aria-invalid', 'true');
           input.setAttribute('aria-describedby', msg.id);
           input.closest('.field').appendChild(msg);
           firstInvalid = firstInvalid || input;
+          errors += 1;
         } else {
           input.removeAttribute('aria-invalid');
           input.removeAttribute('aria-describedby');
         }
       });
 
-      if (firstInvalid) { firstInvalid.focus(); return; }
+      if (firstInvalid) {
+        if (status) { status.hidden = false; status.textContent = errors === 1 ? 'Please fix the highlighted field.' : `Please fix the ${errors} highlighted fields.`; }
+        firstInvalid.focus();
+        return;
+      }
 
+      const data = new FormData(form);
       const success = document.getElementById(form.dataset.success);
-      form.hidden = true;
-      success.hidden = false;
-      success.focus();
+      const done = (text) => {
+        if (text) success.querySelector('p').textContent = text;
+        form.hidden = true;
+        success.hidden = false;
+        success.focus();
+      };
+
+      // Spam trap: real visitors never see or fill the "website" field
+      if (data.get('website')) { done(); return; }
+      data.delete('website');
+
+      const endpoint = form.getAttribute('action');
+      if (!endpoint) {
+        const body = ['name', 'company', 'email', 'phone', 'subject', 'message']
+          .map((k) => data.get(k) ? `${k[0].toUpperCase() + k.slice(1)}: ${String(data.get(k)).trim()}` : '')
+          .filter(Boolean).join('\n');
+        location.href = `mailto:${MAILTO}?subject=${encodeURIComponent('Website enquiry: ' + (data.get('subject') || ''))}&body=${encodeURIComponent(body)}`;
+        done(`Your email app should now open with your message ready — press send to reach us. If nothing opened, email ${MAILTO} or call +966 13 897 3938.`);
+        return;
+      }
+
+      submit.disabled = true;
+      submit.textContent = 'Sending…';
+      form.setAttribute('aria-busy', 'true');
+      try {
+        const res = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+        if (!res.ok) throw new Error(String(res.status));
+        done();
+      } catch (err) {
+        if (status) {
+          status.hidden = false;
+          status.innerHTML = `Sorry, your message couldn't be sent. Please try again, or email <a href="mailto:${MAILTO}">${MAILTO}</a> or call <a href="tel:+966138973938">+966 13 897 3938</a>.`;
+        }
+      } finally {
+        submit.disabled = false;
+        submit.textContent = submitLabel;
+        form.removeAttribute('aria-busy');
+      }
     });
   });
 
@@ -425,6 +503,12 @@ function initMotion() {
     entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('tw-in'); hio.unobserve(e.target); } });
   }, { threshold: 0.3 });
   heads.forEach((h) => hio.observe(h));
+
+  // Printing or saving the page shows everything, not just what was scrolled past
+  addEventListener('beforeprint', () => {
+    document.querySelectorAll('.rv').forEach((el) => el.classList.add('is-in'));
+    document.querySelectorAll('.tw-wrap').forEach((h) => h.classList.add('tw-in'));
+  });
 
   // Scroll progress bar + header shadow + gentle parallax on large images
   const bar = document.createElement('div');
