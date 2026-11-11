@@ -24,8 +24,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/styles.css?v=ed9b313b">
   <link rel="stylesheet" href="../assets/css/services.css?v=f5efd716">
-  <link rel="stylesheet" href="../assets/css/bf.css?v=7e4cf486">
-  <script src="../assets/js/bf.js?v=469c9e2f" defer></script>
+  <link rel="stylesheet" href="../assets/css/bf.css?v=6c4b136e">
+  <script src="../assets/js/bf.js?v=c471561e" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://abdsamhadanaa.github.io/aamal-website/v3bf/#org","name":"A'amal Group","alternateName":"Arab Economic & Business Group","url":"https://abdsamhadanaa.github.io/aamal-website/v3bf/","logo":"https://abdsamhadanaa.github.io/aamal-website/assets/img/logo.png","foundingDate":"1994","email":"info@aamal-group.com","telephone":"+966 13 897 3938","address":{"@type":"PostalAddress","streetAddress":"King Abdullah Road, Middle East Commercial Center","addressLocality":"Al Khobar","postalCode":"31952","addressCountry":"SA"},"sameAs":["https://twitter.com/AAMAL_GROUP_SA"]},{"@type":"WebPage","@id":"https://abdsamhadanaa.github.io/aamal-website/v3bf/contact.html","url":"https://abdsamhadanaa.github.io/aamal-website/v3bf/contact.html","name":"Contact Us — A'amal Group","description":"Contact A'amal Group: King Abdullah Road, Middle East Commercial Center, Al Khobar. Tel +966 13 897 3938.","isPartOf":{"@type":"WebSite","url":"https://abdsamhadanaa.github.io/aamal-website/v3bf/","name":"A'amal Group"},"publisher":{"@id":"https://abdsamhadanaa.github.io/aamal-website/v3bf/#org"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://abdsamhadanaa.github.io/aamal-website/v3bf/"},{"@type":"ListItem","position":2,"name":"Contact Us","item":"https://abdsamhadanaa.github.io/aamal-website/v3bf/contact.html"}]}]}</script>
 </head>
 <body data-version="2" class="bf">
@@ -67,26 +67,34 @@
       <div class="container c-layout">
         <div class="contact-form-wrap">
           <!-- To send messages, set action="https://formspree.io/f/YOUR_ID" (or another form service). Without an action the form opens the visitor's email app. -->
-          <form class="form" id="contact-form" data-form data-success="contact-success" method="post" novalidate>
-            <h2 class="h3 full" style="font-size: 26px">Send us a message</h2>
-            <label class="field">Full name<input type="text" name="name" autocomplete="name" maxlength="100" required></label>
-            <label class="field">Company<input type="text" name="company" autocomplete="organization" maxlength="150"></label>
-            <label class="field">Email<input type="email" name="email" autocomplete="email" maxlength="254" required></label>
-            <label class="field">Phone<input type="tel" name="phone" autocomplete="tel" maxlength="20"></label>
-            <label class="field full">Subject
-              <select name="subject">
-                <option>New project enquiry</option>
-                <option>Hospitality &amp; Sports</option>
-                <option>Contracting &amp; Technical</option>
-                <option>Project Management Solution</option>
-                <option>Media enquiry</option>
-                <option>Other</option>
-              </select>
-            </label>
-            <label class="field full">Message<textarea name="message" rows="5" maxlength="5000" required></textarea></label>
+          <form class="form form--contact" id="contact-form" data-form data-success="contact-success" method="post" novalidate>
+            <div class="form-head full">
+              <span class="s-pill">Send a message</span>
+              <h2 class="h3">How can we help?</h2>
+              <p>Tell us a little about your project or question and the right team will get back to you.</p>
+            </div>
+            <fieldset class="field full topic-field">
+              <legend>What is it about?</legend>
+              <div class="topic-chips">
+                <label class="chip"><input type="radio" name="subject" value="New project enquiry" checked><span>New project</span></label>
+                <label class="chip"><input type="radio" name="subject" value="Hospitality &amp; Sports"><span>Hospitality &amp; Sports</span></label>
+                <label class="chip"><input type="radio" name="subject" value="Contracting &amp; Technical"><span>Contracting &amp; Technical</span></label>
+                <label class="chip"><input type="radio" name="subject" value="Project Management Solution"><span>Project Management Solution</span></label>
+                <label class="chip"><input type="radio" name="subject" value="Media enquiry"><span>Media</span></label>
+                <label class="chip"><input type="radio" name="subject" value="Other"><span>Other</span></label>
+              </div>
+            </fieldset>
+            <label class="field"><span class="field__label">Full name <abbr class="req" title="required">*</abbr></span><input type="text" name="name" autocomplete="name" maxlength="100" placeholder="Your name" required></label>
+            <label class="field"><span class="field__label">Company</span><input type="text" name="company" autocomplete="organization" maxlength="150" placeholder="Company name (optional)"></label>
+            <label class="field"><span class="field__label">Email <abbr class="req" title="required">*</abbr></span><input type="email" name="email" autocomplete="email" maxlength="254" placeholder="name@company.com" required></label>
+            <label class="field"><span class="field__label">Phone</span><input type="tel" name="phone" autocomplete="tel" maxlength="20" placeholder="+966 5x xxx xxxx"></label>
+            <label class="field full"><span class="field__label">Message <abbr class="req" title="required">*</abbr></span><textarea name="message" rows="6" maxlength="5000" placeholder="Project type, location, timeline, anything that helps us understand what you need" required></textarea></label>
             <label class="hp-field" aria-hidden="true">Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
             <p class="form-status" data-form-status role="alert" hidden></p>
-            <button class="btn btn--primary full" type="submit" style="justify-self: start">Send message</button>
+            <div class="form-foot full">
+              <button class="btn btn--primary btn--send" type="submit">Send message</button>
+              <p class="form-note"><abbr class="req" title="required">*</abbr> Required. We use your details only to reply to you; see our <a href="privacy.html">Privacy Policy</a>.</p>
+            </div>
           </form>
           <div class="form-success" id="contact-success" tabindex="-1" role="status" hidden>
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#157F36" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>

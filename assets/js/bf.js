@@ -348,6 +348,16 @@ function initForms() {
     const submit = form.querySelector('[type="submit"]');
     const submitLabel = submit ? submit.textContent : '';
 
+    // Clear a field's error as soon as it becomes valid
+    form.addEventListener('input', (e) => {
+      const input = e.target;
+      if (input.getAttribute('aria-invalid') !== 'true' || fieldError(input)) return;
+      const msg = document.getElementById(input.getAttribute('aria-describedby'));
+      if (msg) msg.remove();
+      input.removeAttribute('aria-invalid');
+      input.removeAttribute('aria-describedby');
+    });
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       form.querySelectorAll('.field-error').forEach((el) => el.remove());
