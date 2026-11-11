@@ -57,7 +57,6 @@ const NAV = {
     ] },
     { id: 'responsibility', label: 'Sustainability', href: 'responsibility.html' },
     { id: 'media', label: 'Media', href: 'media.html' },
-    { id: 'careers', label: 'Careers', href: 'careers.html' },
   ],
 }[VERSION];
 
@@ -203,7 +202,6 @@ class SiteFooter extends HTMLElement {
               <a href="responsibility.html">${v2 ? 'Sustainability' : 'Social Responsibility'}</a>
               <a href="awards.html">${v2 ? "Global Recognition" : 'Awards'}</a>
               <a href="media.html">Media</a>
-              <a href="careers.html">Careers</a>
             </nav>
             ${v2 ? `<nav class="site-footer__col" aria-label="Services">
               <span class="site-footer__title">Services</span>
