@@ -250,3 +250,7 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .bf .cover-card figcaption span { font-size: 14px; color: var(--muted); line-height: 1.45; }
 @media (max-width: 900px) { .bf .cover-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
 @media (max-width: 520px) { .bf .cover-grid { grid-template-columns: 1fr; } }
+
+/* Contact link inside the mobile menu (the header button is hidden there) */
+.bf .site-nav .site-nav__contact { display: none; }
+@media (max-width: 1080px) { .bf .site-nav .site-nav__contact { display: block; color: var(--green-dark, #157F36); font-weight: 600; border-bottom: 0; } }

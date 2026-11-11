@@ -102,7 +102,7 @@ class SiteHeader extends HTMLElement {
           <a class="site-header__logo" href="index.html">
             <img src="${IMG}${LOGO.light}" alt="A'amal Group — Arab Economic &amp; Business Group, home" width="${LOGO.w}" height="${LOGO.h}">
           </a>
-          <nav class="site-nav" id="site-nav" aria-label="Main navigation">${links}</nav>
+          <nav class="site-nav" id="site-nav" aria-label="Main navigation">${links}<a class="site-nav__contact" href="contact.html"${active === 'contact' ? ' aria-current="page"' : ''}>Contact Us</a></nav>
           <div class="site-header__actions">
             ${VERSION === 1 ? '<a class="lang-link" href="#" lang="ar">العربية</a>' : ''}
             <a class="btn btn--primary" href="contact.html"${active === 'contact' ? ' aria-current="page"' : ''}>Contact Us</a>
