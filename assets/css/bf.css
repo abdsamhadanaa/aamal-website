@@ -189,11 +189,11 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .sf-loc { display: inline-flex; align-items: center; gap: 6px; }
 
 /* About overview: justified paragraphs (client) */
-.about-overview__body p { text-align: start; }
+.about-overview__body p { text-align: justify; text-justify: inter-word; }
 @media (max-width: 600px) { .about-overview__body p { text-align: left; } }
 
 /* Founder message: justified paragraphs (client) */
-.leader__quote p { text-align: start; }
+.leader__quote p { text-align: justify; text-justify: inter-word; }
 @media (max-width: 600px) { .leader__quote p { text-align: left; } }
 
 /* Mobile: text before image in split sections so images don't stack (client) */
