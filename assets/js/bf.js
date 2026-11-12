@@ -53,7 +53,7 @@ const NAV = {
     { id: 'recognition', label: 'Global Recognition', href: 'awards.html', sub: [
       { label: 'Organisations we lead', href: 'awards.html#organisations' },
       { label: 'Awards and honours', href: 'awards.html#awards' },
-      { label: "A'amal at Global Stage", href: 'awards.html#global-stage' },
+      { label: "A'amal on the Global Stage", href: 'awards.html#global-stage' },
     ] },
     { id: 'responsibility', label: 'Sustainability', href: 'responsibility.html' },
     { id: 'media', label: 'Media', href: 'media.html' },
@@ -73,7 +73,7 @@ if (V3) {
   NAV.find((l) => l.id === 'recognition').sub = [
     { label: 'Organisations we lead', href: 'awards.html#organisations' },
     { label: 'Awards and honours', href: 'awards.html#awards' },
-    { label: "A'amal at Global Stage", href: 'awards.html#global-stage' },
+    { label: "A'amal on the Global Stage", href: 'awards.html#global-stage' },
   ];
 }
 
