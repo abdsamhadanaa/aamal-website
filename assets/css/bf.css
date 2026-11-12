@@ -379,3 +379,7 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 #all-services { padding-top: 24px; }
 /* Contact map: comfortable tap area for "Get directions" */
 .c-map__label a { display: inline-flex; align-items: center; min-height: 28px; }
+/* Justified body text on every page (same style as About): straight edges on wide screens,
+   left-aligned on phones where narrow lines would open large gaps */
+.heritage__text p, .s-split__text > p, .vm-item p, .feature-row__text > p, .legal > p { text-align: justify; text-justify: inter-word; }
+@media (max-width: 600px) { .heritage__text p, .s-split__text > p, .vm-item p, .feature-row__text > p, .legal > p { text-align: left; } }
