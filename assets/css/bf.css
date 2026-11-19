@@ -383,3 +383,6 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
    left-aligned on phones where narrow lines would open large gaps */
 .heritage__text p, .s-split__text > p, .vm-item p, .feature-row__text > p, .legal > p { text-align: justify; text-justify: inter-word; }
 @media (max-width: 600px) { .heritage__text p, .s-split__text > p, .vm-item p, .feature-row__text > p, .legal > p { text-align: left; } }
+
+/* Vision/mission/values column is narrow: justified text opened wide gaps between words, so left-align it */
+.bf .vm-item p { text-align: left; }
