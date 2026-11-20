@@ -428,3 +428,20 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .bf .offer-card .dot-list { margin-top: 4px; padding-top: 18px; border-top: 1px solid var(--line, #E3E8E4); gap: 10px; }
 .bf .offer-card .dot-list li { display: block; position: relative; padding-left: 30px; text-align: left; }
 .bf .offer-card .dot-list li::before { content: ""; position: absolute; left: 0; top: 3px; width: 20px; height: 20px; flex: none; transform: none; border-radius: 50%; background: #EEF7F1 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23157F36' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center / 12px no-repeat; }
+
+/* Service pages: Methodology as its own section (numbered step cards) */
+.bf .method-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 20px; counter-reset: none; }
+.bf .method-grid li { display: flex; flex-direction: column; gap: 10px; padding: 28px 26px; background: #fff; border: 1px solid var(--line, #E3E8E4); border-radius: 20px; box-shadow: 0 8px 28px rgba(20, 50, 30, .06); }
+.bf .method-grid .steps__num { display: inline-grid; place-items: center; width: 52px; height: 52px; border-radius: 16px; background: linear-gradient(135deg, #1FB04B, #157F36); color: #fff; font-size: 18px; font-weight: 700; box-shadow: 0 8px 18px -6px rgba(21, 127, 54, .55); margin-bottom: 6px; }
+.bf .method-grid .steps__title { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--charcoal, #2E3133); }
+.bf .method-grid .muted { text-align: left; line-height: 1.6; }
+/* Why choose A'amal: single column now that the steps moved out */
+.bf .s-why--solo { grid-template-columns: 1fr; }
+.bf .s-why--solo .s-why__list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px 32px; width: 100%; }
+@media (min-width: 1001px) {
+  .bf .method-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .bf .method-grid:has(> li:nth-child(6)) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (min-width: 561px) and (max-width: 1000px) { .bf .method-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.bf #why .chips li { background: #fff; border: 1px solid var(--line, #E3E8E4); }
+@media (min-width:761px){ .bf .s-why--solo .s-why__list{grid-template-columns:repeat(2,minmax(0,1fr));max-width:980px} }
