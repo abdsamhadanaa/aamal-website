@@ -619,3 +619,18 @@ document.querySelectorAll('[data-fade]').forEach((box) => {
   imgs.forEach((im) => { im.loading = 'eager'; });
   show(0); start();
 });
+
+/* In-page sub navigation on service pages */
+(function () {
+  function init() {
+    var n = document.querySelector('.subnav'); if (!n) return;
+    var links = [].slice.call(n.querySelectorAll('a'));
+    var h = document.querySelector('.site-header');
+    function setTop() { var hh = (h && getComputedStyle(h).position === 'sticky') ? h.offsetHeight : 0; n.style.top = hh + 'px'; document.documentElement.style.setProperty('--subnav-offset', (hh + n.offsetHeight + 16) + 'px'); }
+    setTop(); addEventListener('resize', setTop); addEventListener('scroll', setTop, { passive: true });
+    if (!('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { links.forEach(function (x) { var on = x.getAttribute('href') === '#' + e.target.id; x.classList.toggle('is-active', on); if (on && x.scrollIntoView && n.scrollWidth > n.clientWidth) { n.querySelector('.subnav__in').scrollLeft = x.offsetLeft - 16; } }); } }); }, { rootMargin: '-40% 0px -55% 0px' });
+    links.forEach(function (x) { var t = document.querySelector(x.getAttribute('href')); if (t) io.observe(t); });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
