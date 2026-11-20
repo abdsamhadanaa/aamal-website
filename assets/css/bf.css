@@ -390,3 +390,12 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 /* Vision 2030 rows are information, not links */
 .bf .v2030__row { grid-template-columns: 44px 1fr; cursor: default; }
 .bf .v2030__row:hover { background: var(--tint); transform: none; }
+
+/* Home "Our Businesses" cards: each service is a highlighted, clickable row */
+.bf .service-card .line-list { gap: 8px; }
+.bf .service-card .line-list li { border-top: 0; padding-top: 0; }
+.bf .service-card .line-list a { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-radius: 12px; background: #EEF7F1; color: #157F36; font-weight: 600; transition: background .2s ease, color .2s ease; }
+.bf .service-card .line-list a::after { content: "→"; transition: transform .2s ease; }
+.bf .service-card .line-list a:hover, .bf .service-card .line-list a:focus-visible { background: #1FB04B; color: #fff; }
+.bf .service-card .line-list a:hover::after { transform: translateX(4px); }
+.bf #services { scroll-margin-top: 90px; }
