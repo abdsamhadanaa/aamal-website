@@ -46,7 +46,7 @@ const NAV = {
         { label: 'Industry Transformation', href: 'industry-transformation.html' },
       ] },
       { label: 'Project Management Solution', href: 'management.html', items: [
-        { label: 'Human Resource Management', href: 'human-resource-management.html' },
+        { label: 'Human Capital', href: 'human-resource-management.html' },
         { label: 'Project Solutions', href: 'project-solutions.html' },
       ] },
     ] },
@@ -183,7 +183,7 @@ class SiteFooter extends HTMLElement {
                   <a href="electrical-instrumentation.html">Electrical &amp; Instrumentation</a>
                   <a href="waterproofing-industrial-coating.html">Waterproofing &amp; Coating</a>
                   <a href="industry-transformation.html">Industry Transformation</a>
-                  <a href="human-resource-management.html">Human Resource Management</a>
+                  <a href="human-resource-management.html">Human Capital</a>
                   <a href="project-solutions.html">Project Management Solution</a>
                 </div>
               </details>
@@ -228,7 +228,7 @@ class SiteFooter extends HTMLElement {
               <a href="electrical-instrumentation.html">Electrical &amp; Instrumentation</a>
               <a href="waterproofing-industrial-coating.html">Waterproofing &amp; Coating</a>
               <a href="industry-transformation.html">Industry Transformation</a>
-              <a href="human-resource-management.html">Human Resource Management</a>
+              <a href="human-resource-management.html">Human Capital</a>
               <a href="project-solutions.html">${V3 ? 'Project Management Solution' : 'Project Solutions'}</a>
             </nav>` : `<nav class="site-footer__col" aria-label="Services">
               <span class="site-footer__title">Services</span>
