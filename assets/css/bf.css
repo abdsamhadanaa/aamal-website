@@ -422,7 +422,7 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .bf .offer-card { position: relative; padding: 34px 32px 32px; gap: 14px; border: 1px solid var(--line, #E3E8E4); border-top: 1px solid var(--line, #E3E8E4); border-radius: 20px; background: #fff; box-shadow: 0 8px 28px rgba(20, 50, 30, .06); overflow: hidden; }
 .bf .offer-card::before { content: ""; position: absolute; left: 0; top: 0; right: 0; height: 4px; background: linear-gradient(90deg, #1FB04B, #157F36); opacity: 0; transition: opacity .25s ease; }
 .bf .offer-card:hover::before { opacity: 1; }
-.bf .offer-card .offer-card__num { align-self: flex-start; background: none; padding: 0; border-radius: 0; font-size: 44px; line-height: 1; font-weight: 700; color: transparent; -webkit-text-stroke: 1.5px #1FB04B; letter-spacing: .02em; }
+.bf .offer-card .offer-card__num { align-self: flex-start; display: inline-grid; place-items: center; width: 52px; height: 52px; padding: 0; border-radius: 16px; background: linear-gradient(135deg, #1FB04B, #157F36); color: #fff; -webkit-text-stroke: 0; font-size: 18px; font-weight: 700; letter-spacing: .02em; line-height: 1; box-shadow: 0 8px 18px -6px rgba(21, 127, 54, .55); margin-bottom: 4px; }
 .bf .offer-card h3 { font-size: 22px; line-height: 1.25; }
 .bf .offer-card p { text-align: left; color: var(--muted, #5A6166); }
 .bf .offer-card .dot-list { margin-top: 4px; padding-top: 18px; border-top: 1px solid var(--line, #E3E8E4); gap: 10px; }
