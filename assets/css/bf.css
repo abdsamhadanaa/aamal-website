@@ -386,3 +386,7 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 
 /* Vision/mission/values column is narrow: justified text opened wide gaps between words, so left-align it */
 .bf .vm-item p { text-align: left; }
+
+/* Vision 2030 rows are information, not links */
+.bf .v2030__row { grid-template-columns: 44px 1fr; cursor: default; }
+.bf .v2030__row:hover { background: var(--tint); transform: none; }
