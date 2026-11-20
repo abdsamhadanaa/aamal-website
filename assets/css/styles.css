@@ -577,8 +577,8 @@ html { scroll-padding-top: 110px; }
 .nav-mega__col a { white-space: normal; }
 .site-nav .nav-mega__all { grid-column: 1 / -1; border-top: 1px solid var(--line); margin-top: 8px; padding-top: 14px; font-weight: 600; color: var(--link); }
 @media (min-width: 1081px) {
-  .nav-drop:hover .nav-drop__panel, .nav-drop:focus-within .nav-drop__panel, .nav-drop.is-open .nav-drop__panel { display: block; }
-  .nav-drop:hover .nav-drop__panel--mega, .nav-drop:focus-within .nav-drop__panel--mega, .nav-drop.is-open .nav-drop__panel--mega { display: grid; }
+  .nav-drop:hover .nav-drop__panel, .nav-drop:has(:focus-visible) .nav-drop__panel, .nav-drop.is-open .nav-drop__panel { display: block; }
+  .nav-drop:hover .nav-drop__panel--mega, .nav-drop:has(:focus-visible) .nav-drop__panel--mega, .nav-drop.is-open .nav-drop__panel--mega { display: grid; }
   .nav-drop::after { content: ""; position: absolute; left: -20px; right: -20px; top: 100%; height: 30px; }
 }
 @media (max-width: 1080px) {

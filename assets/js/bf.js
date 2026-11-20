@@ -134,12 +134,17 @@ class SiteHeader extends HTMLElement {
         closeAll(d);
         d.classList.toggle('is-open', open);
         btn.setAttribute('aria-expanded', String(open));
+        if (!open) { btn.blur(); d.classList.add('is-closing'); d.addEventListener('mouseleave', () => d.classList.remove('is-closing'), { once: true }); }
       });
     });
 
     const toggle = this.querySelector('.nav-toggle');
     const nav = this.querySelector('.site-nav');
     const setMenu = (open, returnFocus) => {
+      if (open) {
+        const hdr = this.querySelector('.site-header') || document.querySelector('.site-header');
+        if (hdr) document.documentElement.style.setProperty('--menu-top', Math.round(hdr.getBoundingClientRect().bottom) + 'px');
+      }
       nav.classList.toggle('is-open', open);
       document.documentElement.classList.toggle('menu-open', open);
       toggle.setAttribute('aria-expanded', String(open));

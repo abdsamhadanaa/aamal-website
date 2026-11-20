@@ -267,8 +267,8 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 }
 /* Mobile menu open: the page behind it doesn't scroll */
 @media (max-width: 1080px) {
-  html.menu-open, html.menu-open body { overflow: hidden; }
-  html.menu-open .site-nav.is-open { max-height: calc(100dvh - 90px); overflow-y: auto; overscroll-behavior: contain; }
+  html.menu-open { overflow: hidden; }
+  html.menu-open .site-nav.is-open { position: absolute; left: 0; right: 0; top: 100%; height: calc(100dvh - var(--menu-top, 90px)); z-index: 90; max-height: none; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; background: #fff; padding: 8px 24px 40px; border-top: 1px solid var(--line, #E3E8E4); }
 }
 
 /* Offer cards: fixed columns so a last card never sits alone on its row */
@@ -445,3 +445,5 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 @media (min-width: 561px) and (max-width: 1000px) { .bf .method-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .bf #why .chips li { background: #fff; border: 1px solid var(--line, #E3E8E4); }
 @media (min-width:761px){ .bf .s-why--solo .s-why__list{grid-template-columns:repeat(2,minmax(0,1fr));max-width:980px} }
+/* A dropdown closed by its caret stays closed until the pointer leaves it */
+@media (min-width: 1081px) { .nav-drop.is-closing:not(.is-open) .nav-drop__panel { display: none !important; } }
