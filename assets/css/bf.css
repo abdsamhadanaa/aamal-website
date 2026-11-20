@@ -486,3 +486,16 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .bf .subnav a:hover { background: #EEF7F1; color: #157F36; }
 .bf .subnav a.is-active { background: #157F36; color: #fff; }
 .bf #overview, .bf #offer, .bf #methodology, .bf #why { scroll-margin-top: var(--subnav-offset, 160px); }
+/* Merged hero + overview (proposal) */
+.bf .mx__card { display: grid; grid-template-columns: 5fr 7fr; gap: 28px 56px; align-items: start; }
+.bf .mx__head { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+.bf .mx__head .h2 { font-size: clamp(28px, 3vw, 40px); line-height: 1.15; }
+.bf .mx__body { display: flex; flex-direction: column; gap: 16px; }
+.bf .mx__body p { margin: 0; text-align: left; }
+.bf .mx__body .ov__lead { font-size: 21px; line-height: 1.6; color: var(--charcoal, #2E3133); }
+.bf .mx__body p:not(.ov__lead) { font-size: 17px; line-height: 1.75; color: var(--muted, #5A6166); }
+.bf .mx .ov__logo { width: 180px; height: 80px; margin-top: 10px; }
+.bf .mx--flat { padding-top: 48px; }
+.bf .mx--card { padding-top: 0; position: relative; z-index: 2; }
+.bf .mx--card .mx__card { margin-top: -140px; background: #fff; border-radius: 24px; padding: 44px 48px; box-shadow: 0 30px 70px -30px rgba(20,50,30,.35), 0 0 0 1px rgba(0,0,0,.04); }
+@media (max-width: 900px) { .bf .mx__card { grid-template-columns: 1fr; } .bf .mx--card .mx__card { margin-top: -60px; padding: 28px 22px; } }
