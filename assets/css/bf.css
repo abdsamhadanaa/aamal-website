@@ -520,3 +520,5 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 @media (max-width: 960px) { .bf .sd__grid { grid-template-columns: 1fr; } .bf .sd__side { position: static; order: 2; } }
 .bf .s-hero:has(+ .sd) { padding-bottom: 0; }
 .bf .sd { padding-top: 40px; }
+.bf .sd__grid:not(:has(.sd__list)) { grid-template-columns: 1fr 300px; }
+.bf .sd__grid:not(:has(.sd__list)) .sd__side { order: 2; }
