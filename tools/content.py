@@ -60,10 +60,7 @@ SERVICES = {
             "about": "A multinational company that developed and patented the technology behind crystalline lagoons, now built in destinations around the world.",
             "url": "https://www.crystal-lagoons.com/",
         },
-        "downloads": [
-            ("Artificial Lagoons profile", OLD + "A'amal%20-%20Crystal%20Lagoons.pdf"),
-            ("Artificial Lagoons executive summary", OLD + "CL-A'amal%20Executive%20Summary.pdf"),
-        ],
+        "downloads": [],
         "offer": [
             ("Public Access Lagoons (PAL™)", "Ticketed beach destinations minutes from home, open to the whole community.", [
                 "New meeting-point destinations that attract up to 1 million visitors a year",
@@ -182,7 +179,7 @@ SERVICES = {
             "We support the Kingdom's industry with quality work at every stage of an asset's life — with the health and safety of our people as a constant priority.",
         ],
         "partner": None,
-        "downloads": [("Industrial Operations & Maintenance profile", OLD + "A'amal%20-%20CSS.pdf")],
+        "downloads": [],
         "offer": [
             ("Turnkey solutions & construction support", "Skilled people and project control for construction and turnkey projects.", [
                 "Management and project control personnel",
@@ -257,7 +254,7 @@ SERVICES = {
             "From the first design document to annual maintenance, we support the Kingdom's critical infrastructure with quality work and a high standard of health and safety.",
         ],
         "partner": None,
-        "downloads": [("Electrical & Instrumentation profile", OLD + "A'amal%20-%20E&I.pdf")],
+        "downloads": [],
         "offer": [
             ("Electrical design", "Complete electrical engineering packages.", [
                 "Project electrical design requirements",
@@ -467,7 +464,7 @@ SERVICES = {
             "about": "An international workforce solutions provider to the energy, process and infrastructure industries, with more than 800 employees and 6,000 contractors working in over 50 countries.",
             "url": "https://www.airswift.com/",
         },
-        "downloads": [("Human Resource Management profile", OLD + "A'amal%20-%20Airswift.pdf")],
+        "downloads": [],
         "offer": [
             ("Talent acquisition", "Qualified people, from one specialist to a full project team.", [
                 "Contingent labour sourcing — discipline-specific recruiters and a global talent pool",

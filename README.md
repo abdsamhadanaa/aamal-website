@@ -62,13 +62,9 @@ to the web root.
 Launch checklist:
 1. Contact form `action` set and a test message received.
 2. Privacy Policy (`v3bf/privacy.html`) reviewed by A'amal's legal team (it is a draft under Saudi PDPL).
-3. The three PDFs on the old site (`A'amal - CSS.pdf`, `A'amal - E&I.pdf`, `A'amal - Airswift.pdf`) copied
-   into `assets/docs/` and the links on the Operations & Maintenance, Electrical & Instrumentation and
-   Human Resource Management pages pointed at them — the build warns while any link points at a file
-   only the old site has.
-4. Build with `--launch`, deploy, then point the domain's DNS at the new host.
-5. In Google Search Console, submit `https://www.aamal-group.com/sitemap.xml`.
-6. Old-site URLs that no longer exist land on the 404 page, which links to the home, services and contact
+3. Build with `--launch`, deploy, then point the domain's DNS at the new host.
+4. In Google Search Console, submit `https://www.aamal-group.com/sitemap.xml`.
+5. Old-site URLs that no longer exist land on the 404 page, which links to the home, services and contact
    pages. Add redirects for any old pages that get significant traffic.
 
 ## Brand colours (`styles.css` → `:root`)
