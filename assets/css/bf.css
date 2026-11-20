@@ -499,3 +499,24 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .bf .mx--card { padding-top: 0; position: relative; z-index: 2; }
 .bf .mx--card .mx__card { margin-top: -140px; background: #fff; border-radius: 24px; padding: 44px 48px; box-shadow: 0 30px 70px -30px rgba(20,50,30,.35), 0 0 0 1px rgba(0,0,0,.04); }
 @media (max-width: 900px) { .bf .mx__card { grid-template-columns: 1fr; } .bf .mx--card .mx__card { margin-top: -60px; padding: 28px 22px; } }
+/* Service details with sidebar (proposal) */
+.bf .sd__grid { display: grid; grid-template-columns: 320px 1fr; gap: 48px; align-items: start; }
+.bf .sd__side { position: sticky; top: 120px; display: flex; flex-direction: column; gap: 20px; }
+.bf .sd__list { display: flex; flex-direction: column; background: #F4F8F5; border-radius: 20px; padding: 22px; gap: 6px; }
+.bf .sd__list-title { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--charcoal, #2E3133); margin-bottom: 8px; }
+.bf .sd__list a { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 13px 16px; background: #fff; border-radius: 12px; color: var(--charcoal, #2E3133); text-decoration: none; font-size: 15px; font-weight: 500; transition: background .2s, color .2s; }
+.bf .sd__list a svg { flex: none; opacity: .5; }
+.bf .sd__list a:hover { color: #157F36; }
+.bf .sd__list a[aria-current="page"] { background: #157F36; color: #fff; }
+.bf .sd__list a[aria-current="page"] svg { opacity: 1; }
+.bf .sd__partner { border: 1px solid var(--line, #E3E8E4); border-radius: 20px; padding: 22px; display: flex; flex-direction: column; }
+.bf .sd__partner .ov__logo { width: 100%; height: 90px; margin-top: 0; }
+.bf .sd__main { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+.bf .sd__img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 24px; margin-bottom: 18px; }
+.bf .sd__main .h2 { font-size: clamp(28px, 3vw, 40px); line-height: 1.15; }
+.bf .sd__main p { margin: 0; text-align: left; }
+.bf .sd__main .ov__lead { font-size: 20px; line-height: 1.6; color: var(--charcoal, #2E3133); }
+.bf .sd__main p:not(.ov__lead) { font-size: 17px; line-height: 1.75; color: var(--muted, #5A6166); }
+@media (max-width: 960px) { .bf .sd__grid { grid-template-columns: 1fr; } .bf .sd__side { position: static; order: 2; } }
+.bf .s-hero:has(+ .sd) { padding-bottom: 0; }
+.bf .sd { padding-top: 40px; }
