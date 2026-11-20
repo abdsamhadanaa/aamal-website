@@ -403,3 +403,16 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 /* Section labels: plain editorial eyebrow (green line + small caps) instead of the pill badge with a pulsing dot */
 .bf .s-pill, .bf .form-head .s-pill { display: inline-flex; align-items: center; gap: 12px; border: 0; background: none !important; border-radius: 0; padding: 0; box-shadow: none; font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--link, #157F36); }
 .bf .s-pill::before { width: 28px; height: 2px; border-radius: 0; background: var(--green, #1FB04B); animation: none !important; }
+
+/* About > Vision 2030 card: match the height of the vision/mission/values column */
+@media (min-width: 901px) {
+  .bf #vision .s-split { align-items: stretch; }
+  .bf #vision .v2030 { padding: 44px 40px; gap: 28px; }
+  .bf #vision .v2030__rows { flex: 1; gap: 16px; }
+  .bf #vision .v2030__row { flex: 1; padding: 24px 24px; grid-template-columns: 68px 1fr; gap: 22px; }
+  .bf #vision .v2030__ico { width: 68px; height: 68px; border-radius: 18px; }
+  .bf #vision .v2030__ico svg { width: 32px; height: 32px; }
+  .bf #vision .v2030__row strong { font-size: 24px; }
+  .bf #vision .v2030__row strong + span { font-size: 18px; margin-top: 8px; line-height: 1.6; }
+  .bf #vision .v2030__head p { font-size: 17px; }
+}
