@@ -399,3 +399,7 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .bf .service-card .line-list a:hover, .bf .service-card .line-list a:focus-visible { background: #1FB04B; color: #fff; }
 .bf .service-card .line-list a:hover::after { transform: translateX(4px); }
 .bf #services { scroll-margin-top: 90px; }
+
+/* Section labels: plain editorial eyebrow (green line + small caps) instead of the pill badge with a pulsing dot */
+.bf .s-pill, .bf .form-head .s-pill { display: inline-flex; align-items: center; gap: 12px; border: 0; background: none !important; border-radius: 0; padding: 0; box-shadow: none; font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--link, #157F36); }
+.bf .s-pill::before { width: 28px; height: 2px; border-radius: 0; background: var(--green, #1FB04B); animation: none !important; }
