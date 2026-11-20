@@ -486,3 +486,9 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .bf .subnav a:hover { background: #EEF7F1; color: #157F36; }
 .bf .subnav a.is-active { background: #157F36; color: #fff; }
 .bf #overview, .bf #offer, .bf #methodology, .bf #why { scroll-margin-top: var(--subnav-offset, 160px); }
+/* Overview: key terms highlighted for scanning */
+.bf .ov__lead strong { font-weight: 600; color: #157F36; }
+.bf .ov--orig { gap: 14px; }
+.bf .ov--orig .h2 { font-size: clamp(28px, 3vw, 38px); line-height: 1.18; }
+.bf .ov--orig > p.ov__lead { font-size: 20px; line-height: 1.6; color: var(--charcoal, #2E3133); max-width: 60ch; }
+.bf .ov--orig > p:not(.ov__lead) { max-width: 66ch; }
