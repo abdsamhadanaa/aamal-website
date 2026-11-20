@@ -22,7 +22,7 @@ const NAV = {
   1: [
     { id: 'home', label: 'Home', href: 'index.html' },
     { id: 'about', label: 'About Us', href: 'about.html' },
-    { id: 'services', label: 'Services', href: 'services.html' },
+    { id: 'services', label: 'Services', href: '#' },
     { id: 'responsibility', label: 'Social Responsibility', href: 'responsibility.html' },
     { id: 'media', label: 'Media', href: 'media.html' },
     { id: 'careers', label: 'Careers', href: 'careers.html' },
@@ -34,7 +34,7 @@ const NAV = {
       { label: 'Social work & responsibility', href: 'responsibility.html' },
       { label: "Global Recognition", href: 'awards.html' },
     ] },
-    { id: 'services', label: 'Services', href: 'services.html', mega: [
+    { id: 'services', label: 'Services', href: '#', mega: [
       { label: 'Hospitality & Sports', href: 'hospitality.html', items: [
         { label: 'Artificial Lagoons', href: 'artificial-lagoons.html' },
         { label: 'Sports Facilities', href: 'sports-facilities.html' },
@@ -97,7 +97,7 @@ class SiteHeader extends HTMLElement {
         ? `<div class="nav-drop__panel nav-drop__panel--mega" id="drop-${i}">${l.mega.map((g) =>
             `<div class="nav-mega__col"><span class="nav-mega__title">${esc(g.label)}</span>${g.items.map((x) => `<a href="${x.href}">${esc(x.label)}</a>`).join('')}</div>`).join('')}</div>`
         : `<div class="nav-drop__panel" id="drop-${i}"><a class="nav-drop__overview" href="${l.id === 'about' ? 'about.html#overview' : l.href}">${l.id === 'about' ? 'About Us' : esc(l.label) + ' overview'}</a>${l.sub.map((x) => `<a href="${x.href}">${esc(x.label)}</a>`).join('')}</div>`;
-      return `<div class="nav-drop"><div class="nav-drop__head"><a href="${l.href}"${cur}>${esc(l.label)}</a><button class="nav-drop__btn" type="button" aria-expanded="false" aria-controls="drop-${i}" aria-label="Show ${esc(l.label)} links">${caret}</button></div>${panel}</div>`;
+      return `<div class="nav-drop"><div class="nav-drop__head"><a href="${l.href}"${l.href === '#' ? ' class="nav-drop__toggle" role="button"' : ''}${cur}>${esc(l.label)}</a><button class="nav-drop__btn" type="button" aria-expanded="false" aria-controls="drop-${i}" aria-label="Show ${esc(l.label)} links">${caret}</button></div>${panel}</div>`;
     }).join('');
 
     this.innerHTML = `
@@ -128,6 +128,8 @@ class SiteHeader extends HTMLElement {
     });
     this.querySelectorAll('.nav-drop').forEach((d) => {
       const btn = d.querySelector('.nav-drop__btn');
+      const tog = d.querySelector('.nav-drop__toggle');
+      if (tog) tog.addEventListener('click', (e) => { e.preventDefault(); btn.click(); });
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         const open = !d.classList.contains('is-open');
@@ -152,7 +154,7 @@ class SiteHeader extends HTMLElement {
       if (!open && returnFocus) toggle.focus();
     };
     toggle.addEventListener('click', () => setMenu(!nav.classList.contains('is-open')));
-    nav.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
+    nav.addEventListener('click', (e) => { const a = e.target.closest('a'); if (a && !a.classList.contains('nav-drop__toggle')) setMenu(false); });
     matchMedia('(min-width: 1081px)').addEventListener('change', (m) => { if (m.matches) setMenu(false); });
 
     document.addEventListener('click', (e) => { if (!e.target.closest('.nav-drop')) closeAll(); });
