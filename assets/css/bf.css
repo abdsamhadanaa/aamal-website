@@ -461,3 +461,15 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .bf .ov__partner .text-link { text-transform: none; letter-spacing: 0; font-size: 14px; }
 .bf .ov__cta { display: flex; gap: 12px; flex-wrap: wrap; }
 @media (min-width: 901px) { .bf .s-split:has(.ov) { align-items: stretch; } .bf .s-split:has(.ov) > .s-split__img:not(.s-split__img--43) { height: 0; min-height: 100%; max-height: none; } }
+/* Overview: original copy, refined design */
+.bf .ov--orig > p { text-align: left; }
+.bf .ov--orig > p:not(.ov__lead) { font-size: 16px; line-height: 1.7; color: var(--muted, #5A6166); }
+.bf .ov--orig .partner-card { width: 100%; margin-top: 4px; display: grid; grid-template-columns: 150px 1fr; gap: 6px 22px; align-items: center; padding: 20px 22px; background: #F6FAF7; border: 1px solid var(--line, #E3E8E4); border-left: 4px solid #1FB04B; border-radius: 16px; }
+.bf .ov--orig .partner-card__logo { flex: none; width: 150px; height: 72px; border-radius: 12px; padding: 10px 14px; grid-row: span 1; }
+.bf .ov--orig .partner-card__logo img { max-height: 46px; }
+.bf .ov--orig .partner-card__text { gap: 4px; }
+.bf .ov--orig .partner-card__text .eyebrow { font-size: 11px; letter-spacing: .12em; }
+.bf .ov--orig .partner-card__text strong { font-size: 18px; }
+.bf .ov--orig .partner-card__text p { font-size: 14.5px; line-height: 1.55; color: var(--muted, #5A6166); }
+.bf .ov--orig .partner-card .text-link { font-size: 14px; margin-top: 2px; }
+@media (max-width: 560px) { .bf .ov--orig .partner-card { grid-template-columns: 1fr; } .bf .ov--orig .partner-card__logo { width: 100%; } }
