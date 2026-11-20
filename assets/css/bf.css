@@ -417,15 +417,14 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
   .bf #vision .v2030__head p { font-size: 17px; }
 }
 
-/* Offer cards with a photo on top (Artificial Lagoons) */
-.bf .offer-grid--media { align-items: stretch; gap: 28px; }
-.bf .offer-card--media { padding: 0; gap: 0; overflow: hidden; border: 0; border-radius: 20px; background: #fff; box-shadow: 0 10px 30px rgba(20, 50, 30, .08); }
-.bf .offer-card--media .offer-card__img { position: relative; margin: 0; aspect-ratio: 16 / 10; overflow: hidden; }
-.bf .offer-card--media .offer-card__img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s ease; }
-.bf .offer-card--media:hover .offer-card__img img { transform: scale(1.05); }
-.bf .offer-card--media .offer-card__num { position: absolute; left: 18px; top: 18px; background: rgba(255,255,255,.92); color: #157F36; font-size: 13px; padding: 6px 12px; border-radius: 999px; }
-.bf .offer-card--media .offer-card__body { display: flex; flex-direction: column; gap: 12px; padding: 26px 28px 30px; }
-.bf .offer-card--media h3 { font-size: 22px; }
-.bf .offer-card--media .dot-list { margin-top: 6px; padding-top: 16px; border-top: 1px solid var(--line, #E3E8E4); }
-.bf .offer-card--media .dot-list li { text-align: left; }
-.bf .offer-card--media p { text-align: left; }
+/* Offer cards (all service pages): clean text cards, equal heights, big outlined number, check list */
+.bf .offer-grid { align-items: stretch; gap: 24px; }
+.bf .offer-card { position: relative; padding: 34px 32px 32px; gap: 14px; border: 1px solid var(--line, #E3E8E4); border-top: 1px solid var(--line, #E3E8E4); border-radius: 20px; background: #fff; box-shadow: 0 8px 28px rgba(20, 50, 30, .06); overflow: hidden; }
+.bf .offer-card::before { content: ""; position: absolute; left: 0; top: 0; right: 0; height: 4px; background: linear-gradient(90deg, #1FB04B, #157F36); opacity: 0; transition: opacity .25s ease; }
+.bf .offer-card:hover::before { opacity: 1; }
+.bf .offer-card .offer-card__num { align-self: flex-start; background: none; padding: 0; border-radius: 0; font-size: 44px; line-height: 1; font-weight: 700; color: transparent; -webkit-text-stroke: 1.5px #1FB04B; letter-spacing: .02em; }
+.bf .offer-card h3 { font-size: 22px; line-height: 1.25; }
+.bf .offer-card p { text-align: left; color: var(--muted, #5A6166); }
+.bf .offer-card .dot-list { margin-top: 4px; padding-top: 18px; border-top: 1px solid var(--line, #E3E8E4); gap: 10px; }
+.bf .offer-card .dot-list li { display: block; position: relative; padding-left: 30px; text-align: left; }
+.bf .offer-card .dot-list li::before { content: ""; position: absolute; left: 0; top: 3px; width: 20px; height: 20px; flex: none; transform: none; border-radius: 50%; background: #EEF7F1 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23157F36' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center / 12px no-repeat; }
