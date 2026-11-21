@@ -561,3 +561,9 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 /* Numbers: small green eyebrow with a line (option 2) */
 .bf .offer-card .offer-card__num, .bf .method-grid .steps__num { width: auto; height: auto; min-width: 0; padding: 0; border-radius: 0; background: none; box-shadow: none; color: #157F36; font-size: 15px; font-weight: 700; letter-spacing: .08em; display: inline-flex; align-items: center; gap: 10px; line-height: 1; }
 .bf .offer-card .offer-card__num::before, .bf .method-grid .steps__num::before { content: ""; width: 28px; height: 2px; background: #1FB04B; border-radius: 2px; }
+/* Same intro footer on every service: partner logo left, industries right */
+.bf .mg__meta { flex-wrap: nowrap; align-items: flex-end; }
+.bf .mg__meta .ov__partner2 { flex: none; }
+.bf .mg__ind { flex: 1 1 auto; min-width: 0; }
+.bf .mg__ind .chips { flex-wrap: wrap; }
+@media (max-width: 560px) { .bf .mg__meta { flex-wrap: wrap; } }
