@@ -589,5 +589,5 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .bf .service-card > img { width: 100%; height: 100%; min-height: 100%; object-fit: cover; }
 .bf .service-card .service-card__body { position: relative; inset: auto; align-self: end; }
 /* Awards: slideshow aligned with list top and sticky */
-.bf .aw-split { align-items: stretch; }
-@media (min-width: 961px) { .bf .aw-split > .split__head { display: flex; } .bf .aw-split .aw-slides { max-width: 540px; aspect-ratio: auto; height: 100%; min-height: 640px; } }
+.bf .aw-split { align-items: flex-start; }
+@media (min-width: 961px) { .bf .aw-split > .split__head { position: sticky; top: 120px; align-self: flex-start; } .bf .aw-split .aw-slides { aspect-ratio: 4 / 5; max-width: 460px; } }
