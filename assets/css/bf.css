@@ -567,3 +567,8 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .bf .mg__ind { flex: 1 1 auto; min-width: 0; }
 .bf .mg__ind .chips { flex-wrap: wrap; }
 @media (max-width: 560px) { .bf .mg__meta { flex-wrap: wrap; } }
+/* Global Recognition hero: text + stage photo */
+.bf .s-hero:has(.aw-hero) { text-align: left; }
+.bf .aw-hero { padding-top: 24px; padding-bottom: 40px; }
+.bf .aw-hero .btn-row { justify-content: flex-start; margin-top: 8px; }
+@media (min-width: 961px) { .bf .aw-hero .mg__media { min-height: 420px; } }
