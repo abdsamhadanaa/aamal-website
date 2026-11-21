@@ -619,6 +619,17 @@ document.querySelectorAll('[data-fade]').forEach((box) => {
     i = (n + imgs.length) % imgs.length;
     imgs.forEach((im, k) => im.classList.toggle('is-active', k === i));
     btns.forEach((b, k) => b.setAttribute('aria-selected', k === i ? 'true' : 'false'));
+    const cap = box.dataset.cap && document.getElementById(box.dataset.cap);
+    const im = imgs[i];
+    if (cap && im.dataset.title) {
+      cap.classList.add('is-swapping');
+      setTimeout(() => {
+        cap.querySelector('.awf__tag').textContent = im.dataset.tag || '';
+        cap.querySelector('.awf__title').textContent = im.dataset.title;
+        cap.querySelector('.awf__sub').textContent = im.dataset.sub || '';
+        cap.classList.remove('is-swapping');
+      }, 250);
+    }
   };
   const start = () => { if (!reduce && !timer) timer = setInterval(() => show(i + 1), 4500); };
   const stop = () => { clearInterval(timer); timer = null; };
