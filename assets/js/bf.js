@@ -254,7 +254,7 @@ class SiteFooter extends HTMLElement {
             <span>© ${year} A'amal Group. All rights reserved.</span>
             <nav aria-label="Legal and social">
               <a href="privacy.html">Privacy Policy</a>
-              ${v2 ? '<a href="responsibility.html#speak-up">Report a Concern</a>' : ''}
+              
               <a href="https://twitter.com/AAMAL_GROUP_SA" target="_blank" rel="noopener">X / Twitter</a>
             </nav>
           </div>
