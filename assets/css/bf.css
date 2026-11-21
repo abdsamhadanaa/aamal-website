@@ -574,3 +574,4 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 @media (min-width: 961px) { .bf .aw-hero .mg__media { min-height: 420px; } }
 .bf .aw-logos { padding-top: 56px; padding-bottom: 56px; }
 .bf .aw-logos .hero-logos { margin-top: 0; }
+.gs-card figcaption .gs-date { display: block; margin-bottom: 4px; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #1FB04B; }
