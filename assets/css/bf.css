@@ -607,3 +607,9 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .bf .awg-card p { margin: 0; color: #5b6360; font-size: 14px; }
 @media (max-width: 960px) { .bf .awf { grid-template-columns: 1fr; } .bf .awf .awf__slides { height: 420px; } .bf .awf__cap { padding: 26px; } .bf .awg { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .bf .awg { grid-template-columns: 1fr; } .bf .awf .awf__slides { height: 380px; } }
+/* Global Stage: full-image cards with caption overlay */
+.gs-card { position: relative; border: 0; border-radius: 18px; background: #1D2224; }
+.gs-card:hover { transform: none; box-shadow: 0 18px 40px -24px rgba(20, 24, 26, .55); }
+.gs-card__img { aspect-ratio: 4 / 5; }
+.gs-card figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 64px 20px 18px; color: #fff; font-size: 15px; font-weight: 500; line-height: 1.4; background: linear-gradient(to top, rgba(10, 14, 16, .88), rgba(10, 14, 16, .55) 55%, transparent); }
+@media (max-width: 560px) { .gs-card__img { aspect-ratio: 4 / 4.6; } .gs-card figcaption { font-size: 14px; padding: 56px 16px 14px; } }
