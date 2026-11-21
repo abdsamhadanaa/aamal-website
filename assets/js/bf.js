@@ -653,3 +653,37 @@ document.querySelectorAll('[data-fade]').forEach((box) => {
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
+
+/* Global Stage bento layout + Show more */
+(function () {
+  function init() {
+    var g = document.querySelector('.gs-grid');
+    if (!g) return;
+    g.classList.add('gs-bento');
+    var cards = [].slice.call(g.querySelectorAll('.gs-card'));
+    var n = cards.length, full = Math.floor(n / 5) * 5, rest = n - full;
+    cards.forEach(function (c, i) {
+      if (i < full) {
+        if (i % 10 === 0) c.classList.add('gs-big');
+        else if (i % 10 === 5) c.classList.add('gs-big', 'gs-big--r');
+      } else if (rest === 3 && i === full) c.classList.add('gs-wide');
+      else if (rest === 2 || rest === 1) c.classList.add(rest === 1 ? 'gs-full' : 'gs-wide');
+    });
+    var first = 10;
+    if (n <= first) return;
+    cards.forEach(function (c, i) { if (i >= first) c.classList.add('is-hidden'); });
+    var wrap = document.createElement('div');
+    wrap.className = 'gs-more';
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'btn btn--outline';
+    b.textContent = 'Show more';
+    b.addEventListener('click', function () {
+      cards.forEach(function (c) { c.classList.remove('is-hidden'); });
+      wrap.remove();
+    });
+    wrap.appendChild(b);
+    g.after(wrap);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();

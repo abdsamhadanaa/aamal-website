@@ -613,3 +613,15 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .gs-card__img { aspect-ratio: 4 / 5; }
 .gs-card figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 64px 20px 18px; color: #fff; font-size: 15px; font-weight: 500; line-height: 1.4; background: linear-gradient(to top, rgba(10, 14, 16, .88), rgba(10, 14, 16, .55) 55%, transparent); }
 @media (max-width: 560px) { .gs-card__img { aspect-ratio: 4 / 4.6; } .gs-card figcaption { font-size: 14px; padding: 56px 16px 14px; } }
+/* Global Stage: bento layout */
+.gs-grid.gs-bento { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 260px; grid-auto-flow: dense; gap: 16px; }
+.gs-bento .gs-card__img { aspect-ratio: auto; height: 100%; }
+.gs-bento .gs-big { grid-column: span 2; grid-row: span 2; }
+.gs-bento .gs-big--r { grid-column: 3 / span 2; }
+.gs-bento .gs-wide { grid-column: span 2; }
+.gs-bento .gs-full { grid-column: 1 / -1; }
+.gs-bento .gs-big figcaption { font-size: 20px; padding: 90px 26px 24px; }
+.gs-bento .gs-card.is-hidden { display: none; }
+.gs-more { text-align: center; margin-top: 32px; }
+@media (max-width: 900px) { .gs-grid.gs-bento { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 220px; } .gs-bento .gs-big, .gs-bento .gs-big--r { grid-column: span 2; grid-row: span 2; } }
+@media (max-width: 560px) { .gs-grid.gs-bento { grid-auto-rows: 170px; gap: 10px; } .gs-bento .gs-card figcaption { font-size: 13px; padding: 44px 12px 12px; } .gs-bento .gs-big figcaption { font-size: 16px; padding: 60px 16px 16px; } }
