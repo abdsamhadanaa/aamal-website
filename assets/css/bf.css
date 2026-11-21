@@ -607,12 +607,3 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .bf .awg-card p { margin: 0; color: #5b6360; font-size: 14px; }
 @media (max-width: 960px) { .bf .awf { grid-template-columns: 1fr; } .bf .awf .awf__slides { height: 420px; } .bf .awf__cap { padding: 26px; } .bf .awg { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .bf .awg { grid-template-columns: 1fr; } .bf .awf .awf__slides { height: 380px; } }
-/* Global Stage: full photo archive */
-.bf .gs-more { margin-top: 32px; }
-.bf .gs-more > summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; padding: 14px 26px; border-radius: 99px; border: 1.5px solid #157F36; color: #157F36; font-weight: 600; }
-.bf .gs-more > summary::-webkit-details-marker { display: none; }
-.bf .gs-more > summary::after { content: '↓'; transition: transform .2s; }
-.bf .gs-more[open] > summary::after { transform: rotate(180deg); }
-.bf .gs-more > summary:hover { background: #157F36; color: #fff; }
-.bf .gs-gallery { margin-top: 24px; columns: 4 240px; column-gap: 14px; }
-.bf .gs-gallery img { width: 100%; height: auto; display: block; margin-bottom: 14px; border-radius: 14px; break-inside: avoid; background: #eef1ee; }
