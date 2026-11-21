@@ -575,3 +575,16 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .bf .aw-logos { padding-top: 56px; padding-bottom: 56px; }
 .bf .aw-logos .hero-logos { margin-top: 0; }
 .gs-card figcaption .gs-date { display: block; margin-bottom: 4px; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #1FB04B; }
+/* Service cards: full image card, title on photo */
+.bf .service-card { position: relative; overflow: hidden; border-radius: 20px; background: #12261A; }
+.bf .service-card img { aspect-ratio: 4 / 5; height: auto; display: block; transition: transform .6s ease; }
+.bf .service-card:hover img { transform: scale(1.04); }
+.bf .service-card .service-card__body { position: absolute; inset: auto 0 0 0; border-top: 0; padding: 120px 28px 28px; gap: 14px; background: linear-gradient(to top, rgba(15,30,20,.94) 48%, rgba(15,30,20,0)); color: #fff; }
+.bf .service-card .service-card__num, .bf .service-card h3 { color: #fff; }
+.bf .service-card .service-card__body .line-list a { background: rgba(255,255,255,.14); color: #fff; padding: 10px 14px; backdrop-filter: blur(2px); }
+.bf .service-card .service-card__body .line-list a:hover, .bf .service-card .service-card__body .line-list a:focus-visible { background: #1FB04B; color: #fff; }
+@media (max-width: 760px) { .bf .service-card img { aspect-ratio: 4 / 5; } .bf .service-card .service-card__body { padding: 100px 20px 22px; } }
+.bf .service-card { display: grid; }
+.bf .service-card > img, .bf .service-card > .service-card__body { grid-area: 1 / 1; }
+.bf .service-card > img { width: 100%; height: 100%; min-height: 100%; object-fit: cover; }
+.bf .service-card .service-card__body { position: relative; inset: auto; align-self: end; }
