@@ -539,7 +539,13 @@ function initMotion() {
     const y = window.scrollY;
     const max = document.documentElement.scrollHeight - innerHeight;
     bar.style.transform = `scaleX(${max > 0 ? Math.min(1, y / max) : 0})`;
-    if (header) header.classList.toggle('is-scrolled', y > 12);
+    // Hysteresis: the header shrinks when scrolled, which shifts the page; separate on/off
+    // thresholds stop it flipping back and forth (the "shaking" near the top of the page).
+    if (header) {
+      const on = header.classList.contains('is-scrolled');
+      if (!on && y > 80) header.classList.add('is-scrolled');
+      else if (on && y < 8) header.classList.remove('is-scrolled');
+    }
     para.forEach((img) => {
       const r = img.parentElement.getBoundingClientRect();
       if (r.bottom < 0 || r.top > innerHeight) return;
