@@ -625,3 +625,11 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .gs-more { text-align: center; margin-top: 32px; }
 @media (max-width: 900px) { .gs-grid.gs-bento { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 220px; } .gs-bento .gs-big, .gs-bento .gs-big--r { grid-column: span 2; grid-row: span 2; } }
 @media (max-width: 560px) { .gs-grid.gs-bento { grid-auto-rows: 170px; gap: 10px; } .gs-bento .gs-card figcaption { font-size: 13px; padding: 44px 12px 12px; } .gs-bento .gs-big figcaption { font-size: 16px; padding: 60px 16px 16px; } }
+/* Global Stage: keep captions short so they don't cover the photo */
+.gs-bento .gs-card figcaption { font-size: 13.5px; line-height: 1.35; padding: 36px 16px 14px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; background: linear-gradient(to top, rgba(10, 14, 16, .85), rgba(10, 14, 16, .45) 60%, transparent); }
+.gs-bento .gs-big figcaption { font-size: 18px; padding: 56px 24px 20px; }
+.gs-bento .gs-card:hover figcaption { -webkit-line-clamp: 5; line-clamp: 5; }
+@media (max-width: 560px) { .gs-grid.gs-bento { grid-auto-rows: 210px; } .gs-bento .gs-card figcaption { font-size: 12.5px; padding: 30px 12px 11px; } .gs-bento .gs-big figcaption { font-size: 15px; padding: 44px 16px 14px; } }
+.gs-bento .gs-card figcaption { padding-bottom: 0; border-bottom: 14px solid transparent; }
+.gs-bento .gs-big figcaption { padding-bottom: 0; border-bottom-width: 20px; }
+@media (max-width: 560px) { .gs-bento .gs-card figcaption { padding-bottom: 0; border-bottom-width: 11px; } }
