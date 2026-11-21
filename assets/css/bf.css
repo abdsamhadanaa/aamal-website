@@ -633,3 +633,8 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .gs-bento .gs-card figcaption { padding-bottom: 0; border-bottom: 14px solid transparent; }
 .gs-bento .gs-big figcaption { padding-bottom: 0; border-bottom-width: 20px; }
 @media (max-width: 560px) { .gs-bento .gs-card figcaption { padding-bottom: 0; border-bottom-width: 11px; } }
+/* Global Stage: smooth gradient overlay (no hard band behind captions) */
+.gs-bento .gs-card::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 55%; background: linear-gradient(to top, rgba(10, 14, 16, .82), rgba(10, 14, 16, .35) 55%, rgba(10, 14, 16, 0)); pointer-events: none; z-index: 1; }
+.gs-bento .gs-card figcaption { background: none; border: 0; padding: 0; left: 16px; right: 16px; bottom: 14px; z-index: 2; }
+.gs-bento .gs-big figcaption { padding: 0; border: 0; left: 24px; right: 24px; bottom: 20px; }
+@media (max-width: 560px) { .gs-bento .gs-card figcaption { padding: 0; border: 0; left: 12px; right: 12px; bottom: 11px; } .gs-bento .gs-big figcaption { padding: 0; left: 16px; right: 16px; bottom: 14px; } }
