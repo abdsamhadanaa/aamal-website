@@ -662,7 +662,7 @@ document.querySelectorAll('[data-fade]').forEach((box) => {
     g.classList.add('gs-bento');
     var cards = [].slice.call(g.querySelectorAll('.gs-card'));
     var n = cards.length, full = Math.floor(n / 5) * 5, rest = n - full;
-    cards.forEach(function (c, i) {
+    if (!g.hasAttribute('data-manual')) cards.forEach(function (c, i) {
       if (i < full) {
         if (i % 10 === 0) c.classList.add('gs-big');
         else if (i % 10 === 5) c.classList.add('gs-big', 'gs-big--r');
