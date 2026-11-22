@@ -690,3 +690,9 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .csrk__c figcaption span{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,.22);backdrop-filter:blur(6px)}
 .csrk__c figcaption b{display:block;font-size:22px;margin-top:8px;line-height:1.25}
 @media(max-width:700px){.csrk__c{flex-basis:78vw;height:420px}.csrk__ar{display:none}}
+
+/* CSR grid (all visible) */
+.csrk--grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px;overflow:visible;scroll-snap-type:none}
+.csrk--grid .csrk__c{grid-column:span 3;height:380px}
+.csrk--grid .csrk__c:nth-child(-n+3){grid-column:span 4;height:480px}
+@media(max-width:900px){.csrk--grid{grid-template-columns:1fr 1fr;gap:14px}.csrk--grid .csrk__c,.csrk--grid .csrk__c:nth-child(-n+3){grid-column:span 1;height:300px}.csrk--grid .csrk__c:first-child{grid-column:span 2;height:380px}.csrk--grid .csrk__c figcaption b{font-size:17px}}
