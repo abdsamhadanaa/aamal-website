@@ -687,3 +687,9 @@ document.querySelectorAll('[data-fade]').forEach((box) => {
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
+
+/* CSR slider arrows */
+(function(){var t=document.querySelector('.csrk');if(!t)return;var bs=document.querySelectorAll('.csrk__btn');
+bs.forEach(function(b){b.addEventListener('click',function(){var c=t.querySelector('.csrk__c');var w=c?c.offsetWidth+20:380;t.scrollBy({left:w*+b.dataset.dir,behavior:'smooth'})})});
+function upd(){var max=t.scrollWidth-t.clientWidth-4;bs[0].classList.toggle('csrk__btn--on',t.scrollLeft>4);bs[1].classList.toggle('csrk__btn--on',t.scrollLeft<max)}
+t.addEventListener('scroll',upd,{passive:true});upd()})();
