@@ -652,3 +652,4 @@ body.bf, body.v3 { --max: 1340px; --gutter: 30px; }
 .why2__list p { color: #5C6B64; font-size: 15px; line-height: 1.5; margin: 0; }
 @media (max-width: 900px) { .why2 { grid-template-columns: 1fr; gap: 28px; padding: 36px 24px; border-radius: 22px; } }
 .why2 .why2__l h2 { margin: 12px 0 16px; }
+.why2 .why2__l p { margin-top: 18px; }
